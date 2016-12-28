@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>eco_bag</key>
+	<string>Эко-сумка вместо пакета в магазин</string>
+	<key>sort_trash</key>
+	<string>Сортировать мусор</string>
+	<key>light_off</key>
+	<string>Выключать свет</string>
+	<key>eco_wash</key>
+	<string>Включать максимально заполненную стиральную машинку</string>
+	<key>eco_clean</key>
+	<string>Мыть посуду в миске или посудомойке</string>
+	<key>e_book</key>
+	<string>&quot;Да&quot; электронной прессе вместо бумажной</string>
+	<key>go_on_foot</key>
+	<string>Ходить пешком</string>
+	<key>bicycle</key>
+	<string>Ездить на велосипеде</string>
+	<key>no_fast_food</key>
+	<string>Отказ от вредных продуктов</string>
+	<key>no_plastic</key>
+	<string>Не покупать в пластике</string>
+	<key>eco_bottle</key>
+	<string>Использовать многоразовую бутылку для воды</string>
+	<key>eco_water</key>
+	<string>Выключать воду, когда чистишь зубы или бреешься</string>
+	<key>eco_things</key>
+	<string>Контролировать необходимость покупки вещей</string>
+	<key>eco_two_life</key>
+	<string>Дать вторую жизнь старым вещам</string>
+	<key>eco_napkin</key>
+	<string>Использовать текстильные салфетки вместо бумажных</string>
+	<key>eco_chemistry</key>
+	<string>Применять бытовую химию с минимальным содержанием вредных веществ</string>
+	<key>eco_refrigerator</key>
+	<string>Регулярно размораживать холодильник</string>
+	<key>paper</key>
+	<string>Писать на бумаге с двух сторон</string>
+	<key>recycle_paper</key>
+	<string>Сдавать бумагу на переработку</string>
+	<key>recycle_plastic</key>
+	<string>Сдавать пластик на утилизацию</string>
+	<key>recycle_glass</key>
+	<string>Сдавать стекло на переработку</string>
+	<key>recycle_battery</key>
+	<string>Сдавать батарейки на утилизацию</string>
+	<key>natural_games</key>
+	<string>Предпочтение игрушкам из натуральных материалов</string>
+</dict>
+</plist>
