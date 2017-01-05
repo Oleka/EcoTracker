@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E6395731E1128C00041CCE5 /* TrackerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6395721E1128BF0041CCE5 /* TrackerBlock.swift */; };
+		5E77188C1E1CF1AC000A2ADA /* TypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E77188B1E1CF1AC000A2ADA /* TypeViewController.swift */; };
 		5E805A4C1E0D1DB800E3F1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A4B1E0D1DB800E3F1AF /* AppDelegate.swift */; };
 		5E805A4E1E0D1DB800E3F1AF /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A4D1E0D1DB800E3F1AF /* AddViewController.swift */; };
 		5E805A511E0D1DB800E3F1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E805A4F1E0D1DB800E3F1AF /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		5E6395721E1128BF0041CCE5 /* TrackerBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerBlock.swift; sourceTree = "<group>"; };
+		5E77188B1E1CF1AC000A2ADA /* TypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		5E805A481E0D1DB800E3F1AF /* EcoTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E805A4B1E0D1DB800E3F1AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E805A4D1E0D1DB800E3F1AF /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				5E805A621E0D57D200E3F1AF /* TrackerViewController.swift */,
 				5E6395721E1128BF0041CCE5 /* TrackerBlock.swift */,
 				5EA994351E13BB0F003B9251 /* SettingsViewController.swift */,
+				5E77188B1E1CF1AC000A2ADA /* TypeViewController.swift */,
 				5E805A4F1E0D1DB800E3F1AF /* Main.storyboard */,
 				5E805A551E0D1DB800E3F1AF /* Assets.xcassets */,
 				5E805A571E0D1DB800E3F1AF /* LaunchScreen.storyboard */,
@@ -160,6 +163,7 @@
 				5E805A631E0D57D200E3F1AF /* TrackerViewController.swift in Sources */,
 				5EA994361E13BB0F003B9251 /* SettingsViewController.swift in Sources */,
 				5E805A4E1E0D1DB800E3F1AF /* AddViewController.swift in Sources */,
+				5E77188C1E1CF1AC000A2ADA /* TypeViewController.swift in Sources */,
 				5E805A541E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld in Sources */,
 				5E805A4C1E0D1DB800E3F1AF /* AppDelegate.swift in Sources */,
 				5E805A611E0D511100E3F1AF /* LogViewController.swift in Sources */,
@@ -206,6 +210,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -255,6 +260,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

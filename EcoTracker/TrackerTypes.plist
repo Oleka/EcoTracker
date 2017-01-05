@@ -3,27 +3,27 @@
 <plist version="1.0">
 <dict>
 	<key>eco_bag</key>
-	<string>Эко-сумка вместо пакета в магазин</string>
+	<string>Эко-сумка вместо пакета</string>
 	<key>sort_trash</key>
 	<string>Сортировать мусор</string>
 	<key>light_off</key>
 	<string>Выключать свет</string>
 	<key>eco_wash</key>
-	<string>Включать максимально заполненную стиральную машинку</string>
-	<key>eco_clean</key>
+	<string>Максимально заполнять стиральную машинку</string>
+	<key>eco_dish</key>
 	<string>Мыть посуду в миске или посудомойке</string>
 	<key>e_book</key>
 	<string>&quot;Да&quot; электронной прессе вместо бумажной</string>
-	<key>go_on_foot</key>
+	<key>walk</key>
 	<string>Ходить пешком</string>
 	<key>bicycle</key>
 	<string>Ездить на велосипеде</string>
-	<key>no_fast_food</key>
+	<key>no_junk_food</key>
 	<string>Отказ от вредных продуктов</string>
 	<key>no_plastic</key>
-	<string>Не покупать в пластике</string>
+	<string>Отказ от пластиковой упаковки</string>
 	<key>eco_bottle</key>
-	<string>Использовать многоразовую бутылку для воды</string>
+	<string>Многоразовая бутылка для воды</string>
 	<key>eco_water</key>
 	<string>Выключать воду, когда чистишь зубы или бреешься</string>
 	<key>eco_things</key>
@@ -31,12 +31,14 @@
 	<key>eco_two_life</key>
 	<string>Дать вторую жизнь старым вещам</string>
 	<key>eco_napkin</key>
-	<string>Использовать текстильные салфетки вместо бумажных</string>
+	<string>Текстильные салфетки вместо бумажных</string>
 	<key>eco_chemistry</key>
-	<string>Применять бытовую химию с минимальным содержанием вредных веществ</string>
+	<string>Эко- бытовая химия</string>
+	<key>eco_mascara</key>
+	<string>Эко- косметика</string>
 	<key>eco_refrigerator</key>
 	<string>Регулярно размораживать холодильник</string>
-	<key>paper</key>
+	<key>eco_paper</key>
 	<string>Писать на бумаге с двух сторон</string>
 	<key>recycle_paper</key>
 	<string>Сдавать бумагу на переработку</string>
@@ -46,7 +48,11 @@
 	<string>Сдавать стекло на переработку</string>
 	<key>recycle_battery</key>
 	<string>Сдавать батарейки на утилизацию</string>
-	<key>natural_games</key>
-	<string>Предпочтение игрушкам из натуральных материалов</string>
+	<key>eco_toys</key>
+	<string>Игрушки из натуральных материалов</string>
+	<key>eco_shower</key>
+	<string>Принимать душ вместо ванны</string>
+	<key>vegan_day</key>
+	<string>Веган-день</string>
 </dict>
 </plist>
