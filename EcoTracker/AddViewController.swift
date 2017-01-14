@@ -20,6 +20,38 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     var myTrackTypes : [MyTypes] = []
     var myTracker : [Tracker] = []
     
+    func getPoints(dt: NSDate) -> String {
+        
+        var points: String = "0"
+        
+        //Select Value sum on date dt
+        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let startDate = Calendar.current.startOfDay(for: dt as Date)
+        
+        let request = NSFetchRequest<Tracker>(entityName: "Tracker")
+      
+        request.predicate = NSPredicate(format: "dt>=%@ and dt<=%@",startDate as CVarArg,dt as CVarArg)
+        
+        do {
+            let results = try _context.fetch(request)
+            
+            var pp: Int16 = 0
+            for res in results {
+                pp += res.value
+            }
+            
+            points = String(pp)
+            
+        } catch _ {
+            // If it fails, ensure the array is nil
+            points = "0"
+        }
+
+        
+        return points
+    }
+    
     func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
         return true
     }
@@ -37,8 +69,11 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         if segue.identifier == "infoPopOver" {
             if let controller = segue.destination as? InfoViewController {
                 controller.popoverPresentationController!.delegate = self
-                controller.preferredContentSize = CGSize(width: 139, height: 141)
-                controller.pointsValue = "0"
+                controller.preferredContentSize = CGSize(width: 140, height: 140)
+                controller.pointsValue = getPoints(dt: NSDate())
+                controller.view.cornerRadius=70
+                controller.popoverPresentationController?.backgroundColor = .clear
+                
             }
         }
     }

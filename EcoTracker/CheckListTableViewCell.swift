@@ -23,6 +23,17 @@ class CheckListTableViewCell: UITableViewCell {
     let valueDone: Int16 = 10
     let valuePersent: Int16 = 5
     
+    func getToday(dt: NSDate) -> String {
+        
+        var dateString: String = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        dateString = dateFormatter.string(from: dt as Date)
+        
+        return dateString
+    }
     
     //Save by typeName state value on today
     func saveTypeState(state: String){
@@ -50,6 +61,7 @@ class CheckListTableViewCell: UITableViewCell {
             //Add
             let log = Tracker(context: _context)
             log.dt    = NSDate()
+            log.today = getToday(dt: NSDate())
             log.type  = typeName
             
             if (state == "Done") {

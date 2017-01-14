@@ -52,7 +52,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         let cell = UITableViewCell()
         
         let log = logs[indexPath.row]
-        let table_label = "\(getDate(dd: log.dt!))  \(log.type!) = \(log.value)"
+        let table_label = "\(log.today!)  \(log.type!) = \(log.value)"
         cell.textLabel?.text = table_label
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
         

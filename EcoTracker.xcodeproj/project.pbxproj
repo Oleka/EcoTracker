@@ -7,8 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E1677D51E2A1F4900665CF1 /* eco_bottle.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677D41E2A1F4900665CF1 /* eco_bottle.rtf */; };
+		5E1677D71E2A1F9D00665CF1 /* eco_water.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677D61E2A1F9D00665CF1 /* eco_water.rtf */; };
+		5E1677D91E2A200C00665CF1 /* eco_things.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677D81E2A200C00665CF1 /* eco_things.rtf */; };
+		5E1677DB1E2A205B00665CF1 /* eco_two_life.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677DA1E2A205B00665CF1 /* eco_two_life.rtf */; };
+		5E1677DD1E2A20C600665CF1 /* eco_napkin.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677DC1E2A20C600665CF1 /* eco_napkin.rtf */; };
+		5E1677DF1E2A57A200665CF1 /* eco_chemistry.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677DE1E2A57A200665CF1 /* eco_chemistry.rtf */; };
+		5E1677E11E2A57F100665CF1 /* eco_mascara.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677E01E2A57F100665CF1 /* eco_mascara.rtf */; };
+		5E1677E31E2A584200665CF1 /* eco_refrigerator.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677E21E2A584200665CF1 /* eco_refrigerator.rtf */; };
+		5E1677E51E2A587E00665CF1 /* eco_paper.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677E41E2A587E00665CF1 /* eco_paper.rtf */; };
+		5E1677E71E2A58DA00665CF1 /* recycle_paper.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677E61E2A58DA00665CF1 /* recycle_paper.rtf */; };
+		5E1677E91E2A591500665CF1 /* recycle_plastic.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677E81E2A591500665CF1 /* recycle_plastic.rtf */; };
+		5E1677EB1E2A596100665CF1 /* recycle_glass.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677EA1E2A596100665CF1 /* recycle_glass.rtf */; };
+		5E1677ED1E2A59A900665CF1 /* recycle_battery.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677EC1E2A59A900665CF1 /* recycle_battery.rtf */; };
+		5E1677EF1E2A59FC00665CF1 /* eco_toys.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677EE1E2A59FC00665CF1 /* eco_toys.rtf */; };
+		5E1677F11E2A5A6A00665CF1 /* eco_shower.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677F01E2A5A6A00665CF1 /* eco_shower.rtf */; };
+		5E1677F31E2A5AD900665CF1 /* vegan_day.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677F21E2A5AD900665CF1 /* vegan_day.rtf */; };
+		5E1677F51E2A5B2D00665CF1 /* free_cleaning.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E1677F41E2A5B2D00665CF1 /* free_cleaning.rtf */; };
 		5E18C24F1E23AACC00533E14 /* CheckListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C24E1E23AACC00533E14 /* CheckListTableViewCell.swift */; };
 		5E18C2511E25167F00533E14 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2501E25167F00533E14 /* InfoViewController.swift */; };
+		5E18C2531E2625B100533E14 /* TrackerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2521E2625B100533E14 /* TrackerTableViewCell.swift */; };
+		5E18C2551E26632400533E14 /* TypesDescription.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2541E26632400533E14 /* TypesDescription.plist */; };
+		5E18C2571E274C4000533E14 /* eco_bag.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2561E274C4000533E14 /* eco_bag.rtf */; };
+		5E18C25A1E2A0D7700533E14 /* sort_trash.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2591E2A0D7700533E14 /* sort_trash.rtf */; };
+		5E18C25C1E2A0E1000533E14 /* light_off.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C25B1E2A0E1000533E14 /* light_off.rtf */; };
+		5E18C25E1E2A0E6A00533E14 /* eco_wash.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C25D1E2A0E6A00533E14 /* eco_wash.rtf */; };
+		5E18C2601E2A0EF000533E14 /* eco_dish.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C25F1E2A0EF000533E14 /* eco_dish.rtf */; };
+		5E18C2621E2A0FA500533E14 /* e_book.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2611E2A0FA500533E14 /* e_book.rtf */; };
+		5E18C2641E2A117E00533E14 /* walk.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2631E2A117E00533E14 /* walk.rtf */; };
+		5E18C2661E2A139100533E14 /* bicycle.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2651E2A139100533E14 /* bicycle.rtf */; };
+		5E18C2681E2A141800533E14 /* no_junk_food.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2671E2A141800533E14 /* no_junk_food.rtf */; };
+		5E18C26A1E2A146300533E14 /* no_plastic.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2691E2A146300533E14 /* no_plastic.rtf */; };
 		5E6395731E1128C00041CCE5 /* TrackerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6395721E1128BF0041CCE5 /* TrackerBlock.swift */; };
 		5E77188C1E1CF1AC000A2ADA /* TypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E77188B1E1CF1AC000A2ADA /* TypeViewController.swift */; };
 		5E805A4C1E0D1DB800E3F1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A4B1E0D1DB800E3F1AF /* AppDelegate.swift */; };
@@ -24,8 +53,37 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E1677D41E2A1F4900665CF1 /* eco_bottle.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_bottle.rtf; sourceTree = "<group>"; };
+		5E1677D61E2A1F9D00665CF1 /* eco_water.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_water.rtf; sourceTree = "<group>"; };
+		5E1677D81E2A200C00665CF1 /* eco_things.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_things.rtf; sourceTree = "<group>"; };
+		5E1677DA1E2A205B00665CF1 /* eco_two_life.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_two_life.rtf; sourceTree = "<group>"; };
+		5E1677DC1E2A20C600665CF1 /* eco_napkin.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_napkin.rtf; sourceTree = "<group>"; };
+		5E1677DE1E2A57A200665CF1 /* eco_chemistry.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_chemistry.rtf; sourceTree = "<group>"; };
+		5E1677E01E2A57F100665CF1 /* eco_mascara.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_mascara.rtf; sourceTree = "<group>"; };
+		5E1677E21E2A584200665CF1 /* eco_refrigerator.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_refrigerator.rtf; sourceTree = "<group>"; };
+		5E1677E41E2A587E00665CF1 /* eco_paper.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_paper.rtf; sourceTree = "<group>"; };
+		5E1677E61E2A58DA00665CF1 /* recycle_paper.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = recycle_paper.rtf; sourceTree = "<group>"; };
+		5E1677E81E2A591500665CF1 /* recycle_plastic.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = recycle_plastic.rtf; sourceTree = "<group>"; };
+		5E1677EA1E2A596100665CF1 /* recycle_glass.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = recycle_glass.rtf; sourceTree = "<group>"; };
+		5E1677EC1E2A59A900665CF1 /* recycle_battery.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = recycle_battery.rtf; sourceTree = "<group>"; };
+		5E1677EE1E2A59FC00665CF1 /* eco_toys.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_toys.rtf; sourceTree = "<group>"; };
+		5E1677F01E2A5A6A00665CF1 /* eco_shower.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_shower.rtf; sourceTree = "<group>"; };
+		5E1677F21E2A5AD900665CF1 /* vegan_day.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = vegan_day.rtf; sourceTree = "<group>"; };
+		5E1677F41E2A5B2D00665CF1 /* free_cleaning.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = free_cleaning.rtf; sourceTree = "<group>"; };
 		5E18C24E1E23AACC00533E14 /* CheckListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListTableViewCell.swift; sourceTree = "<group>"; };
 		5E18C2501E25167F00533E14 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		5E18C2521E2625B100533E14 /* TrackerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerTableViewCell.swift; sourceTree = "<group>"; };
+		5E18C2541E26632400533E14 /* TypesDescription.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TypesDescription.plist; sourceTree = "<group>"; };
+		5E18C2561E274C4000533E14 /* eco_bag.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_bag.rtf; sourceTree = "<group>"; };
+		5E18C2591E2A0D7700533E14 /* sort_trash.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = sort_trash.rtf; sourceTree = "<group>"; };
+		5E18C25B1E2A0E1000533E14 /* light_off.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = light_off.rtf; sourceTree = "<group>"; };
+		5E18C25D1E2A0E6A00533E14 /* eco_wash.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_wash.rtf; sourceTree = "<group>"; };
+		5E18C25F1E2A0EF000533E14 /* eco_dish.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_dish.rtf; sourceTree = "<group>"; };
+		5E18C2611E2A0FA500533E14 /* e_book.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = e_book.rtf; sourceTree = "<group>"; };
+		5E18C2631E2A117E00533E14 /* walk.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = walk.rtf; sourceTree = "<group>"; };
+		5E18C2651E2A139100533E14 /* bicycle.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = bicycle.rtf; sourceTree = "<group>"; };
+		5E18C2671E2A141800533E14 /* no_junk_food.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = no_junk_food.rtf; sourceTree = "<group>"; };
+		5E18C2691E2A146300533E14 /* no_plastic.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = no_plastic.rtf; sourceTree = "<group>"; };
 		5E6395721E1128BF0041CCE5 /* TrackerBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerBlock.swift; sourceTree = "<group>"; };
 		5E77188B1E1CF1AC000A2ADA /* TypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		5E805A481E0D1DB800E3F1AF /* EcoTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +111,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E18C2581E27556A00533E14 /* RTF */ = {
+			isa = PBXGroup;
+			children = (
+				5E18C2561E274C4000533E14 /* eco_bag.rtf */,
+				5E18C2591E2A0D7700533E14 /* sort_trash.rtf */,
+				5E18C25B1E2A0E1000533E14 /* light_off.rtf */,
+				5E18C25D1E2A0E6A00533E14 /* eco_wash.rtf */,
+				5E18C25F1E2A0EF000533E14 /* eco_dish.rtf */,
+				5E18C2611E2A0FA500533E14 /* e_book.rtf */,
+				5E18C2631E2A117E00533E14 /* walk.rtf */,
+				5E18C2651E2A139100533E14 /* bicycle.rtf */,
+				5E18C2671E2A141800533E14 /* no_junk_food.rtf */,
+				5E18C2691E2A146300533E14 /* no_plastic.rtf */,
+				5E1677D41E2A1F4900665CF1 /* eco_bottle.rtf */,
+				5E1677D61E2A1F9D00665CF1 /* eco_water.rtf */,
+				5E1677D81E2A200C00665CF1 /* eco_things.rtf */,
+				5E1677DA1E2A205B00665CF1 /* eco_two_life.rtf */,
+				5E1677DC1E2A20C600665CF1 /* eco_napkin.rtf */,
+				5E1677DE1E2A57A200665CF1 /* eco_chemistry.rtf */,
+				5E1677E01E2A57F100665CF1 /* eco_mascara.rtf */,
+				5E1677E21E2A584200665CF1 /* eco_refrigerator.rtf */,
+				5E1677E41E2A587E00665CF1 /* eco_paper.rtf */,
+				5E1677E61E2A58DA00665CF1 /* recycle_paper.rtf */,
+				5E1677E81E2A591500665CF1 /* recycle_plastic.rtf */,
+				5E1677EA1E2A596100665CF1 /* recycle_glass.rtf */,
+				5E1677EC1E2A59A900665CF1 /* recycle_battery.rtf */,
+				5E1677EE1E2A59FC00665CF1 /* eco_toys.rtf */,
+				5E1677F01E2A5A6A00665CF1 /* eco_shower.rtf */,
+				5E1677F21E2A5AD900665CF1 /* vegan_day.rtf */,
+				5E1677F41E2A5B2D00665CF1 /* free_cleaning.rtf */,
+			);
+			name = RTF;
+			sourceTree = "<group>";
+		};
 		5E805A3F1E0D1DB800E3F1AF = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +164,7 @@
 		5E805A4A1E0D1DB800E3F1AF /* EcoTracker */ = {
 			isa = PBXGroup;
 			children = (
+				5E18C2581E27556A00533E14 /* RTF */,
 				5E805A4B1E0D1DB800E3F1AF /* AppDelegate.swift */,
 				5E805A4D1E0D1DB800E3F1AF /* AddViewController.swift */,
 				5E805A601E0D511100E3F1AF /* LogViewController.swift */,
@@ -80,13 +173,15 @@
 				5EA994351E13BB0F003B9251 /* SettingsViewController.swift */,
 				5E77188B1E1CF1AC000A2ADA /* TypeViewController.swift */,
 				5E18C24E1E23AACC00533E14 /* CheckListTableViewCell.swift */,
+				5E18C2501E25167F00533E14 /* InfoViewController.swift */,
+				5E18C2521E2625B100533E14 /* TrackerTableViewCell.swift */,
 				5E805A4F1E0D1DB800E3F1AF /* Main.storyboard */,
 				5E805A551E0D1DB800E3F1AF /* Assets.xcassets */,
 				5E805A571E0D1DB800E3F1AF /* LaunchScreen.storyboard */,
 				5E805A5A1E0D1DB800E3F1AF /* Info.plist */,
 				5EA994331E12BFE8003B9251 /* TrackerTypes.plist */,
+				5E18C2541E26632400533E14 /* TypesDescription.plist */,
 				5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */,
-				5E18C2501E25167F00533E14 /* InfoViewController.swift */,
 			);
 			path = EcoTracker;
 			sourceTree = "<group>";
@@ -151,10 +246,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E18C25E1E2A0E6A00533E14 /* eco_wash.rtf in Resources */,
+				5E18C2681E2A141800533E14 /* no_junk_food.rtf in Resources */,
+				5E1677EF1E2A59FC00665CF1 /* eco_toys.rtf in Resources */,
+				5E18C2641E2A117E00533E14 /* walk.rtf in Resources */,
+				5E18C2551E26632400533E14 /* TypesDescription.plist in Resources */,
+				5E1677EB1E2A596100665CF1 /* recycle_glass.rtf in Resources */,
+				5E18C25C1E2A0E1000533E14 /* light_off.rtf in Resources */,
+				5E1677E51E2A587E00665CF1 /* eco_paper.rtf in Resources */,
+				5E18C25A1E2A0D7700533E14 /* sort_trash.rtf in Resources */,
+				5E18C2621E2A0FA500533E14 /* e_book.rtf in Resources */,
+				5E18C2601E2A0EF000533E14 /* eco_dish.rtf in Resources */,
+				5E1677E31E2A584200665CF1 /* eco_refrigerator.rtf in Resources */,
+				5E1677F11E2A5A6A00665CF1 /* eco_shower.rtf in Resources */,
+				5E1677F51E2A5B2D00665CF1 /* free_cleaning.rtf in Resources */,
+				5E1677F31E2A5AD900665CF1 /* vegan_day.rtf in Resources */,
+				5E1677D71E2A1F9D00665CF1 /* eco_water.rtf in Resources */,
+				5E1677D51E2A1F4900665CF1 /* eco_bottle.rtf in Resources */,
+				5E1677DF1E2A57A200665CF1 /* eco_chemistry.rtf in Resources */,
 				5E805A591E0D1DB800E3F1AF /* LaunchScreen.storyboard in Resources */,
+				5E18C26A1E2A146300533E14 /* no_plastic.rtf in Resources */,
+				5E18C2661E2A139100533E14 /* bicycle.rtf in Resources */,
 				5EA994341E12BFE8003B9251 /* TrackerTypes.plist in Resources */,
+				5E1677ED1E2A59A900665CF1 /* recycle_battery.rtf in Resources */,
+				5E1677E91E2A591500665CF1 /* recycle_plastic.rtf in Resources */,
+				5E1677DB1E2A205B00665CF1 /* eco_two_life.rtf in Resources */,
+				5E1677E71E2A58DA00665CF1 /* recycle_paper.rtf in Resources */,
+				5E1677DD1E2A20C600665CF1 /* eco_napkin.rtf in Resources */,
+				5E18C2571E274C4000533E14 /* eco_bag.rtf in Resources */,
 				5E805A561E0D1DB800E3F1AF /* Assets.xcassets in Resources */,
 				5E805A511E0D1DB800E3F1AF /* Main.storyboard in Resources */,
+				5E1677D91E2A200C00665CF1 /* eco_things.rtf in Resources */,
+				5E1677E11E2A57F100665CF1 /* eco_mascara.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6395731E1128C00041CCE5 /* TrackerBlock.swift in Sources */,
+				5E18C2531E2625B100533E14 /* TrackerTableViewCell.swift in Sources */,
 				5E805A631E0D57D200E3F1AF /* TrackerViewController.swift in Sources */,
 				5EA994361E13BB0F003B9251 /* SettingsViewController.swift in Sources */,
 				5E18C24F1E23AACC00533E14 /* CheckListTableViewCell.swift in Sources */,
