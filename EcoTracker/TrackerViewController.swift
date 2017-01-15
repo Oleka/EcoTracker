@@ -90,6 +90,18 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         return dateString
     }
     
+    func getDay(dd:Date) -> String {
+        
+        var dateString: String = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d"
+        
+        dateString = dateFormatter.string(from: dd as Date)
+        
+        return dateString
+    }
+    
     func getDataTypes(){
         let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -321,41 +333,75 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             
             var i: Int = 0
             var today: Date = beginDate!
-            var week_day: Int = 1
+            var week_day: Int = 0
         
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "e"
-            let dayOfWeekString = dateFormatter.string(from: beginDate!)
-            print(dayOfWeekString)
         
             while i < days {
                 
-                let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
-                
                 if i==0 {
-                    periodLabel.text = "\(String(i+1))\(getMonth(dd:beginDate!))"
+                    let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
+                    periodLabel.text = "\(getDay(dd:today))\(getMonth(dd:beginDate!))"
+                    
+                    periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                    periodLabel.textAlignment = .center
+                    
+                    tracker_view.addSubview(periodLabel)
+
+                    
                 }
                 else{
                     //Day by week in mounth
                     if (self.periodTypeControl.selectedSegmentIndex == 1){
+                        
+                        //in mounth width=width*6
+                        let beginDateComponents = Calendar.current.dateComponents([.weekday], from: beginDate!)
+                        let begin_week_day = beginDateComponents.weekday!
+                        
+                        var periodLabel: UILabel = UILabel()
+                        if (begin_week_day==1)&&(today == beginDate!.addingTimeInterval(1*60*60*24)){
+                            //iF begin date is Sunday - next Monday for view
+                            periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
+                        }
+                        else{
+                        
+                            periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*7) , height: 20.0)))
+                        }
+                        
                         //only week_day=1
-                        if week_day == 1 {
-                            periodLabel.text = String(i+1)
+                        let todayComponents = Calendar.current.dateComponents([.weekday], from: today)
+                        week_day = todayComponents.weekday!
+                        
+                        if (week_day == 2) || (today == beginDate!) || (today == endDate!) || (i==days-1) {
+                            periodLabel.text = getDay(dd:today)
                         }
                         else{
                            periodLabel.text = " "
+                           
                         }
+                        
+                        periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                        periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                        periodLabel.textAlignment = .right
+                        
+                        tracker_view.addSubview(periodLabel)
+
+                        
                     }
                     else {
-                        periodLabel.text = String(i+1)
+                        let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
+                        periodLabel.text = getDay(dd:today)
+                        
+                        periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                        periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                        periodLabel.textAlignment = .center
+                        
+                        tracker_view.addSubview(periodLabel)
+
+                        
                     }
                 }
                     
-                periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
-                periodLabel.textAlignment = .center
-                
-                tracker_view.addSubview(periodLabel)
                 
                 //for next
                 offsetX += blockWidth
