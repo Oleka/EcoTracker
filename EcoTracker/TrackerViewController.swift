@@ -66,6 +66,14 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     var trackTypes : [MyTypes] = []
     
+    func changeOrientation(){
+        if(UIDevice.current.orientation != UIDeviceOrientation.landscapeRight)
+        {
+            let value = UIInterfaceOrientation.landscapeRight.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
+    }
+    
     func getDate(dd:Date) -> String {
         
         var dateString: String = ""
@@ -114,9 +122,11 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         
     }
     
-    
-    
     @IBAction func changePeriod(_ sender: Any) {
+        
+        if (self.periodTypeControl.selectedSegmentIndex == 2) {
+            changeOrientation()
+        }
         
         //clear at first
         let sublayers = period_View.layer.sublayers
@@ -126,8 +136,8 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             }
         }
         period_View.addSubview(loadPeriod(tracker_width: tableView.bounds.width-70))
-        print("w in period=\(tableView.bounds.width-70)")
         period_View.setNeedsDisplay()
+        
         tableView.reloadData()
         
     }
@@ -140,74 +150,6 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     var beginDate:  Date? = nil
     var endDate:    Date? = nil
     
-    
-//    func loadTracker(tr_type: String) -> UIView{
-//        
-//        let tracker_view: UIView = TrackerBlock(frame: CGRect(x: 0.0, y: 0.0, width: 300, height: 50))
-//        tracker_view.backgroundColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-//        
-//        //Define width of blocks by SegmentIndex
-//        if (self.periodTypeControl.selectedSegmentIndex == 0) {
-//            //Week
-//            blockWidth = 20
-//            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) as NSDate?
-//            endDate    = NSDate()
-//        }
-//        else if (self.periodTypeControl.selectedSegmentIndex == 1) {
-//            //Month
-//            blockWidth = 10
-//            beginDate  = NSDate()
-//            endDate    = NSDate()
-//        }
-//        else{
-//            //Year
-//            blockWidth = 2
-//            beginDate  = NSDate()
-//            endDate    = NSDate()
-//        }
-//        
-//        //Get data from DB selected by periodTypeControl
-//        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        do {
-//            let request = NSFetchRequest<Tracker>(entityName: "Tracker")
-//            request.predicate = NSPredicate(format:"type=%@ and dt>=%@ AND dt<=%@",tr_type, beginDate!, endDate!)
-//            searched = try _context.fetch(request)
-//            
-//            var offsetX: Int = beginX
-//            let offsetY: Int = beginY
-//            
-//            
-//            for track in searched {
-//                
-//                //Define block color
-//                var blockColor: UIColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
-//                
-//                if track.value == 5 {
-//                    blockColor = .yellow
-//                }
-//                else if track.value == 10 {
-//                    blockColor = UIColor(red: 84.0/255.0, green: 197.0/255.0, blue: 24.0/255.0, alpha: 1.0)//green
-//                }
-//                else{
-//                    blockColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
-//                }
-//                
-//                //Load block
-//                let block = TrackerBlock(frame: CGRect(x: offsetX, y: offsetY, width: Int(blockWidth), height: 50))
-//                block.backgroundColor = blockColor
-//                
-//                tracker_view.addSubview(block)
-//                
-//                offsetX += blockWidth
-//                
-//            }
-//            
-//        } catch {
-//            print("There was an error fetching.")
-//        }
-//        
-//        return tracker_view
-//    }
     
     func loadTrackerForPeriod(tr_type: String, tracker_width: CGFloat) -> UIView{
         
@@ -227,10 +169,22 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
         else if (self.periodTypeControl.selectedSegmentIndex == 1) {
             //Month
-            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
+            //For mounth
+            //Find Mon in previous week from beginDate
+            let beginDateComponents = Calendar.current.dateComponents([.weekOfYear, .year], from: beginDate!)
+            let begin_week = beginDateComponents.weekOfYear
+            
+            //Create date Mon previous
+            var firstDayComponents = DateComponents()
+            firstDayComponents.year = beginDateComponents.year
+            firstDayComponents.weekOfYear = begin_week!
+            firstDayComponents.weekday = 2
+            let firstDay = Calendar.current.date(from: firstDayComponents)
+            beginDate = firstDay!
             endDate    = Date()
-            days = endDate!.days(from: beginDate!)+1
-            blockWidth = Int(tracker_width)/30
+            days = endDate!.days(from: firstDay!)+1
+            
+            blockWidth = Int(tracker_width)/37
         }
         else{
             //Year
@@ -303,121 +257,187 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         //Days between
         var days: Int = 0
+        var offsetX: Int = 70 //type_image_width
+        let offsetY: Int = 0
+        
+        var i: Int = 0
+        var today: Date = Date()
+        var week_day: Int = 0
         
         //Define width of blocks by SegmentIndex
         if (self.periodTypeControl.selectedSegmentIndex == 0) {
+            
             //Week
-            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) as Date?
+            //Find Mon in week today
+            let beginDateComponents = Calendar.current.dateComponents([.weekday, .weekOfYear, .year], from: Date())
+           
+            //Create date Mon previous
+            var firstDayComponents = DateComponents()
+            firstDayComponents.year = beginDateComponents.year
+            firstDayComponents.weekOfYear = beginDateComponents.weekOfYear
+            firstDayComponents.weekday = 2
+            beginDate = Calendar.current.date(from: firstDayComponents)
+            today = beginDate!
+            
             endDate    = Date()
             days = endDate!.days(from: beginDate!)+1
             blockWidth = Int(tracker_width)/7
-        }
-        else if (self.periodTypeControl.selectedSegmentIndex == 1) {
-            //Month
-            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
-            endDate    = Date()
-            days = endDate!.days(from: beginDate!)+1
-            blockWidth = Int(tracker_width)/30
-        }
-        else{
-            //Year
-            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .year], from: Date())) as Date?
-            endDate    = Date()
-            days = endDate!.days(from: beginDate!)+1
-            blockWidth = Int(tracker_width)/365
-        }
-        
-        
-            var offsetX: Int = 70 //type_image_width
-            let offsetY: Int = 0
             
-            var i: Int = 0
-            var today: Date = beginDate!
-            var week_day: Int = 0
-        
-        
             while i < days {
-                
+                let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
                 if i==0 {
-                    let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
                     periodLabel.text = "\(getDay(dd:today))\(getMonth(dd:beginDate!))"
-                    
-                    periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
-                    periodLabel.textAlignment = .center
-                    
-                    tracker_view.addSubview(periodLabel)
-
-                    
                 }
                 else{
-                    //Day by week in mounth
-                    if (self.periodTypeControl.selectedSegmentIndex == 1){
-                        
-                        //in mounth width=width*6
-                        let beginDateComponents = Calendar.current.dateComponents([.weekday], from: beginDate!)
-                        let begin_week_day = beginDateComponents.weekday!
-                        
-                        var periodLabel: UILabel = UILabel()
-                        if (begin_week_day==1)&&(today == beginDate!.addingTimeInterval(1*60*60*24)){
-                            //iF begin date is Sunday - next Monday for view
-                            periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
-                        }
-                        else{
-                        
-                            periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*7) , height: 20.0)))
-                        }
-                        
-                        //only week_day=1
-                        let todayComponents = Calendar.current.dateComponents([.weekday], from: today)
-                        week_day = todayComponents.weekday!
-                        
-                        if (week_day == 2) || (today == beginDate!) || (today == endDate!) || (i==days-1) {
-                            periodLabel.text = getDay(dd:today)
-                        }
-                        else{
-                           periodLabel.text = " "
-                           
-                        }
-                        
-                        periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                        periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
-                        periodLabel.textAlignment = .right
-                        
-                        tracker_view.addSubview(periodLabel)
-
-                        
-                    }
-                    else {
-                        let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 20.0)))
-                        periodLabel.text = getDay(dd:today)
-                        
-                        periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                        periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
-                        periodLabel.textAlignment = .center
-                        
-                        tracker_view.addSubview(periodLabel)
-
-                        
-                    }
+                    periodLabel.text = getDay(dd:today)
                 }
-                    
+                periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                periodLabel.textAlignment = .center
+                
+                tracker_view.addSubview(periodLabel)
                 
                 //for next
                 offsetX += blockWidth
                 today = today.addingTimeInterval(1*60*60*24)
                 i += 1
-                if week_day>6 {
-                    week_day = 1
+            }
+            
+        }
+        else if (self.periodTypeControl.selectedSegmentIndex == 1) {
+            //Month
+            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
+            endDate    = Date()
+            
+            blockWidth = Int(tracker_width)/37
+            
+            //For mounth
+            //Find Mon in previous week from beginDate
+            let beginDateComponents = Calendar.current.dateComponents([.weekOfYear, .year], from: beginDate!)
+            let begin_week = beginDateComponents.weekOfYear
+            
+            //Create date Mon previous
+            var firstDayComponents = DateComponents()
+            firstDayComponents.year = beginDateComponents.year
+            firstDayComponents.weekOfYear = begin_week!
+            firstDayComponents.weekday = 2
+            let firstDay = Calendar.current.date(from: firstDayComponents)
+            today = firstDay!
+            days = endDate!.days(from: firstDay!)+1
+            
+            while i < days {
+                
+                if i==0 {
+                    let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*7) , height: 20.0)))
+                    periodLabel.text = "\(getDay(dd:today))\(getMonth(dd:today))"
+                    
+                    periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                    periodLabel.textAlignment = .left
+                    
+                    tracker_view.addSubview(periodLabel)
+                    
+                    
                 }
                 else{
-                    week_day += 1
+                    
+                        var periodLabel: UILabel = UILabel()
+                        periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*7) , height: 20.0)))
+                    
+                        //only week_day=1
+                        let todayComponents = Calendar.current.dateComponents([.weekday], from: today)
+                        week_day = todayComponents.weekday!
+                        
+                        if (week_day == 2){
+                            periodLabel.text = getDay(dd:today)
+                        }
+                        else{
+                            periodLabel.text = " "
+                            
+                        }
+                        
+                        periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                        periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                        periodLabel.textAlignment = .left
+                        
+                        tracker_view.addSubview(periodLabel)
+                        
+                        
                 }
+                
+                //for next
+                offsetX += blockWidth
+                today = today.addingTimeInterval(1*60*60*24)
+                i += 1
             }
+
+            
+        }
+        else{
+            //Year
+            var offsetX: Double = 70.0 //type_image_width
+            let offsetY: Double = 0.0
+            beginDate = Calendar.current.date(from: Calendar.current.dateComponents([.year], from: Date()))
+            endDate    = Date()
+            
+            let blockWidth: Double = Double(tracker_width/365)
+            print("tracker_width=\(tracker_width)")
+            print("blockWidth=\(blockWidth)")
+            today = beginDate!
+            
+            while i < 12 {
+                
+                let dayInMonth = (Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: today)?.days(from: today))!+1
+                    print("days in month=\(dayInMonth)")
+                    print("today=\(today)")
+                    print("blockWidth*dayInMonth=\(blockWidth*Double(dayInMonth))")
+                
+                var periodLabel: UILabel = UILabel()
+                periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*Double(dayInMonth)) , height: 20.0)))
+                
+                
+                periodLabel.text = "\(getMonth(dd:today))"
+                
+                periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                periodLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFontWeightThin)
+                    periodLabel.textAlignment = .left
+                    
+                tracker_view.addSubview(periodLabel)
+                
+                //for next
+                offsetX += blockWidth*Double(dayInMonth)
+                today = Calendar.current.date(byAdding: DateComponents(month: 1), to: today)!
+                i += 1
+            }
+
+        }
         
+       
         return tracker_view
     }
 
+    //Standart
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        //Orientation change
+        if UIDevice.current.orientation.isPortrait {
+            if(self.periodTypeControl.selectedSegmentIndex == 2){
+                self.periodTypeControl.selectedSegmentIndex = 1
+            }
+        }
+        
+        tableView.reloadData()
+        
+        //clear at first
+        let sublayers = period_View.layer.sublayers
+        if sublayers != nil {
+            for layer in sublayers! {
+                layer.removeFromSuperlayer()
+            }
+        }
+        period_View.addSubview(loadPeriod(tracker_width: size.width-70))
+        period_View.setNeedsDisplay()
+        
+    }
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -429,7 +449,20 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         
         getDataTypes()
+        
+        //clear at first
+        let sublayers = period_View.layer.sublayers
+        if sublayers != nil {
+            for layer in sublayers! {
+                layer.removeFromSuperlayer()
+            }
+        }
+        period_View.addSubview(loadPeriod(tracker_width: self.view.bounds.width-70))
+        
+        period_View.setNeedsDisplay()
+        
         tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -461,7 +494,6 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
         
         cell.dataView.addSubview(loadTrackerForPeriod(tr_type: log.name!, tracker_width: cell.contentView.bounds.width-70))
-        print("w in table=\(cell.contentView.bounds.width-70)")
         cell.selectionStyle = .none
         cell.typeName         = log.name!
         cell.parentController = self

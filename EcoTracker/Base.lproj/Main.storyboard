@@ -60,7 +60,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="REb-me-xBQ" id="Ag3-WV-ZeB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X35-u0-bmB">
@@ -100,15 +100,15 @@
                             <constraint firstItem="BFB-Hw-4zg" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leading" id="AlI-tb-1w4"/>
                             <constraint firstItem="P66-co-JGc" firstAttribute="top" secondItem="9UC-Jk-28A" secondAttribute="bottom" constant="10" id="D9e-qo-KLw"/>
                             <constraint firstAttribute="trailing" secondItem="P66-co-JGc" secondAttribute="trailing" id="F2r-Wu-3f2"/>
-                            <constraint firstItem="3at-0h-klq" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leadingMargin" constant="-16" id="HTf-8k-oVa"/>
                             <constraint firstItem="P66-co-JGc" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leading" id="JZn-G3-Qwp"/>
                             <constraint firstItem="BFB-Hw-4zg" firstAttribute="top" secondItem="bxe-tW-6gm" secondAttribute="bottom" id="Lc3-NK-YXc"/>
                             <constraint firstItem="9UC-Jk-28A" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leadingMargin" id="Lz2-25-Rar"/>
                             <constraint firstItem="3at-0h-klq" firstAttribute="top" secondItem="P66-co-JGc" secondAttribute="bottom" constant="3" id="PSS-fP-Wfr"/>
+                            <constraint firstItem="3at-0h-klq" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leading" id="Qyv-Nn-N5Q"/>
                             <constraint firstItem="nzb-Qe-BD0" firstAttribute="top" secondItem="3at-0h-klq" secondAttribute="bottom" id="XK0-hN-K95"/>
-                            <constraint firstItem="3at-0h-klq" firstAttribute="trailing" secondItem="8X1-6u-JtB" secondAttribute="trailingMargin" constant="16" id="jrc-Cf-d99"/>
                             <constraint firstAttribute="trailing" secondItem="BFB-Hw-4zg" secondAttribute="trailing" id="v2s-OM-3eg"/>
                             <constraint firstItem="9UC-Jk-28A" firstAttribute="trailing" secondItem="8X1-6u-JtB" secondAttribute="trailingMargin" id="wvH-GT-aUK"/>
+                            <constraint firstAttribute="trailing" secondItem="3at-0h-klq" secondAttribute="trailing" id="xFB-Wc-hHt"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Трекер" image="tab_tracker" id="m1x-rd-RDf"/>
@@ -449,7 +449,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mFp-GO-7Mc" id="UjQ-hm-Q9i">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0cf-k4-yVw">
