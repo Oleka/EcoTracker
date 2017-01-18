@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TypeViewController: UIViewController {
+class TypeViewController: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
@@ -61,11 +61,14 @@ class TypeViewController: UIViewController {
         dismiss(animated: false, completion: nil)
     }
 
-    
+    override func viewDidLayoutSubviews() {
+        self.describeText.setContentOffset(CGPoint.zero, animated: false)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        describeText.delegate = self
         // Do any additional setup after loading the view.
         typeImage.image = UIImage.init(named: "big_\(detail_type[0].name!).png")
         
@@ -81,6 +84,7 @@ class TypeViewController: UIViewController {
             }catch{}
             
             describeText.isEditable = false
+           // describeText.contentOffset = CGPoint.zero
         }
         
         if isSelected==true {

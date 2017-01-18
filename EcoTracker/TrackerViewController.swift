@@ -71,6 +71,9 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         {
             let value = UIInterfaceOrientation.landscapeRight.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
+            
+            //update data view
+            
         }
     }
     
@@ -412,30 +415,47 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
 
         }
         
-       
         return tracker_view
     }
 
-    //Standart
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        //Orientation change
-        if UIDevice.current.orientation.isPortrait {
-            if(self.periodTypeControl.selectedSegmentIndex == 2){
-                self.periodTypeControl.selectedSegmentIndex = 1
-            }
-        }
         
-        tableView.reloadData()
+        // best call super just in case
+        super.viewWillTransition(to: size, with: coordinator)
         
-        //clear at first
-        let sublayers = period_View.layer.sublayers
-        if sublayers != nil {
-            for layer in sublayers! {
-                layer.removeFromSuperlayer()
+        // will execute before rotation
+        coordinator.animate(alongsideTransition: { context in
+            // do whatever with your context
+            context.viewController(forKey: UITransitionContextViewControllerKey.from)
+            
+            //Orientation change
+            if UIDevice.current.orientation.isPortrait {
+                if(self.periodTypeControl.selectedSegmentIndex == 2){
+                    self.periodTypeControl.selectedSegmentIndex = 1
+                }
             }
-        }
-        period_View.addSubview(loadPeriod(tracker_width: size.width-70))
-        period_View.setNeedsDisplay()
+            
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+            
+            if self.period_View != nil {
+                //clear at first
+                let sublayers = self.period_View.layer.sublayers
+                if sublayers != nil {
+                    for layer in sublayers! {
+                        layer.removeFromSuperlayer()
+                    }
+                }
+                self.period_View.addSubview(self.loadPeriod(tracker_width: size.width-70))
+                self.period_View.setNeedsDisplay()
+            }
+        }, completion: nil)
+        
+        
+        // will execute after rotation
+        
         
     }
     
