@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DoneTypes" representedClassName="DoneTypes" syncable="YES" codeGenerationType="class">
+        <attribute name="dt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="MyTypes" representedClassName="MyTypes" syncable="YES" codeGenerationType="class">
         <attribute name="dateBegin" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="dateEnd" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -22,5 +27,6 @@
         <element name="MyTypes" positionX="-54" positionY="18" width="128" height="135"/>
         <element name="Tracker" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Types" positionX="-54" positionY="36" width="128" height="75"/>
+        <element name="DoneTypes" positionX="-54" positionY="45" width="128" height="90"/>
     </elements>
 </model>

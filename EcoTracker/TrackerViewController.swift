@@ -430,16 +430,18 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             context.viewController(forKey: UITransitionContextViewControllerKey.from)
             
             //Orientation change
-            if UIDevice.current.orientation.isPortrait {
-                if(self.periodTypeControl.selectedSegmentIndex == 2){
-                    self.periodTypeControl.selectedSegmentIndex = 1
+            if self.periodTypeControl != nil {
+                if UIDevice.current.orientation.isPortrait {
+                    if(self.periodTypeControl.selectedSegmentIndex == 2){
+                        self.periodTypeControl.selectedSegmentIndex = 1
+                    }
                 }
             }
-            
+            //Table update
             if self.tableView != nil {
                 self.tableView.reloadData()
             }
-            
+            //Period update
             if self.period_View != nil {
                 //clear at first
                 let sublayers = self.period_View.layer.sublayers

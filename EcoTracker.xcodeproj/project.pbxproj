@@ -27,7 +27,6 @@
 		5E18C24F1E23AACC00533E14 /* CheckListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C24E1E23AACC00533E14 /* CheckListTableViewCell.swift */; };
 		5E18C2511E25167F00533E14 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2501E25167F00533E14 /* InfoViewController.swift */; };
 		5E18C2531E2625B100533E14 /* TrackerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C2521E2625B100533E14 /* TrackerTableViewCell.swift */; };
-		5E18C2551E26632400533E14 /* TypesDescription.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2541E26632400533E14 /* TypesDescription.plist */; };
 		5E18C2571E274C4000533E14 /* eco_bag.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2561E274C4000533E14 /* eco_bag.rtf */; };
 		5E18C25A1E2A0D7700533E14 /* sort_trash.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C2591E2A0D7700533E14 /* sort_trash.rtf */; };
 		5E18C25C1E2A0E1000533E14 /* light_off.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5E18C25B1E2A0E1000533E14 /* light_off.rtf */; };
@@ -73,7 +72,6 @@
 		5E18C24E1E23AACC00533E14 /* CheckListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListTableViewCell.swift; sourceTree = "<group>"; };
 		5E18C2501E25167F00533E14 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		5E18C2521E2625B100533E14 /* TrackerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerTableViewCell.swift; sourceTree = "<group>"; };
-		5E18C2541E26632400533E14 /* TypesDescription.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TypesDescription.plist; sourceTree = "<group>"; };
 		5E18C2561E274C4000533E14 /* eco_bag.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_bag.rtf; sourceTree = "<group>"; };
 		5E18C2591E2A0D7700533E14 /* sort_trash.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = sort_trash.rtf; sourceTree = "<group>"; };
 		5E18C25B1E2A0E1000533E14 /* light_off.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = light_off.rtf; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				5E805A571E0D1DB800E3F1AF /* LaunchScreen.storyboard */,
 				5E805A5A1E0D1DB800E3F1AF /* Info.plist */,
 				5EA994331E12BFE8003B9251 /* TrackerTypes.plist */,
-				5E18C2541E26632400533E14 /* TypesDescription.plist */,
 				5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */,
 			);
 			path = EcoTracker;
@@ -250,7 +247,6 @@
 				5E18C2681E2A141800533E14 /* no_junk_food.rtf in Resources */,
 				5E1677EF1E2A59FC00665CF1 /* eco_toys.rtf in Resources */,
 				5E18C2641E2A117E00533E14 /* walk.rtf in Resources */,
-				5E18C2551E26632400533E14 /* TypesDescription.plist in Resources */,
 				5E1677EB1E2A596100665CF1 /* recycle_glass.rtf in Resources */,
 				5E18C25C1E2A0E1000533E14 /* light_off.rtf in Resources */,
 				5E1677E51E2A587E00665CF1 /* eco_paper.rtf in Resources */,

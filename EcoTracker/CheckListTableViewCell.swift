@@ -58,7 +58,7 @@ class CheckListTableViewCell: UITableViewCell {
         }
         
         if (state != "None") {
-            //Add
+            //Add in Tracker
             let log = Tracker(context: _context)
             log.dt    = NSDate()
             log.today = getToday(dt: NSDate())
@@ -70,6 +70,14 @@ class CheckListTableViewCell: UITableViewCell {
             else if(state == "Persent"){
                 log.value = valuePersent
             }
+            
+            //Add into DoneTypes if check is OK!
+            //Insert here check func!!!!!
+            //Add
+            let donetype = DoneTypes(context: _context)
+            donetype.dt    = NSDate()
+            donetype.state = "21"
+            donetype.type  = typeName
         }
         
         //Save data to CoreData
