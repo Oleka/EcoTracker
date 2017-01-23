@@ -63,6 +63,8 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     @IBOutlet weak var periodTypeControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var period_View: UIView!
+    @IBOutlet weak var hi_View: UIImageView!
+    @IBOutlet weak var bg_View: UIImageView!
     
     var trackTypes : [MyTypes] = []
     
@@ -461,6 +463,24 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         
     }
     
+    func isNewUser() -> Bool {
+        
+        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let _request = NSFetchRequest<Tracker>(entityName: "Tracker")
+        do{
+            let res = try _context.fetch(_request)
+            if res.count>0 {
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        catch{
+            return true
+        }
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
@@ -470,21 +490,29 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         
-        getDataTypes()
-        
-        //clear at first
-        let sublayers = period_View.layer.sublayers
-        if sublayers != nil {
-            for layer in sublayers! {
-                layer.removeFromSuperlayer()
-            }
+        if isNewUser() {
+            self.hi_View.isHidden = false
+            self.bg_View.isHidden = false
         }
-        period_View.addSubview(loadPeriod(tracker_width: self.view.bounds.width-70))
+        else {
+            self.hi_View.isHidden = true
+            self.bg_View.isHidden = true
         
-        period_View.setNeedsDisplay()
+            getDataTypes()
         
-        tableView.reloadData()
+            //clear at first
+            let sublayers = period_View.layer.sublayers
+            if sublayers != nil {
+                for layer in sublayers! {
+                    layer.removeFromSuperlayer()
+                }
+            }
+            period_View.addSubview(loadPeriod(tracker_width: self.view.bounds.width-70))
         
+            period_View.setNeedsDisplay()
+        
+            tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {

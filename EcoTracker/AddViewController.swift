@@ -16,6 +16,10 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var hi_View: UIImageView!
+    
+    @IBOutlet weak var bg_View: UIImageView!
 
     var myTrackTypes : [MyTypes] = []
     var myTracker : [Tracker] = []
@@ -113,6 +117,25 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         })
     }
     
+    
+    func isNewUser() -> Bool {
+        
+        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let _request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
+        do{
+            let res = try _context.fetch(_request)
+            if res.count>0 {
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        catch{
+            return true
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -122,9 +145,18 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dateLabel.text = "Сегодня \(getDate(dd: NSDate()))"
-        getDataTypes()
-        tableView.reloadData()
+        
+        if isNewUser() {
+            self.hi_View.isHidden = false
+            self.bg_View.isHidden = false
+        }
+        else {
+            self.hi_View.isHidden = true
+            self.bg_View.isHidden = true
+            dateLabel.text = "Сегодня \(getDate(dd: NSDate()))"
+            getDataTypes()
+            tableView.reloadData()
+        }
     }
 
 

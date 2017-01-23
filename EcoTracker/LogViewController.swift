@@ -522,10 +522,42 @@ class LogViewController: UIViewController {
            
             if logs.count == 0 {
                 //no done types
-                let noDataView: UILabel = UILabel()
-                noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: doneStackView.bounds.width , height: 20.0))
-                noDataView.textAlignment = .center
+                var noDataView: UILabel = UILabel()
+                noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 20.0))
+                noDataView.textAlignment = .left
+                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+                noDataView.textColor = .gray
+                noDataView.text = " "
+                
                 doneStackView.addArrangedSubview(noDataView)
+                
+                noDataView = UILabel()
+                noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 20.0))
+                noDataView.textAlignment = .left
+                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+                noDataView.textColor = .gray
+                noDataView.text = "В процессе :)"
+                
+                doneStackView.addArrangedSubview(noDataView)
+                
+                noDataView = UILabel()
+                noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 20.0))
+                noDataView.textAlignment = .left
+                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+                noDataView.textColor = .gray
+                noDataView.text = " "
+                
+                doneStackView.addArrangedSubview(noDataView)
+                
+                noDataView = UILabel()
+                noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 20.0))
+                noDataView.textAlignment = .left
+                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+                noDataView.textColor = .gray
+                noDataView.text = " "
+                
+                doneStackView.addArrangedSubview(noDataView)
+                
             }
             else {
                 for done_type in logs {

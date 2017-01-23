@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -94,10 +95,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Lc1-d9-YWZ">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="326"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IntroTrack" translatesAutoresizingMaskIntoConstraints="NO" id="YUA-DX-Sgj">
+                                <rect key="frame" x="108.5" y="62" width="450" height="251"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="405" id="6dL-4T-QVD"/>
+                                    <constraint firstAttribute="width" constant="288" id="SFj-TK-QMg"/>
+                                </constraints>
+                                <variation key="heightClass=compact" image="IntroTrackLandscape">
+                                    <mask key="constraints">
+                                        <exclude reference="6dL-4T-QVD"/>
+                                        <exclude reference="SFj-TK-QMg"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Lc1-d9-YWZ" firstAttribute="top" secondItem="bxe-tW-6gm" secondAttribute="bottom" constant="-20" id="0ob-e2-Yb3"/>
                             <constraint firstItem="9UC-Jk-28A" firstAttribute="top" secondItem="BFB-Hw-4zg" secondAttribute="bottom" constant="10" id="2kk-Ne-nHt"/>
+                            <constraint firstItem="YUA-DX-Sgj" firstAttribute="centerY" secondItem="8X1-6u-JtB" secondAttribute="centerY" id="8K7-66-1uL"/>
                             <constraint firstItem="BFB-Hw-4zg" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leading" id="AlI-tb-1w4"/>
                             <constraint firstItem="P66-co-JGc" firstAttribute="top" secondItem="9UC-Jk-28A" secondAttribute="bottom" constant="10" id="D9e-qo-KLw"/>
                             <constraint firstAttribute="trailing" secondItem="P66-co-JGc" secondAttribute="trailing" id="F2r-Wu-3f2"/>
@@ -107,7 +126,11 @@
                             <constraint firstItem="3at-0h-klq" firstAttribute="top" secondItem="P66-co-JGc" secondAttribute="bottom" constant="3" id="PSS-fP-Wfr"/>
                             <constraint firstItem="3at-0h-klq" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leading" id="Qyv-Nn-N5Q"/>
                             <constraint firstItem="nzb-Qe-BD0" firstAttribute="top" secondItem="3at-0h-klq" secondAttribute="bottom" id="XK0-hN-K95"/>
+                            <constraint firstItem="Lc1-d9-YWZ" firstAttribute="leading" secondItem="8X1-6u-JtB" secondAttribute="leading" id="ZaG-Nf-C3L"/>
+                            <constraint firstItem="YUA-DX-Sgj" firstAttribute="centerX" secondItem="8X1-6u-JtB" secondAttribute="centerX" id="qPN-KN-FPM"/>
+                            <constraint firstItem="nzb-Qe-BD0" firstAttribute="top" secondItem="Lc1-d9-YWZ" secondAttribute="bottom" id="tcO-HU-uZt"/>
                             <constraint firstAttribute="trailing" secondItem="BFB-Hw-4zg" secondAttribute="trailing" id="v2s-OM-3eg"/>
+                            <constraint firstAttribute="trailing" secondItem="Lc1-d9-YWZ" secondAttribute="trailing" id="wIz-Lo-a7V"/>
                             <constraint firstItem="9UC-Jk-28A" firstAttribute="trailing" secondItem="8X1-6u-JtB" secondAttribute="trailingMargin" id="wvH-GT-aUK"/>
                             <constraint firstAttribute="trailing" secondItem="3at-0h-klq" secondAttribute="trailing" id="xFB-Wc-hHt"/>
                         </constraints>
@@ -115,6 +138,8 @@
                     <tabBarItem key="tabBarItem" title="Трекер" image="tab_tracker" id="m1x-rd-RDf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bg_View" destination="Lc1-d9-YWZ" id="CiS-ye-Zgz"/>
+                        <outlet property="hi_View" destination="YUA-DX-Sgj" id="Un0-uJ-F7A"/>
                         <outlet property="periodTypeControl" destination="9UC-Jk-28A" id="aXa-AB-Onq"/>
                         <outlet property="period_View" destination="P66-co-JGc" id="uxO-dQ-Ecg"/>
                         <outlet property="tableView" destination="3at-0h-klq" id="GFe-a9-9wU"/>
@@ -642,20 +667,20 @@
                             <mask key="constraints">
                                 <exclude reference="Vwf-z7-kT5"/>
                                 <exclude reference="hZR-1T-pUT"/>
-                                <exclude reference="qOc-0S-AFO"/>
                                 <exclude reference="Xa3-i7-BpC"/>
                                 <exclude reference="gWZ-IY-pxw"/>
+                                <exclude reference="qOc-0S-AFO"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
                                 <include reference="Vwf-z7-kT5"/>
                                 <exclude reference="jZi-An-G8e"/>
-                                <include reference="qOc-0S-AFO"/>
                                 <exclude reference="G4N-5g-fj5"/>
                                 <include reference="Xa3-i7-BpC"/>
                                 <include reference="gWZ-IY-pxw"/>
                                 <exclude reference="xJ8-uo-fBd"/>
+                                <include reference="qOc-0S-AFO"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -789,31 +814,57 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_bg" translatesAutoresizingMaskIntoConstraints="NO" id="9AP-As-q0X">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="326"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IntroCheckList" translatesAutoresizingMaskIntoConstraints="NO" id="4O9-0B-MT3">
+                                <rect key="frame" x="108.5" y="62" width="450" height="251"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4O9-0B-MT3" secondAttribute="height" multiplier="32:45" id="8Q9-fe-VAS"/>
+                                    <constraint firstAttribute="height" constant="405" id="ies-Nd-Exg"/>
+                                    <constraint firstAttribute="width" constant="288" id="uPU-z3-JqT"/>
+                                </constraints>
+                                <variation key="heightClass=compact" image="IntroCheckListLadscape">
+                                    <mask key="constraints">
+                                        <exclude reference="8Q9-fe-VAS"/>
+                                        <exclude reference="ies-Nd-Exg"/>
+                                        <exclude reference="uPU-z3-JqT"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="9AP-As-q0X" firstAttribute="top" secondItem="cR6-Pf-s1F" secondAttribute="top" id="3BL-aU-q7f"/>
                             <constraint firstItem="Xh3-Th-Oc1" firstAttribute="leading" secondItem="cR6-Pf-s1F" secondAttribute="leading" id="COU-gv-0AL"/>
                             <constraint firstItem="4p0-gp-lJg" firstAttribute="top" secondItem="2HU-kJ-JZ9" secondAttribute="bottom" constant="10" id="GCn-hn-N7Z"/>
                             <constraint firstItem="Xh3-Th-Oc1" firstAttribute="top" secondItem="4p0-gp-lJg" secondAttribute="bottom" constant="10" id="JAn-cJ-hGM"/>
                             <constraint firstAttribute="trailing" secondItem="2HU-kJ-JZ9" secondAttribute="trailing" id="S0T-py-6up"/>
+                            <constraint firstItem="4O9-0B-MT3" firstAttribute="centerX" secondItem="cR6-Pf-s1F" secondAttribute="centerX" id="Vfi-A8-dYb"/>
+                            <constraint firstItem="4O9-0B-MT3" firstAttribute="centerY" secondItem="cR6-Pf-s1F" secondAttribute="centerY" id="ZNF-Go-Rn7"/>
                             <constraint firstItem="2HU-kJ-JZ9" firstAttribute="leading" secondItem="cR6-Pf-s1F" secondAttribute="leading" id="ber-1n-4Eh"/>
+                            <constraint firstItem="gVX-6T-aJ8" firstAttribute="top" secondItem="9AP-As-q0X" secondAttribute="bottom" id="d7g-Pw-wJT"/>
                             <constraint firstItem="4p0-gp-lJg" firstAttribute="leading" secondItem="cR6-Pf-s1F" secondAttribute="leading" constant="20" id="db6-f0-9aN"/>
                             <constraint firstItem="gVX-6T-aJ8" firstAttribute="top" secondItem="Xh3-Th-Oc1" secondAttribute="bottom" id="ifo-om-gjp"/>
+                            <constraint firstItem="9AP-As-q0X" firstAttribute="leading" secondItem="cR6-Pf-s1F" secondAttribute="leading" id="jDC-zJ-0iL"/>
                             <constraint firstItem="2HU-kJ-JZ9" firstAttribute="top" secondItem="bA4-jg-djX" secondAttribute="bottom" id="nTM-pW-fYM"/>
                             <constraint firstAttribute="trailing" secondItem="4p0-gp-lJg" secondAttribute="trailing" constant="20" id="tZx-4R-zbC"/>
+                            <constraint firstAttribute="trailing" secondItem="9AP-As-q0X" secondAttribute="trailing" id="vtS-Gu-ZGQ"/>
                             <constraint firstAttribute="trailing" secondItem="Xh3-Th-Oc1" secondAttribute="trailing" id="xJ9-Ib-eWc"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Check-list" image="tab_checklist" id="ym1-mS-wGM"/>
                     <connections>
+                        <outlet property="bg_View" destination="9AP-As-q0X" id="Ueh-N5-lmP"/>
                         <outlet property="dateLabel" destination="4p0-gp-lJg" id="stS-sF-IZc"/>
+                        <outlet property="hi_View" destination="4O9-0B-MT3" id="75T-Pn-k1s"/>
                         <outlet property="leafButton" destination="JLV-O0-5wN" id="8tb-X0-wT0"/>
                         <outlet property="tableView" destination="Xh3-Th-Oc1" id="8xw-uq-t9Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xih-Ap-lGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-682.39999999999998" y="-336.88155922038982"/>
+            <point key="canvasLocation" x="-682.5" y="-337.5"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="Imh-pp-FYH">
@@ -884,10 +935,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="IntroCheckList" width="320" height="450"/>
+        <image name="IntroCheckListLadscape" width="450" height="251"/>
+        <image name="IntroTrack" width="320" height="450"/>
+        <image name="IntroTrackLandscape" width="450" height="251"/>
         <image name="back_icon" width="28" height="28"/>
         <image name="big_bicycle" width="200" height="200"/>
         <image name="grey_leaf" width="25" height="25"/>
         <image name="info_bg" width="108" height="108"/>
+        <image name="intro_bg" width="414" height="736"/>
         <image name="leaf" width="25" height="25"/>
         <image name="tab_checklist" width="27" height="23"/>
         <image name="tab_person" width="20" height="23"/>
