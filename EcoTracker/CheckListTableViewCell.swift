@@ -14,7 +14,6 @@ class CheckListTableViewCell: UITableViewCell {
     @IBOutlet weak var check_dontButton: UIButton!
     @IBOutlet weak var check_persentButton: UIButton!
     @IBOutlet weak var check_doneButton: UIButton!
-
     @IBOutlet weak var typeImage: UIImageView!
     
     var parentController : AddViewController?
@@ -33,6 +32,35 @@ class CheckListTableViewCell: UITableViewCell {
         dateString = dateFormatter.string(from: dt as Date)
         
         return dateString
+    }
+    
+    //Check func is done the Type
+    func isDoneThisType(name: String, for_days: Int) -> Bool {
+        
+        //Get date from today-for_days
+        let today = Date()
+        var query_date_components = DateComponents()
+        query_date_components.day = -for_days
+        let query_date = Calendar.current.date(byAdding: query_date_components, to: today)
+        
+        //array from DB
+        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<Tracker>(entityName: "Tracker")
+        request.predicate = NSPredicate(format: "type=%@ and dt>=%@ and dt<=%@",name,query_date! as CVarArg,today as CVarArg)
+        do{
+        let result = try _context.fetch(request)
+        
+        if result.count >= for_days {
+            return true
+        }
+        else{
+            return false
+        }
+        }
+        catch{
+            print("Error check is Done Type!")
+            return false
+        }
     }
     
     //Save by typeName state value on today
@@ -54,7 +82,7 @@ class CheckListTableViewCell: UITableViewCell {
                 _context.delete(del)
             }
         } catch {
-            print("There was an error fetching Plus Operations.")
+            print("There was an error fetching Del for Type Operations.")
         }
         
         if (state != "None") {
@@ -73,11 +101,13 @@ class CheckListTableViewCell: UITableViewCell {
             
             //Add into DoneTypes if check is OK!
             //Insert here check func!!!!!
-            //Add
-            let donetype = DoneTypes(context: _context)
-            donetype.dt    = NSDate()
-            donetype.state = "21"
-            donetype.type  = typeName
+            if isDoneThisType(name: typeName, for_days: 21) {
+                //Add
+                let donetype = DoneTypes(context: _context)
+                donetype.dt    = NSDate()
+                donetype.state = "21"
+                donetype.type  = typeName
+            }
         }
         
         //Save data to CoreData
@@ -97,6 +127,7 @@ class CheckListTableViewCell: UITableViewCell {
         saveTypeState(state: "Done")
         
         parentController?.animateButton(imageNameForState: "green_leaf.png")
+        parentController?.getDataTypes()
     }
     
     @IBAction func set_Persent(_ sender: Any) {
@@ -110,6 +141,7 @@ class CheckListTableViewCell: UITableViewCell {
         
         saveTypeState(state: "Persent")
         parentController?.animateButton(imageNameForState: "yellow_leaf.png")
+        parentController?.getDataTypes()
     }
     
     @IBAction func set_None(_ sender: Any) {
@@ -122,6 +154,7 @@ class CheckListTableViewCell: UITableViewCell {
         
         saveTypeState(state: "None")
         parentController?.animateButton(imageNameForState: "grey_leaf.png")
+        parentController?.getDataTypes()
     }
     
     

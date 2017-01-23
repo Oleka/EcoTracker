@@ -517,31 +517,38 @@ class LogViewController: UIViewController {
             var stackViewForFive   = UIStackView()
             stackViewForFive.axis  = UILayoutConstraintAxis.horizontal
             stackViewForFive.distribution  = UIStackViewDistribution.equalSpacing
-            stackViewForFive.alignment = UIStackViewAlignment.top
-            
-            //stackViewForFive.spacing   = 1.0
-            //stackViewForFive.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.bounds.width-60 , height: 40.0))
-            
-            for done_type in logs {
+            stackViewForFive.alignment = UIStackViewAlignment.fill
+            stackViewForFive.spacing   = 4.0
+           
+            if logs.count == 0 {
+                //no done types
+                let noDataView: UILabel = UILabel()
+                noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: doneStackView.bounds.width , height: 20.0))
+                noDataView.textAlignment = .center
+                doneStackView.addArrangedSubview(noDataView)
+            }
+            else {
+                for done_type in logs {
                 
-                let imageView: UIImageView = UIImageView(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: 38.0 , height: 38.0)))
-                imageView.image = UIImage.init(named: "\(done_type.type!).png")
+                    let imageView: UIImageView = UIImageView(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: 38.0 , height: 38.0)))
+                    imageView.image = UIImage.init(named: "\(done_type.type!).png")
                 
-                stackViewForFive.addArrangedSubview(imageView)
+                    stackViewForFive.addArrangedSubview(imageView)
                 
-                i += 1
-                if (i > 4) || (i == logs.count) {
+                    i += 1
+                    if (i > 4) || (i == logs.count) {
                     
-                    doneStackView.addArrangedSubview(stackViewForFive)
+                        doneStackView.addArrangedSubview(stackViewForFive)
                     
-                    i = 0
-                    offsetX = 0
-                    stackViewForFive   = UIStackView()
-                    stackViewForFive.axis  = UILayoutConstraintAxis.horizontal
-                    stackViewForFive.distribution  = UIStackViewDistribution.equalSpacing
-                    stackViewForFive.alignment = UIStackViewAlignment.top
-                    //stackViewForFive.spacing   = 1.0
-                    //stackViewForFive.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: doneStackView.bounds.width-160 , height: 40.0))
+                        i = 0
+                        offsetX = 0
+                        stackViewForFive   = UIStackView()
+                        stackViewForFive.axis  = UILayoutConstraintAxis.horizontal
+                        stackViewForFive.distribution  = UIStackViewDistribution.equalSpacing
+                        stackViewForFive.alignment = UIStackViewAlignment.fill
+                        stackViewForFive.spacing   = 4.0
+                    
+                    }
                 }
             }
             
