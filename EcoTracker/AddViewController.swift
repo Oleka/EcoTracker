@@ -142,6 +142,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         
         tableView.dataSource = self
         tableView.delegate   = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,6 +179,11 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         return dateString
     }
     
+    @IBAction func tapAction(sender: UITapGestureRecognizer) {
+        
+        //let touchPoint = sender.locationInView(self.imageView) // Change to whatever view you want the point for
+        print("Here!")
+    }
     
     //Table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -191,6 +197,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 
         let log = myTrackTypes[indexPath.row]
         cell.typeImage.image = UIImage.init(named: "\(log.name!).png")
+        
         cell.typeName = log.name!
         cell.selectionStyle = .none
         cell.parentController = self
