@@ -14,10 +14,12 @@ class CheckListTableViewCell: UITableViewCell {
     @IBOutlet weak var check_dontButton: UIButton!
     @IBOutlet weak var check_persentButton: UIButton!
     @IBOutlet weak var check_doneButton: UIButton!
-    @IBOutlet weak var typeImage: UIImageView!
+    @IBOutlet weak var typeImage: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
     
     var parentController : AddViewController?
     var typeName: String!
+    var fullName: String!
     var typeValue: Int16 = 0
     let valueDone: Int16 = 10
     let valuePersent: Int16 = 5
@@ -34,8 +36,44 @@ class CheckListTableViewCell: UITableViewCell {
         return dateString
     }
     
+    
+    
+    @IBAction func tapAction(sender: Any) {
+        if self.nameLabel.isHidden {
+            self.nameLabel.isHidden = false
+            self.nameLabel.text = self.fullName
+        }
+        else{
+            self.nameLabel.isHidden = true
+            self.nameLabel.text = ""
+        }
+    }
+    
+    @IBAction func tapEnd(sender: Any) {
+        if self.nameLabel.isHidden == false {
+            self.nameLabel.isHidden = true
+            self.nameLabel.text = ""
+        }
+    }
+    
     //Check func is done the Type
     func isDoneThisType(name: String, for_days: Int) -> Bool {
+        
+        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        //At first - check this in DoneTypes
+        let _request = NSFetchRequest<DoneTypes>(entityName: "DoneTypes")
+        _request.predicate = NSPredicate(format: "type=%@",name)
+        do{
+            let _result = try _context.fetch(_request)
+            if _result.count > 0 {
+                return false
+            }
+        }
+        catch{
+            print("Error check is Done Type!")
+            return false
+        }
         
         //Get date from today-for_days
         let today = Date()
@@ -44,7 +82,6 @@ class CheckListTableViewCell: UITableViewCell {
         let query_date = Calendar.current.date(byAdding: query_date_components, to: today)
         
         //array from DB
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request = NSFetchRequest<Tracker>(entityName: "Tracker")
         request.predicate = NSPredicate(format: "type=%@ and dt>=%@ and dt<=%@",name,query_date! as CVarArg,today as CVarArg)
         do{
@@ -162,6 +199,7 @@ class CheckListTableViewCell: UITableViewCell {
         
         super.awakeFromNib()
         // Initialization code
+        self.nameLabel.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -173,6 +211,7 @@ class CheckListTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         
+        nameLabel.isHidden = true
         check_doneButton.setImage(UIImage.init(named: "Check_off.png"), for: .normal)
         check_persentButton.setImage(UIImage.init(named: "Check_off.png"), for: .normal)
         check_dontButton.setImage(UIImage.init(named: "Check_off.png"), for: .normal)

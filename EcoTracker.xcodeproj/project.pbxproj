@@ -49,7 +49,6 @@
 		5E805A631E0D57D200E3F1AF /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A621E0D57D200E3F1AF /* TrackerViewController.swift */; };
 		5EA994341E12BFE8003B9251 /* TrackerTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EA994331E12BFE8003B9251 /* TrackerTypes.plist */; };
 		5EA994361E13BB0F003B9251 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA994351E13BB0F003B9251 /* SettingsViewController.swift */; };
-		5EEB649A1E37370200E38330 /* TypeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB64991E37370200E38330 /* TypeNameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,7 +96,6 @@
 		5E805A621E0D57D200E3F1AF /* TrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		5EA994331E12BFE8003B9251 /* TrackerTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackerTypes.plist; sourceTree = "<group>"; };
 		5EA994351E13BB0F003B9251 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		5EEB64991E37370200E38330 /* TypeNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +179,6 @@
 				5E805A5A1E0D1DB800E3F1AF /* Info.plist */,
 				5EA994331E12BFE8003B9251 /* TrackerTypes.plist */,
 				5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */,
-				5EEB64991E37370200E38330 /* TypeNameViewController.swift */,
 			);
 			path = EcoTracker;
 			sourceTree = "<group>";
@@ -296,7 +293,6 @@
 				5E805A4E1E0D1DB800E3F1AF /* AddViewController.swift in Sources */,
 				5E77188C1E1CF1AC000A2ADA /* TypeViewController.swift in Sources */,
 				5E805A541E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld in Sources */,
-				5EEB649A1E37370200E38330 /* TypeNameViewController.swift in Sources */,
 				5E805A4C1E0D1DB800E3F1AF /* AppDelegate.swift in Sources */,
 				5E805A611E0D511100E3F1AF /* LogViewController.swift in Sources */,
 			);
@@ -427,6 +423,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -440,6 +437,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

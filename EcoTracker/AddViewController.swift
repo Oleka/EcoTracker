@@ -24,6 +24,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     var myTrackTypes : [MyTypes] = []
     var myTracker : [Tracker] = []
     
+    
     func getPoints(dt: NSDate) -> String {
         
         var points: String = "0"
@@ -179,16 +180,14 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         return dateString
     }
     
-    @IBAction func tapAction(sender: UITapGestureRecognizer) {
-        
-        //let touchPoint = sender.locationInView(self.imageView) // Change to whatever view you want the point for
-        print("Here!")
-    }
+    
     
     //Table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myTrackTypes.count
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -196,9 +195,11 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         let cell: CheckListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CheckListTableViewCell
                 
         let log = myTrackTypes[indexPath.row]
-        cell.typeImage.image = UIImage.init(named: "\(log.name!).png")
+        cell.typeImage.setImage(UIImage.init(named: "\(log.name!).png"), for: .normal)
+        cell.typeImage.imageEdgeInsets = UIEdgeInsetsMake(50,50,50,50)
         
         cell.typeName = log.name!
+        cell.fullName = log.full_name!
         cell.selectionStyle = .none
         cell.parentController = self
         
@@ -232,13 +233,11 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             cell.check_persentButton.setImage(UIImage.init(named: "Check_off.png"), for: .normal)
         }
         
-        
-        
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 54
     }
     
     

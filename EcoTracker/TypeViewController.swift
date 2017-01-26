@@ -81,6 +81,7 @@ class TypeViewController: UIViewController,UITextViewDelegate {
                 let attributedString =
                     try NSAttributedString(url: rtf, options: [NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType], documentAttributes: nil)
                 describeText.attributedText = attributedString
+                
             }catch{}
             
             describeText.isEditable = false

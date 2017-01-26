@@ -19,9 +19,9 @@ class LogViewController: UIViewController {
     @IBOutlet weak var periodByDate: UIView!
     
     
-    let beginX: Int = 0
+    let beginX: CGFloat = 0.0
     let beginY: Int = 83
-    var blockWidth: Int = 20
+    var blockWidth: CGFloat = 0.0
     var searched : [Tracker] = []
     
     var beginDate:  Date? = nil
@@ -61,11 +61,11 @@ class LogViewController: UIViewController {
                 layer.removeFromSuperlayer()
             }
         }
-        periodByDate.addSubview(loadTrackerForPeriod(tracker_width: periodByDate.bounds.width))
+        periodByDate.addSubview(loadTrackerForPeriod(tracker_width: periodByDate.bounds.width, tracker_Y: periodByDate.bounds.maxY))
     }
 
     
-    func loadTrackerForPeriod(tracker_width: CGFloat) -> UIView{
+    func loadTrackerForPeriod(tracker_width: CGFloat, tracker_Y: CGFloat) -> UIView{
         
         let tracker_view: UIView = TrackerBlock(frame: CGRect(x: 0.0, y: 0.0, width: tracker_width, height: 300))
         tracker_view.backgroundColor = .clear
@@ -79,7 +79,7 @@ class LogViewController: UIViewController {
             beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) as Date?
             endDate    = Date()
             days = endDate!.days(from: beginDate!)+1
-            blockWidth = Int(tracker_width)/7
+            blockWidth = tracker_width/7
         }
         else if (self.periodTypeControl.selectedSegmentIndex == 1) {
             //Month
@@ -98,14 +98,14 @@ class LogViewController: UIViewController {
             endDate    = Date()
             days = endDate!.days(from: firstDay!)+1
             
-            blockWidth = Int(tracker_width)/37
+            blockWidth = tracker_width/37
         }
         else{
             //Year
             beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .year], from: Date())) as Date?
             endDate    = Date()
             days = endDate!.days(from: beginDate!)+1
-            blockWidth = Int(tracker_width)/365
+            blockWidth = tracker_width/365
         }
         
         //Get data from DB selected by periodTypeControl
@@ -115,10 +115,10 @@ class LogViewController: UIViewController {
             request.predicate = NSPredicate(format:"dt>=%@ AND dt<=%@", beginDate! as CVarArg, endDate! as CVarArg)
             searched = try _context.fetch(request)
             
-            var offsetX: Int = beginX
-            //let offsetY: Int = beginY
-            let startY: Int = 83
-            var heightBlock: Double = 0.0
+            var offsetX: CGFloat = beginX
+            let startY: CGFloat = tracker_Y+2
+            
+            var heightBlock: CGFloat = 0.0
             
             var i: Int = 0
             var today: Date = beginDate!
@@ -134,7 +134,7 @@ class LogViewController: UIViewController {
                 
                 if filteredArray.count==0 {
                     //no data today!
-                    heightBlock = 0
+                    heightBlock = 0.0
                 }
                 else{
                     
@@ -143,12 +143,12 @@ class LogViewController: UIViewController {
                         sumValue += fa.value
                     }
                     
-                    heightBlock = Double(sumValue)*(Double(self.periodByDate.bounds.height)/300.0)
+                    heightBlock = CGFloat(sumValue)*self.periodByDate.bounds.height/300.0
                        
                 }
                 
                 //Load block
-                let block = TrackerBlock(frame: CGRect(x: offsetX, y: startY-Int(heightBlock), width: Int(blockWidth), height: Int(heightBlock)))
+                let block = TrackerBlock(frame: CGRect(x: Int(offsetX), y: Int(startY-heightBlock), width: Int(blockWidth), height: Int(heightBlock)))
                 block.backgroundColor = blockColor
                 
                 tracker_view.addSubview(block)
@@ -174,8 +174,8 @@ class LogViewController: UIViewController {
         
         //Days between
         var days: Int = 0
-        var offsetX: Int = 0 //type_image_width
-        let offsetY: Int = 0
+        var offsetX: CGFloat = 0.0 //type_image_width
+        let offsetY: CGFloat = 0.0
         
         var i: Int = 0
         var today: Date = Date()
@@ -198,7 +198,7 @@ class LogViewController: UIViewController {
             
             endDate    = Date()
             days = endDate!.days(from: beginDate!)+1
-            blockWidth = Int(tracker_width)/7
+            blockWidth = tracker_width/7
             
             while i < days {
                 let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth) , height: 12.0)))
@@ -226,7 +226,7 @@ class LogViewController: UIViewController {
             beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
             endDate    = Date()
             
-            blockWidth = Int(tracker_width)/37
+            blockWidth = tracker_width/37
             
             //For mounth
             //Find Mon in previous week from beginDate
@@ -298,16 +298,13 @@ class LogViewController: UIViewController {
             endDate    = Date()
             
             let blockWidth: Double = Double(tracker_width/365)
-            print("tracker_width=\(tracker_width)")
-            print("blockWidth=\(blockWidth)")
+            
             today = beginDate!
             
             while i < 12 {
                 
                 let dayInMonth = (Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: today)?.days(from: today))!+1
-                print("days in month=\(dayInMonth)")
-                print("today=\(today)")
-                print("blockWidth*dayInMonth=\(blockWidth*Double(dayInMonth))")
+                
                 
                 var periodLabel: UILabel = UILabel()
                 periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*Double(dayInMonth)) , height: 12.0)))
@@ -436,7 +433,7 @@ class LogViewController: UIViewController {
                 layer.removeFromSuperlayer()
             }
         }
-        periodByDate.addSubview(loadTrackerForPeriod(tracker_width: periodByDate.bounds.width))
+        periodByDate.addSubview(loadTrackerForPeriod(tracker_width: periodByDate.bounds.width, tracker_Y: periodByDate.bounds.maxY))
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -480,7 +477,7 @@ class LogViewController: UIViewController {
                         layer.removeFromSuperlayer()
                     }
                 }
-                self.periodByDate.addSubview(self.loadTrackerForPeriod(tracker_width: self.periodByDate.bounds.width))
+                self.periodByDate.addSubview(self.loadTrackerForPeriod(tracker_width: self.periodByDate.bounds.width, tracker_Y: self.periodByDate.bounds.maxY))
             }
             
         }, completion: nil)

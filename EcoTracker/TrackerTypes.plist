@@ -27,7 +27,7 @@
 	<key>eco_water</key>
 	<string>Выключать воду, когда чистишь зубы или бреешься</string>
 	<key>eco_things</key>
-	<string>Контролировать необходимость покупки вещей</string>
+	<string>Контроль необходимости покупки вещей</string>
 	<key>eco_two_life</key>
 	<string>Дать вторую жизнь старым вещам</string>
 	<key>eco_napkin</key>

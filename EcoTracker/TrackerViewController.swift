@@ -175,8 +175,11 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         else if (self.periodTypeControl.selectedSegmentIndex == 1) {
             //Month
             //For mounth
+            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
+            endDate    = Date()
             //Find Mon in previous week from beginDate
             let beginDateComponents = Calendar.current.dateComponents([.weekOfYear, .year], from: beginDate!)
+            
             let begin_week = beginDateComponents.weekOfYear
             
             //Create date Mon previous
@@ -186,7 +189,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             firstDayComponents.weekday = 2
             let firstDay = Calendar.current.date(from: firstDayComponents)
             beginDate = firstDay!
-            endDate    = Date()
+            
             days = endDate!.days(from: firstDay!)+1
             
             blockWidth = Int(tracker_width)/37
@@ -386,16 +389,12 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             endDate    = Date()
             
             let blockWidth: Double = Double(tracker_width/365)
-            print("tracker_width=\(tracker_width)")
-            print("blockWidth=\(blockWidth)")
+            
             today = beginDate!
             
             while i < 12 {
                 
                 let dayInMonth = (Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: today)?.days(from: today))!+1
-                    print("days in month=\(dayInMonth)")
-                    print("today=\(today)")
-                    print("blockWidth*dayInMonth=\(blockWidth*Double(dayInMonth))")
                 
                 var periodLabel: UILabel = UILabel()
                 periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*Double(dayInMonth)) , height: 20.0)))
@@ -552,7 +551,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 54
     }
     
     
