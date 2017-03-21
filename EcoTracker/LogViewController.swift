@@ -148,7 +148,7 @@ class LogViewController: UIViewController {
                 }
                 
                 //Load block
-                let block = TrackerBlock(frame: CGRect(x: Int(offsetX), y: Int(startY-heightBlock), width: Int(blockWidth), height: Int(heightBlock)))
+                let block = TrackerBlock(frame: CGRect(x: offsetX, y: startY-heightBlock, width: blockWidth, height: heightBlock))
                 block.backgroundColor = blockColor
                 
                 tracker_view.addSubview(block)

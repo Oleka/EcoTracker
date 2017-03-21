@@ -93,7 +93,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             let startDate = Calendar.current.startOfDay(for: NSDate() as Date)
             
             let request = NSFetchRequest<Tracker>(entityName: "Tracker")
-            request.predicate = NSPredicate(format: "dt>=%@ and dt<=%@",startDate as CVarArg,NSDate() as CVarArg)
+            request.predicate = NSPredicate(format: "dt>=%@ AND dt<=%@",startDate as CVarArg, NSDate() as CVarArg)
             myTracker = try _context.fetch(request)
         }
         catch{

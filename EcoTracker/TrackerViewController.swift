@@ -177,9 +177,9 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             //For mounth
             beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
             endDate    = Date()
+            
             //Find Mon in previous week from beginDate
             let beginDateComponents = Calendar.current.dateComponents([.weekOfYear, .year], from: beginDate!)
-            
             let begin_week = beginDateComponents.weekOfYear
             
             //Create date Mon previous
