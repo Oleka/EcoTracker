@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import EcoTrackerKit
 
 extension UIView {
     
@@ -59,13 +60,14 @@ extension Date {
 }
 
 class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
-
+    
     @IBOutlet weak var periodTypeControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var period_View: UIView!
     @IBOutlet weak var hi_View: UIImageView!
     @IBOutlet weak var bg_View: UIImageView!
     
+    var _context: NSManagedObjectContext!
     var trackTypes : [MyTypes] = []
     
     func changeOrientation(){
@@ -116,7 +118,6 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func getDataTypes(){
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do{
             trackTypes = try _context.fetch(MyTypes.fetchRequest())
@@ -124,7 +125,6 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         catch{
             print("Fetching Error!")
         }
-        
     }
     
     @IBAction func changePeriod(_ sender: Any) {
@@ -203,7 +203,6 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
         
         //Get data from DB selected by periodTypeControl
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
             let request = NSFetchRequest<Tracker>(entityName: "Tracker")
             request.predicate = NSPredicate(format:"type=%@ and dt>=%@ AND dt<=%@",tr_type, beginDate! as CVarArg, endDate! as CVarArg)
@@ -256,7 +255,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         return tracker_view
     }
-
+    
     //View_Perod
     func loadPeriod(tracker_width: CGFloat) -> UIView{
         
@@ -278,7 +277,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             //Week
             //Find Mon in week today
             let beginDateComponents = Calendar.current.dateComponents([.weekday, .weekOfYear, .year], from: Date())
-           
+            
             //Create date Mon previous
             var firstDayComponents = DateComponents()
             firstDayComponents.year = beginDateComponents.year
@@ -349,36 +348,33 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                 }
                 else{
                     
-                        var periodLabel: UILabel = UILabel()
-                        periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*7) , height: 20.0)))
+                    var periodLabel: UILabel = UILabel()
+                    periodLabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*7) , height: 20.0)))
                     
-                        //only week_day=1
-                        let todayComponents = Calendar.current.dateComponents([.weekday], from: today)
-                        week_day = todayComponents.weekday!
+                    //only week_day=1
+                    let todayComponents = Calendar.current.dateComponents([.weekday], from: today)
+                    week_day = todayComponents.weekday!
+                    
+                    if (week_day == 2){
+                        periodLabel.text = getDay(dd:today)
+                    }
+                    else{
+                        periodLabel.text = " "
                         
-                        if (week_day == 2){
-                            periodLabel.text = getDay(dd:today)
-                        }
-                        else{
-                            periodLabel.text = " "
-                            
-                        }
-                        
-                        periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                        periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
-                        periodLabel.textAlignment = .left
-                        
-                        tracker_view.addSubview(periodLabel)
-                        
-                        
+                    }
+                    periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                    periodLabel.textAlignment = .left
+                    
+                    tracker_view.addSubview(periodLabel)
+                    
                 }
-                
                 //for next
                 offsetX += blockWidth
                 today = today.addingTimeInterval(1*60*60*24)
                 i += 1
             }
-
+            
             
         }
         else{
@@ -404,8 +400,8 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                 
                 periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
                 periodLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFontWeightThin)
-                    periodLabel.textAlignment = .left
-                    
+                periodLabel.textAlignment = .left
+                
                 tracker_view.addSubview(periodLabel)
                 
                 //for next
@@ -413,12 +409,12 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                 today = Calendar.current.date(byAdding: DateComponents(month: 1), to: today)!
                 i += 1
             }
-
+            
         }
         
         return tracker_view
     }
-
+    
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
@@ -463,8 +459,6 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func isNewUser() -> Bool {
-        
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let _request = NSFetchRequest<Tracker>(entityName: "Tracker")
         do{
             let res = try _context.fetch(_request)
@@ -483,6 +477,8 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     override func viewDidLoad(){
         super.viewDidLoad()
         
+        _context = CoreDataManager.managedObjectContext()
+        
         tableView.dataSource = self
         tableView.delegate   = self
     }
@@ -496,9 +492,9 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         else {
             self.hi_View.isHidden = true
             self.bg_View.isHidden = true
-        
+            
             getDataTypes()
-        
+            
             //clear at first
             let sublayers = period_View.layer.sublayers
             if sublayers != nil {
@@ -507,13 +503,13 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                 }
             }
             period_View.addSubview(loadPeriod(tracker_width: self.view.bounds.width-70))
-        
+            
             period_View.setNeedsDisplay()
-        
+            
             tableView.reloadData()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -531,7 +527,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         let cellId: String = "MyCell"
         let cell: TrackerTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TrackerTableViewCell
         
-        cell.typeImage.image = UIImage.init(named: "\(log.name!).png")
+        cell.typeImage.image = UIImage.init(named: "\(String(describing: log.name!)).png")
         
         //clear at first
         let sublayers = cell.dataView.layer.sublayers
@@ -544,7 +540,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         cell.dataView.addSubview(loadTrackerForPeriod(tr_type: log.name!, tracker_width: cell.contentView.bounds.width-70))
         cell.selectionStyle = .none
-        cell.typeName         = log.name!
+        cell.typeName         = log.name
         cell.parentController = self
         
         return cell
@@ -556,13 +552,13 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

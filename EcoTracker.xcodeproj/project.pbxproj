@@ -42,14 +42,111 @@
 		5E805A4C1E0D1DB800E3F1AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A4B1E0D1DB800E3F1AF /* AppDelegate.swift */; };
 		5E805A4E1E0D1DB800E3F1AF /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A4D1E0D1DB800E3F1AF /* AddViewController.swift */; };
 		5E805A511E0D1DB800E3F1AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E805A4F1E0D1DB800E3F1AF /* Main.storyboard */; };
-		5E805A541E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */; };
 		5E805A561E0D1DB800E3F1AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E805A551E0D1DB800E3F1AF /* Assets.xcassets */; };
 		5E805A591E0D1DB800E3F1AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E805A571E0D1DB800E3F1AF /* LaunchScreen.storyboard */; };
 		5E805A611E0D511100E3F1AF /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A601E0D511100E3F1AF /* LogViewController.swift */; };
 		5E805A631E0D57D200E3F1AF /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A621E0D57D200E3F1AF /* TrackerViewController.swift */; };
 		5EA994341E12BFE8003B9251 /* TrackerTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EA994331E12BFE8003B9251 /* TrackerTypes.plist */; };
 		5EA994361E13BB0F003B9251 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA994351E13BB0F003B9251 /* SettingsViewController.swift */; };
+		7A6D9A171ED2DA6500B4EBDF /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D9A151ED2DA6500B4EBDF /* Interface.storyboard */; };
+		7A6D9A191ED2DA6500B4EBDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D9A181ED2DA6500B4EBDF /* Assets.xcassets */; };
+		7A6D9A201ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A6D9A1F1ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7A6D9A251ED2DA6500B4EBDF /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D9A241ED2DA6500B4EBDF /* InterfaceController.swift */; };
+		7A6D9A271ED2DA6500B4EBDF /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D9A261ED2DA6500B4EBDF /* ExtensionDelegate.swift */; };
+		7A6D9A291ED2DA6500B4EBDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D9A281ED2DA6500B4EBDF /* Assets.xcassets */; };
+		7A6D9A2D1ED2DA6500B4EBDF /* EcoTrackerWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7A6D9A131ED2DA6500B4EBDF /* EcoTrackerWatch.app */; };
+		7A6D9A3F1ED2DAB100B4EBDF /* EcoTrackerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6D9A3D1ED2DAB100B4EBDF /* EcoTrackerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A6D9A421ED2DAB100B4EBDF /* EcoTrackerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A6D9A3B1ED2DAB100B4EBDF /* EcoTrackerKit.framework */; };
+		7A6D9A431ED2DAB100B4EBDF /* EcoTrackerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A6D9A3B1ED2DAB100B4EBDF /* EcoTrackerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7A6D9A491ED2DAED00B4EBDF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D9A481ED2DAED00B4EBDF /* CoreDataManager.swift */; };
+		7A6D9A4C1ED2DDEC00B4EBDF /* EcoTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */; };
+		7A6D9A561ED2F01E00B4EBDF /* EcoTrackerWatchKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6D9A541ED2F01E00B4EBDF /* EcoTrackerWatchKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A6D9A591ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A6D9A521ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework */; };
+		7A6D9A5A1ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A6D9A521ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7A6D9A601ED2F06C00B4EBDF /* WatchCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D9A5F1ED2F06C00B4EBDF /* WatchCoreDataManager.swift */; };
+		7A6D9A611ED2F0CE00B4EBDF /* EcoTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */; };
+		7A6D9A631ED2FA3100B4EBDF /* WatchRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D9A621ED2FA3100B4EBDF /* WatchRowController.swift */; };
+		7A6D9A651ED3182000B4EBDF /* TrackerTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D9A641ED3182000B4EBDF /* TrackerTypes.plist */; };
+		7AB4BE251EAF75640077F9BA /* eco_food.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7AB4BE241EAF75640077F9BA /* eco_food.rtf */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7A6D9A211ED2DA6500B4EBDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E805A401E0D1DB800E3F1AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A6D9A1E1ED2DA6500B4EBDF;
+			remoteInfo = "EcoTrackerWatch Extension";
+		};
+		7A6D9A2B1ED2DA6500B4EBDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E805A401E0D1DB800E3F1AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A6D9A121ED2DA6500B4EBDF;
+			remoteInfo = EcoTrackerWatch;
+		};
+		7A6D9A401ED2DAB100B4EBDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E805A401E0D1DB800E3F1AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A6D9A3A1ED2DAB100B4EBDF;
+			remoteInfo = EcoTrackerKit;
+		};
+		7A6D9A571ED2F01E00B4EBDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E805A401E0D1DB800E3F1AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A6D9A511ED2F01E00B4EBDF;
+			remoteInfo = EcoTrackerWatchKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7A6D9A311ED2DA6500B4EBDF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7A6D9A201ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A351ED2DA6500B4EBDF /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				7A6D9A2D1ED2DA6500B4EBDF /* EcoTrackerWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A471ED2DAB100B4EBDF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7A6D9A431ED2DAB100B4EBDF /* EcoTrackerKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A5E1ED2F01E00B4EBDF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7A6D9A5A1ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5E1677D41E2A1F4900665CF1 /* eco_bottle.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_bottle.rtf; sourceTree = "<group>"; };
@@ -96,10 +193,55 @@
 		5E805A621E0D57D200E3F1AF /* TrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		5EA994331E12BFE8003B9251 /* TrackerTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackerTypes.plist; sourceTree = "<group>"; };
 		5EA994351E13BB0F003B9251 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7A6D9A131ED2DA6500B4EBDF /* EcoTrackerWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoTrackerWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A6D9A161ED2DA6500B4EBDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		7A6D9A181ED2DA6500B4EBDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7A6D9A1A1ED2DA6500B4EBDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A6D9A1F1ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EcoTrackerWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A6D9A241ED2DA6500B4EBDF /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		7A6D9A261ED2DA6500B4EBDF /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		7A6D9A281ED2DA6500B4EBDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7A6D9A2A1ED2DA6500B4EBDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A6D9A3B1ED2DAB100B4EBDF /* EcoTrackerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EcoTrackerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A6D9A3D1ED2DAB100B4EBDF /* EcoTrackerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EcoTrackerKit.h; sourceTree = "<group>"; };
+		7A6D9A3E1ED2DAB100B4EBDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A6D9A481ED2DAED00B4EBDF /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		7A6D9A4A1ED2DB8B00B4EBDF /* EcoTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EcoTracker.entitlements; sourceTree = "<group>"; };
+		7A6D9A4B1ED2DB9800B4EBDF /* EcoTrackerWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EcoTrackerWatch Extension.entitlements"; sourceTree = "<group>"; };
+		7A6D9A521ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EcoTrackerWatchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A6D9A541ED2F01E00B4EBDF /* EcoTrackerWatchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EcoTrackerWatchKit.h; sourceTree = "<group>"; };
+		7A6D9A551ED2F01E00B4EBDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A6D9A5F1ED2F06C00B4EBDF /* WatchCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchCoreDataManager.swift; sourceTree = "<group>"; };
+		7A6D9A621ED2FA3100B4EBDF /* WatchRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchRowController.swift; sourceTree = "<group>"; };
+		7A6D9A641ED3182000B4EBDF /* TrackerTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackerTypes.plist; sourceTree = "<group>"; };
+		7AB4BE241EAF75640077F9BA /* eco_food.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_food.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5E805A451E0D1DB800E3F1AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A421ED2DAB100B4EBDF /* EcoTrackerKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A1C1ED2DA6500B4EBDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A591ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A371ED2DAB100B4EBDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A4E1ED2F01E00B4EBDF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -139,6 +281,7 @@
 				5E1677F01E2A5A6A00665CF1 /* eco_shower.rtf */,
 				5E1677F21E2A5AD900665CF1 /* vegan_day.rtf */,
 				5E1677F41E2A5B2D00665CF1 /* free_cleaning.rtf */,
+				7AB4BE241EAF75640077F9BA /* eco_food.rtf */,
 			);
 			name = RTF;
 			sourceTree = "<group>";
@@ -147,6 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				5E805A4A1E0D1DB800E3F1AF /* EcoTracker */,
+				7A6D9A141ED2DA6500B4EBDF /* EcoTrackerWatch */,
+				7A6D9A231ED2DA6500B4EBDF /* EcoTrackerWatch Extension */,
+				7A6D9A3C1ED2DAB100B4EBDF /* EcoTrackerKit */,
+				7A6D9A531ED2F01E00B4EBDF /* EcoTrackerWatchKit */,
 				5E805A491E0D1DB800E3F1AF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,6 +302,10 @@
 			isa = PBXGroup;
 			children = (
 				5E805A481E0D1DB800E3F1AF /* EcoTracker.app */,
+				7A6D9A131ED2DA6500B4EBDF /* EcoTrackerWatch.app */,
+				7A6D9A1F1ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex */,
+				7A6D9A3B1ED2DAB100B4EBDF /* EcoTrackerKit.framework */,
+				7A6D9A521ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,6 +313,7 @@
 		5E805A4A1E0D1DB800E3F1AF /* EcoTracker */ = {
 			isa = PBXGroup;
 			children = (
+				7A6D9A4A1ED2DB8B00B4EBDF /* EcoTracker.entitlements */,
 				5E18C2581E27556A00533E14 /* RTF */,
 				5E805A4B1E0D1DB800E3F1AF /* AppDelegate.swift */,
 				5E805A4D1E0D1DB800E3F1AF /* AddViewController.swift */,
@@ -183,7 +335,70 @@
 			path = EcoTracker;
 			sourceTree = "<group>";
 		};
+		7A6D9A141ED2DA6500B4EBDF /* EcoTrackerWatch */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D9A151ED2DA6500B4EBDF /* Interface.storyboard */,
+				7A6D9A181ED2DA6500B4EBDF /* Assets.xcassets */,
+				7A6D9A1A1ED2DA6500B4EBDF /* Info.plist */,
+			);
+			path = EcoTrackerWatch;
+			sourceTree = "<group>";
+		};
+		7A6D9A231ED2DA6500B4EBDF /* EcoTrackerWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D9A4B1ED2DB9800B4EBDF /* EcoTrackerWatch Extension.entitlements */,
+				7A6D9A241ED2DA6500B4EBDF /* InterfaceController.swift */,
+				7A6D9A261ED2DA6500B4EBDF /* ExtensionDelegate.swift */,
+				7A6D9A621ED2FA3100B4EBDF /* WatchRowController.swift */,
+				7A6D9A281ED2DA6500B4EBDF /* Assets.xcassets */,
+				7A6D9A641ED3182000B4EBDF /* TrackerTypes.plist */,
+				7A6D9A2A1ED2DA6500B4EBDF /* Info.plist */,
+			);
+			path = "EcoTrackerWatch Extension";
+			sourceTree = "<group>";
+		};
+		7A6D9A3C1ED2DAB100B4EBDF /* EcoTrackerKit */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D9A3D1ED2DAB100B4EBDF /* EcoTrackerKit.h */,
+				7A6D9A3E1ED2DAB100B4EBDF /* Info.plist */,
+				7A6D9A481ED2DAED00B4EBDF /* CoreDataManager.swift */,
+			);
+			path = EcoTrackerKit;
+			sourceTree = "<group>";
+		};
+		7A6D9A531ED2F01E00B4EBDF /* EcoTrackerWatchKit */ = {
+			isa = PBXGroup;
+			children = (
+				7A6D9A541ED2F01E00B4EBDF /* EcoTrackerWatchKit.h */,
+				7A6D9A551ED2F01E00B4EBDF /* Info.plist */,
+				7A6D9A5F1ED2F06C00B4EBDF /* WatchCoreDataManager.swift */,
+			);
+			path = EcoTrackerWatchKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7A6D9A381ED2DAB100B4EBDF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A3F1ED2DAB100B4EBDF /* EcoTrackerKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A4F1ED2F01E00B4EBDF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A561ED2F01E00B4EBDF /* EcoTrackerWatchKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		5E805A471E0D1DB800E3F1AF /* EcoTracker */ = {
@@ -193,15 +408,91 @@
 				5E805A441E0D1DB800E3F1AF /* Sources */,
 				5E805A451E0D1DB800E3F1AF /* Frameworks */,
 				5E805A461E0D1DB800E3F1AF /* Resources */,
+				7A6D9A351ED2DA6500B4EBDF /* Embed Watch Content */,
+				7A6D9A471ED2DAB100B4EBDF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7A6D9A2C1ED2DA6500B4EBDF /* PBXTargetDependency */,
+				7A6D9A411ED2DAB100B4EBDF /* PBXTargetDependency */,
 			);
 			name = EcoTracker;
 			productName = EcoTracker;
 			productReference = 5E805A481E0D1DB800E3F1AF /* EcoTracker.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7A6D9A121ED2DA6500B4EBDF /* EcoTrackerWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A6D9A321ED2DA6500B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatch" */;
+			buildPhases = (
+				7A6D9A111ED2DA6500B4EBDF /* Resources */,
+				7A6D9A311ED2DA6500B4EBDF /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7A6D9A221ED2DA6500B4EBDF /* PBXTargetDependency */,
+			);
+			name = EcoTrackerWatch;
+			productName = EcoTrackerWatch;
+			productReference = 7A6D9A131ED2DA6500B4EBDF /* EcoTrackerWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		7A6D9A1E1ED2DA6500B4EBDF /* EcoTrackerWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A6D9A2E1ED2DA6500B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatch Extension" */;
+			buildPhases = (
+				7A6D9A1B1ED2DA6500B4EBDF /* Sources */,
+				7A6D9A1C1ED2DA6500B4EBDF /* Frameworks */,
+				7A6D9A1D1ED2DA6500B4EBDF /* Resources */,
+				7A6D9A5E1ED2F01E00B4EBDF /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7A6D9A581ED2F01E00B4EBDF /* PBXTargetDependency */,
+			);
+			name = "EcoTrackerWatch Extension";
+			productName = "EcoTrackerWatch Extension";
+			productReference = 7A6D9A1F1ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		7A6D9A3A1ED2DAB100B4EBDF /* EcoTrackerKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A6D9A441ED2DAB100B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerKit" */;
+			buildPhases = (
+				7A6D9A361ED2DAB100B4EBDF /* Sources */,
+				7A6D9A371ED2DAB100B4EBDF /* Frameworks */,
+				7A6D9A381ED2DAB100B4EBDF /* Headers */,
+				7A6D9A391ED2DAB100B4EBDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EcoTrackerKit;
+			productName = EcoTrackerKit;
+			productReference = 7A6D9A3B1ED2DAB100B4EBDF /* EcoTrackerKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7A6D9A511ED2F01E00B4EBDF /* EcoTrackerWatchKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A6D9A5B1ED2F01E00B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatchKit" */;
+			buildPhases = (
+				7A6D9A4D1ED2F01E00B4EBDF /* Sources */,
+				7A6D9A4E1ED2F01E00B4EBDF /* Frameworks */,
+				7A6D9A4F1ED2F01E00B4EBDF /* Headers */,
+				7A6D9A501ED2F01E00B4EBDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EcoTrackerWatchKit;
+			productName = EcoTrackerWatchKit;
+			productReference = 7A6D9A521ED2F01E00B4EBDF /* EcoTrackerWatchKit.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -209,13 +500,44 @@
 		5E805A401E0D1DB800E3F1AF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Olga Blinova";
 				TargetAttributes = {
 					5E805A471E0D1DB800E3F1AF = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = VWYKBS3RP3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					7A6D9A121ED2DA6500B4EBDF = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = VWYKBS3RP3;
+						ProvisioningStyle = Automatic;
+					};
+					7A6D9A1E1ED2DA6500B4EBDF = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = VWYKBS3RP3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					7A6D9A3A1ED2DAB100B4EBDF = {
+						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					7A6D9A511ED2F01E00B4EBDF = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = VWYKBS3RP3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -234,6 +556,10 @@
 			projectRoot = "";
 			targets = (
 				5E805A471E0D1DB800E3F1AF /* EcoTracker */,
+				7A6D9A121ED2DA6500B4EBDF /* EcoTrackerWatch */,
+				7A6D9A1E1ED2DA6500B4EBDF /* EcoTrackerWatch Extension */,
+				7A6D9A3A1ED2DAB100B4EBDF /* EcoTrackerKit */,
+				7A6D9A511ED2F01E00B4EBDF /* EcoTrackerWatchKit */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +573,7 @@
 				5E18C2681E2A141800533E14 /* no_junk_food.rtf in Resources */,
 				5E1677EF1E2A59FC00665CF1 /* eco_toys.rtf in Resources */,
 				5E18C2641E2A117E00533E14 /* walk.rtf in Resources */,
+				7AB4BE251EAF75640077F9BA /* eco_food.rtf in Resources */,
 				5E1677EB1E2A596100665CF1 /* recycle_glass.rtf in Resources */,
 				5E18C25C1E2A0E1000533E14 /* light_off.rtf in Resources */,
 				5E1677E51E2A587E00665CF1 /* eco_paper.rtf in Resources */,
@@ -277,6 +604,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A6D9A111ED2DA6500B4EBDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A191ED2DA6500B4EBDF /* Assets.xcassets in Resources */,
+				7A6D9A171ED2DA6500B4EBDF /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A1D1ED2DA6500B4EBDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A291ED2DA6500B4EBDF /* Assets.xcassets in Resources */,
+				7A6D9A651ED3182000B4EBDF /* TrackerTypes.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A391ED2DAB100B4EBDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A501ED2F01E00B4EBDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -292,13 +651,63 @@
 				5E18C2511E25167F00533E14 /* InfoViewController.swift in Sources */,
 				5E805A4E1E0D1DB800E3F1AF /* AddViewController.swift in Sources */,
 				5E77188C1E1CF1AC000A2ADA /* TypeViewController.swift in Sources */,
-				5E805A541E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld in Sources */,
 				5E805A4C1E0D1DB800E3F1AF /* AppDelegate.swift in Sources */,
 				5E805A611E0D511100E3F1AF /* LogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A6D9A1B1ED2DA6500B4EBDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A271ED2DA6500B4EBDF /* ExtensionDelegate.swift in Sources */,
+				7A6D9A251ED2DA6500B4EBDF /* InterfaceController.swift in Sources */,
+				7A6D9A631ED2FA3100B4EBDF /* WatchRowController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A361ED2DAB100B4EBDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A4C1ED2DDEC00B4EBDF /* EcoTracker.xcdatamodeld in Sources */,
+				7A6D9A491ED2DAED00B4EBDF /* CoreDataManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6D9A4D1ED2F01E00B4EBDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6D9A611ED2F0CE00B4EBDF /* EcoTracker.xcdatamodeld in Sources */,
+				7A6D9A601ED2F06C00B4EBDF /* WatchCoreDataManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7A6D9A221ED2DA6500B4EBDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A6D9A1E1ED2DA6500B4EBDF /* EcoTrackerWatch Extension */;
+			targetProxy = 7A6D9A211ED2DA6500B4EBDF /* PBXContainerItemProxy */;
+		};
+		7A6D9A2C1ED2DA6500B4EBDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A6D9A121ED2DA6500B4EBDF /* EcoTrackerWatch */;
+			targetProxy = 7A6D9A2B1ED2DA6500B4EBDF /* PBXContainerItemProxy */;
+		};
+		7A6D9A411ED2DAB100B4EBDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A6D9A3A1ED2DAB100B4EBDF /* EcoTrackerKit */;
+			targetProxy = 7A6D9A401ED2DAB100B4EBDF /* PBXContainerItemProxy */;
+		};
+		7A6D9A581ED2F01E00B4EBDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A6D9A511ED2F01E00B4EBDF /* EcoTrackerWatchKit */;
+			targetProxy = 7A6D9A571ED2F01E00B4EBDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5E805A4F1E0D1DB800E3F1AF /* Main.storyboard */ = {
@@ -315,6 +724,14 @@
 				5E805A581E0D1DB800E3F1AF /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7A6D9A151ED2DA6500B4EBDF /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A6D9A161ED2DA6500B4EBDF /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -416,7 +833,9 @@
 		5E805A5E1E0D1DB800E3F1AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EcoTracker/Info.plist;
@@ -433,7 +852,9 @@
 		5E805A5F1E0D1DB800E3F1AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EcoTracker/Info.plist;
@@ -444,6 +865,192 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7A6D9A2F1ED2DA6500B4EBDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
+				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		7A6D9A301ED2DA6500B4EBDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
+				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		7A6D9A331ED2DA6500B4EBDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
+				IBSC_MODULE = EcoTrackerWatch_Extension;
+				INFOPLIST_FILE = EcoTrackerWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		7A6D9A341ED2DA6500B4EBDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
+				IBSC_MODULE = EcoTrackerWatch_Extension;
+				INFOPLIST_FILE = EcoTrackerWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		7A6D9A451ED2DAB100B4EBDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EcoTrackerKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.Olistudio.EcoTrackerKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7A6D9A461ED2DAB100B4EBDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EcoTrackerKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.Olistudio.EcoTrackerKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7A6D9A5C1ED2F01E00B4EBDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EcoTrackerWatchKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.Olistudio.EcoTrackerWatchKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		7A6D9A5D1ED2F01E00B4EBDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EcoTrackerWatchKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.Olistudio.EcoTrackerWatchKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};
 			name = Release;
 		};
@@ -467,6 +1074,38 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7A6D9A2E1ED2DA6500B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A6D9A2F1ED2DA6500B4EBDF /* Debug */,
+				7A6D9A301ED2DA6500B4EBDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7A6D9A321ED2DA6500B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A6D9A331ED2DA6500B4EBDF /* Debug */,
+				7A6D9A341ED2DA6500B4EBDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7A6D9A441ED2DAB100B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A6D9A451ED2DAB100B4EBDF /* Debug */,
+				7A6D9A461ED2DAB100B4EBDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7A6D9A5B1ED2F01E00B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatchKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A6D9A5C1ED2F01E00B4EBDF /* Debug */,
+				7A6D9A5D1ED2F01E00B4EBDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

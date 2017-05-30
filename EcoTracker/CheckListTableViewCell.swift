@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import EcoTrackerKit
 
 class CheckListTableViewCell: UITableViewCell {
     
@@ -17,6 +18,7 @@ class CheckListTableViewCell: UITableViewCell {
     @IBOutlet weak var typeImage: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     
+    var _context: NSManagedObjectContext!
     var parentController : AddViewController?
     var typeName: String!
     var fullName: String!
@@ -59,8 +61,6 @@ class CheckListTableViewCell: UITableViewCell {
     //Check func is done the Type
     func isDoneThisType(name: String, for_days: Int) -> Bool {
         
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
         //At first - check this in DoneTypes
         let _request = NSFetchRequest<DoneTypes>(entityName: "DoneTypes")
         _request.predicate = NSPredicate(format: "type=%@",name)
@@ -85,14 +85,14 @@ class CheckListTableViewCell: UITableViewCell {
         let request = NSFetchRequest<Tracker>(entityName: "Tracker")
         request.predicate = NSPredicate(format: "type=%@ and dt>=%@ and dt<=%@",name,query_date! as CVarArg,today as CVarArg)
         do{
-        let result = try _context.fetch(request)
-        
-        if result.count >= for_days {
-            return true
-        }
-        else{
-            return false
-        }
+            let result = try _context.fetch(request)
+            
+            if result.count >= for_days {
+                return true
+            }
+            else{
+                return false
+            }
         }
         catch{
             print("Error check is Done Type!")
@@ -102,7 +102,6 @@ class CheckListTableViewCell: UITableViewCell {
     
     //Save by typeName state value on today
     func saveTypeState(state: String){
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         //Delete on today by typeName
         do {
@@ -124,31 +123,33 @@ class CheckListTableViewCell: UITableViewCell {
         
         if (state != "None") {
             //Add in Tracker
-            let log = Tracker(context: _context)
-            log.dt    = NSDate()
-            log.today = getToday(dt: NSDate())
-            log.type  = typeName
+            let trackObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(Tracker.self) as NSString, managedObjectContext: _context) as! Tracker
+            trackObject.dt    = NSDate()
+            trackObject.today = getToday(dt: NSDate())
+            trackObject.type  = typeName
             
             if (state == "Done") {
-                log.value = valueDone
+                trackObject.value = valueDone
             }
             else if(state == "Persent"){
-                log.value = valuePersent
+                trackObject.value = valuePersent
             }
             
             //Add into DoneTypes if check is OK!
             //Insert here check func!!!!!
             if isDoneThisType(name: typeName, for_days: 21) {
                 //Add
-                let donetype = DoneTypes(context: _context)
-                donetype.dt    = NSDate()
-                donetype.state = "21"
-                donetype.type  = typeName
+                let doneTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(DoneTypes.self) as NSString, managedObjectContext: _context) as! DoneTypes
+                doneTypeObject.dt    = NSDate()
+                doneTypeObject.state = "21"
+                doneTypeObject.type  = typeName
             }
         }
         
         //Save data to CoreData
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
+            print("Error add in Check-List!")
+        }
         
     }
     
@@ -168,7 +169,7 @@ class CheckListTableViewCell: UITableViewCell {
     }
     
     @IBAction func set_Persent(_ sender: Any) {
-       
+        
         check_persentButton.setImage(UIImage.init(named: "Check_on.png"), for: .normal)
         check_persentButton.setImage(UIImage.init(named: "Check_on.png"), for: .selected)
         check_persentButton.setImage(UIImage.init(named: "Check_on.png"), for: .highlighted)
@@ -200,15 +201,16 @@ class CheckListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.nameLabel.isHidden = true
+        _context = CoreDataManager.managedObjectContext()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
         
     }
-
+    
     override func prepareForReuse() {
         
         nameLabel.isHidden = true

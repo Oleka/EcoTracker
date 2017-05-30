@@ -8,8 +8,10 @@
 
 import UIKit
 import CoreData
+import EcoTrackerKit
+import WatchConnectivity
 
-class AddViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIPopoverPresentationControllerDelegate {
+class AddViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIPopoverPresentationControllerDelegate,WCSessionDelegate {
     
     @IBOutlet weak var leafButton: UIButton!
     
@@ -20,22 +22,24 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     @IBOutlet weak var hi_View: UIImageView!
     
     @IBOutlet weak var bg_View: UIImageView!
-
+    
+    var _context: NSManagedObjectContext!
+    
     var myTrackTypes : [MyTypes] = []
     var myTracker : [Tracker] = []
     
+    var watchTracker: [String : Any] = [:]
     
     func getPoints(dt: NSDate) -> String {
         
         var points: String = "0"
         
         //Select Value sum on date dt
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let startDate = Calendar.current.startOfDay(for: dt as Date)
         
         let request = NSFetchRequest<Tracker>(entityName: "Tracker")
-      
+        
         request.predicate = NSPredicate(format: "dt>=%@ and dt<=%@",startDate as CVarArg,dt as CVarArg)
         
         do {
@@ -52,7 +56,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             // If it fails, ensure the array is nil
             points = "0"
         }
-
+        
         
         return points
     }
@@ -85,7 +89,6 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     
     func getDataTypes(){
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do{
             myTrackTypes = try _context.fetch(MyTypes.fetchRequest())
@@ -110,7 +113,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             self.leafButton.transform = CGAffineTransform.identity.scaledBy(x: 1.3, y: 1.3)
             self.leafButton.setImage(UIImage.init(named: imageNameForState), for: .normal)
         },
-        completion:{
+                       completion:{
                         (finish: Bool) in UIView.animate(withDuration: 0.2, animations:{
                             self.leafButton.transform = CGAffineTransform.identity
                         })
@@ -121,7 +124,6 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     func isNewUser() -> Bool {
         
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let _request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
         do{
             let res = try _context.fetch(_request)
@@ -144,9 +146,13 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         tableView.dataSource = self
         tableView.delegate   = self
         
+        //For watch
+        setupConnectivity()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        _context = CoreDataManager.managedObjectContext()
         
         if isNewUser() {
             self.hi_View.isHidden = false
@@ -160,8 +166,8 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             tableView.reloadData()
         }
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -188,18 +194,17 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     }
     
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId: String = "MyCell"
         let cell: CheckListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CheckListTableViewCell
-                
+        
         let log = myTrackTypes[indexPath.row]
-        cell.typeImage.setImage(UIImage.init(named: "\(log.name!).png"), for: .normal)
+        cell.typeImage.setImage(UIImage.init(named: "\(String(describing: log.name!)).png"), for: .normal)
         cell.typeImage.imageEdgeInsets = UIEdgeInsetsMake(50,50,50,50)
         
-        cell.typeName = log.name!
-        cell.fullName = log.full_name!
+        cell.typeName = log.name
+        cell.fullName = log.full_name
         cell.selectionStyle = .none
         cell.parentController = self
         
@@ -235,12 +240,63 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54
     }
     
+    //Watch sinc
+    func updateCheckListFromWatch(){
+        
+    }
     
+    // MARK:- Apple Watch connection
+    
+    fileprivate func setupConnectivity() {
+        
+        if WCSession.isSupported() {
+            let session = WCSession.default()
+            session.delegate = self
+            session.activate()
+            print("WCSession is supported")
+            
+            if !session.isPaired {
+                print("Apple Watch is not paired")
+            }
+            
+            if !session.isWatchAppInstalled {
+                print("Apple Watch app is not installed")
+            }
+        } else {
+            print("Apple Watch connectivity is not supported on this device")
+        }
+    }
+    
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        
+        watchTracker = message
+        
+        DispatchQueue.main.async {
+            //Update Check-list from Watch
+            self.updateCheckListFromWatch()
+        }
+        
+        let replyValues = ["status": "Data sent!"]
+        replyHandler(replyValues)
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        //
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        //
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        //
+    }
     
 }
 

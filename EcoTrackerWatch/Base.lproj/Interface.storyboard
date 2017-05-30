@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="EcoTrackerWatch" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="a7Z-Zz-GCZ">
+                            <items>
+                                <tableRow identifier="watchRow" id="dzH-Nr-xCh" customClass="WatchRowController" customModule="EcoTrackerWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Di6-7g-0qW">
+                                        <items>
+                                            <imageView width="30" height="30" alignment="left" verticalAlignment="center" id="0V0-VA-att"/>
+                                            <button width="35" height="25" alignment="left" verticalAlignment="center" backgroundImage="green_off_button" id="sJZ-dy-dBh">
+                                                <variation key="device=watch38mm" backgroundImage="green_off_button_38" width="30"/>
+                                                <connections>
+                                                    <action selector="actionOnGreen" destination="dzH-Nr-xCh" id="cEi-V5-IMp"/>
+                                                </connections>
+                                            </button>
+                                            <button width="35" height="25" alignment="left" verticalAlignment="center" backgroundImage="yellow_off_button" id="lhe-K3-hLc">
+                                                <variation key="device=watch38mm" backgroundImage="yellow_off_button_38" width="30"/>
+                                                <connections>
+                                                    <action selector="actionOnYellow" destination="dzH-Nr-xCh" id="9ZR-SN-H6R"/>
+                                                </connections>
+                                            </button>
+                                            <button width="35" height="25" alignment="left" verticalAlignment="center" backgroundImage="grey_off_button" id="jhq-lg-Ztr">
+                                                <variation key="device=watch38mm" backgroundImage="grey_off_button_38" width="30"/>
+                                                <connections>
+                                                    <action selector="acitonOnGrey" destination="dzH-Nr-xCh" id="3Q5-p1-G6F"/>
+                                                </connections>
+                                            </button>
+                                        </items>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="greenButton" destination="sJZ-dy-dBh" id="gGv-QG-T75"/>
+                                        <outlet property="greyButton" destination="jhq-lg-Ztr" id="hIX-Lo-scb"/>
+                                        <outlet property="typeImage" destination="0V0-VA-att" id="UU1-sf-kWT"/>
+                                        <outlet property="yellowButton" destination="lhe-K3-hLc" id="SCX-h1-gN4"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="a7Z-Zz-GCZ" id="Hfg-7k-pYI"/>
+                    </connections>
+                </controller>
+            </objects>
+        </scene>
+    </scenes>
+</document>

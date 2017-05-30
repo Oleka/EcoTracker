@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import EcoTrackerKit
 
 class LogViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class LogViewController: UIViewController {
     @IBOutlet weak var data_View: UIView!
     @IBOutlet weak var periodByDate: UIView!
     
+    var _context: NSManagedObjectContext!
     
     let beginX: CGFloat = 0.0
     let beginY: Int = 83
@@ -63,7 +65,7 @@ class LogViewController: UIViewController {
         }
         periodByDate.addSubview(loadTrackerForPeriod(tracker_width: periodByDate.bounds.width, tracker_Y: periodByDate.bounds.maxY))
     }
-
+    
     
     func loadTrackerForPeriod(tracker_width: CGFloat, tracker_Y: CGFloat) -> UIView{
         
@@ -109,7 +111,6 @@ class LogViewController: UIViewController {
         }
         
         //Get data from DB selected by periodTypeControl
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
             let request = NSFetchRequest<Tracker>(entityName: "Tracker")
             request.predicate = NSPredicate(format:"dt>=%@ AND dt<=%@", beginDate! as CVarArg, endDate! as CVarArg)
@@ -144,7 +145,7 @@ class LogViewController: UIViewController {
                     }
                     
                     heightBlock = CGFloat(sumValue)*self.periodByDate.bounds.height/300.0
-                       
+                    
                 }
                 
                 //Load block
@@ -328,7 +329,7 @@ class LogViewController: UIViewController {
         
         return tracker_view
     }
-
+    
     func getDay(dd:Date) -> String {
         
         var dateString: String = ""
@@ -370,7 +371,6 @@ class LogViewController: UIViewController {
         var points: String = "0"
         
         //Select Value sum on date dt
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request = NSFetchRequest<Tracker>(entityName: "Tracker")
         
@@ -392,13 +392,14 @@ class LogViewController: UIViewController {
         
         return points
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-       
+        _context = CoreDataManager.managedObjectContext()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -406,9 +407,9 @@ class LogViewController: UIViewController {
         //clear at first doneStackView
         let sublayers = doneStackView.arrangedSubviews
         //if sublayers != nil {
-            for layer in sublayers {
-                layer.removeFromSuperview()
-            }
+        for layer in sublayers {
+            layer.removeFromSuperview()
+        }
         //}
         
         getDoneTypes()
@@ -487,20 +488,18 @@ class LogViewController: UIViewController {
         
         
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-   
+    
     
     func getDoneTypes(){
         
         var logs : [DoneTypes] = []
-        
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do{
             logs = try _context.fetch(DoneTypes.fetchRequest())
@@ -516,7 +515,7 @@ class LogViewController: UIViewController {
             stackViewForFive.distribution  = UIStackViewDistribution.equalSpacing
             stackViewForFive.alignment = UIStackViewAlignment.fill
             stackViewForFive.spacing   = 4.0
-           
+            
             if logs.count == 0 {
                 
                 
@@ -551,17 +550,17 @@ class LogViewController: UIViewController {
             }
             else {
                 for done_type in logs {
-                
+                    
                     let imageView: UIImageView = UIImageView(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: 38.0 , height: 38.0)))
-                    imageView.image = UIImage.init(named: "\(done_type.type!).png")
-                
+                    imageView.image = UIImage.init(named: "\(String(describing: done_type.type)).png")
+                    
                     stackViewForFive.addArrangedSubview(imageView)
-                
+                    
                     i += 1
                     if (i > 4) || (i == logs.count) {
-                    
+                        
                         doneStackView.addArrangedSubview(stackViewForFive)
-                    
+                        
                         i = 0
                         offsetX = 0
                         stackViewForFive   = UIStackView()
@@ -569,7 +568,7 @@ class LogViewController: UIViewController {
                         stackViewForFive.distribution  = UIStackViewDistribution.equalSpacing
                         stackViewForFive.alignment = UIStackViewAlignment.fill
                         stackViewForFive.spacing   = 4.0
-                    
+                        
                     }
                 }
             }
@@ -580,15 +579,15 @@ class LogViewController: UIViewController {
         }
         
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

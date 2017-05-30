@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import EcoTrackerKit
 
 class TypeViewController: UIViewController,UITextViewDelegate {
     
@@ -18,13 +19,12 @@ class TypeViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var typeNameLabel: UILabel!
     @IBOutlet weak var describeText: UITextView!
     
-    
+    var _context: NSManagedObjectContext!
     var detail_type : [Types] = []
     var isSelected : Bool = false
     
     @IBAction func noSelectAction(_ sender: Any) {
         //Delete type from MyTypes
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
             let request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
             request.predicate = NSPredicate(format: "name=%@",detail_type[0].name!)
@@ -32,7 +32,10 @@ class TypeViewController: UIViewController,UITextViewDelegate {
             for del in for_del {
                 _context.delete(del)
             }
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
+                print("Error delete MyTypes!")
+            }
         } catch {
             print("There was an error fetching Plus Operations.")
         }
@@ -42,40 +45,40 @@ class TypeViewController: UIViewController,UITextViewDelegate {
     @IBAction func selectTypeAction(_ sender: Any) {
         
         //Add Type into MyTypes
-        let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let addMyTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(MyTypes.self) as NSString, managedObjectContext: _context) as! MyTypes
+        addMyTypeObject.name       = String(describing: detail_type[0].name)
+        addMyTypeObject.full_name  = String(describing: detail_type[0].full_name)
+        addMyTypeObject.dateBegin  = NSDate()
+        addMyTypeObject.is_notification = false
         
-        //Add into MyTypes
-        let add_my_type = MyTypes(context: _context)
-        add_my_type.name       = String(describing: detail_type[0].name!)
-        add_my_type.full_name  = String(describing: detail_type[0].full_name!)
-        add_my_type.dateBegin  = NSDate()
-        add_my_type.is_notification = false
-                
         //Save data to CoreData
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
+        if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
+            print("Error saving MyTypes!")
+        }
         dismiss(animated: false, completion: nil)
     }
     
     @IBAction func goBack(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
-
+    
     override func viewDidLayoutSubviews() {
         self.describeText.setContentOffset(CGPoint.zero, animated: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        _context = CoreDataManager.managedObjectContext()
+        
         describeText.delegate = self
         // Do any additional setup after loading the view.
-        typeImage.image = UIImage.init(named: "big_\(detail_type[0].name!).png")
+        typeImage.image = UIImage.init(named: "big_\(String(describing: detail_type[0].name!)).png")
         
         typeNameLabel.text = detail_type[0].full_name
         
         //Description from rtf
-        if let rtf = Bundle.main.url(forResource: detail_type[0].name!, withExtension: "rtf", subdirectory: nil, localization: nil) {
+        if let rtf = Bundle.main.url(forResource: detail_type[0].name, withExtension: "rtf", subdirectory: nil, localization: nil) {
             
             do{
                 let attributedString =
@@ -85,7 +88,7 @@ class TypeViewController: UIViewController,UITextViewDelegate {
             }catch{}
             
             describeText.isEditable = false
-           // describeText.contentOffset = CGPoint.zero
+            // describeText.contentOffset = CGPoint.zero
         }
         
         if isSelected==true {
@@ -97,21 +100,21 @@ class TypeViewController: UIViewController,UITextViewDelegate {
             removeButton.isHidden = true
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
