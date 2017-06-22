@@ -46,8 +46,8 @@ class TypeViewController: UIViewController,UITextViewDelegate {
         
         //Add Type into MyTypes
         let addMyTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(MyTypes.self) as NSString, managedObjectContext: _context) as! MyTypes
-        addMyTypeObject.name       = String(describing: detail_type[0].name)
-        addMyTypeObject.full_name  = String(describing: detail_type[0].full_name)
+        addMyTypeObject.name       = String(describing: detail_type[0].name!)
+        addMyTypeObject.full_name  = String(describing: detail_type[0].full_name!)
         addMyTypeObject.dateBegin  = NSDate()
         addMyTypeObject.is_notification = false
         

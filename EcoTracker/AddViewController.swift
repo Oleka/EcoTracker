@@ -13,7 +13,12 @@ import WatchConnectivity
 
 class AddViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIPopoverPresentationControllerDelegate,WCSessionDelegate {
     
+    @IBAction func syncMyTypes(_ sender: Any) {
+        sendMyTypesToWatch(ses: session!)
+    }
     @IBOutlet weak var leafButton: UIButton!
+    
+    @IBOutlet weak var watchButton: UIButton!
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -29,6 +34,9 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     var myTracker : [Tracker] = []
     
     var watchTracker: [String : Any] = [:]
+    
+    var session: WCSession?
+    var isWatchPared: Bool = false
     
     func getPoints(dt: NSDate) -> String {
         
@@ -148,7 +156,12 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         
         //For watch
         setupConnectivity()
-        
+        if isWatchPared == false{
+            self.watchButton.isHidden = true
+        }
+        else{
+           self.watchButton.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -245,28 +258,90 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         return 54
     }
     
+    //Today form Date
+    func getToday(dt: NSDate) -> String {
+        
+        var dateString: String = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        dateString = dateFormatter.string(from: dt as Date)
+        
+        return dateString
+    }
+    
     //Watch sinc
     func updateCheckListFromWatch(){
         
+        var typeName: String = ""
+        var typeValue: Int16 = 0
+        
+        for watch_record in watchTracker {
+            
+            if (watch_record.key == "type"){
+                typeName = watch_record.value as! String
+            }
+            else if (watch_record.key == "value"){
+                typeValue = watch_record.value as! Int16
+            }
+        }
+        
+        //Update data from watch for today in iPhone base
+        do {
+            let startDate = Calendar.current.startOfDay(for: NSDate() as Date)
+            let dateStringFormatter = DateFormatter()
+            dateStringFormatter.dateFormat="yyyy-MM-dd HH:mm:ss ZZZ"
+            let end_date = dateStringFormatter.date(from: String(describing: NSDate()))!
+                
+            let request = NSFetchRequest<Tracker>(entityName: "Tracker")
+            request.predicate = NSPredicate(format: "type=%@ and dt>=%@ and dt<=%@",typeName,startDate as CVarArg,end_date as CVarArg)
+            let for_del = try _context.fetch(request)
+                
+            for del in for_del {
+                _context.delete(del)
+            }
+        } catch {
+                print("There was an error fetching Del for Type Operations.")
+        }
+        //Add from watch
+       
+        let trackObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(Tracker.self) as NSString,managedObjectContext: _context) as! Tracker
+        trackObject.dt    = NSDate()
+        trackObject.today = getToday(dt: NSDate())
+        trackObject.type  = typeName
+        trackObject.value = typeValue
+        
+        //Save data to CoreData
+        if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
+            print("Error add in Check-List!")
+        }
+        
+        
+
     }
     
     // MARK:- Apple Watch connection
-    
     fileprivate func setupConnectivity() {
-        
         if WCSession.isSupported() {
-            let session = WCSession.default()
-            session.delegate = self
-            session.activate()
+            session = WCSession.default()
+            session?.delegate = self
+            session?.activate()
             print("WCSession is supported")
             
-            if !session.isPaired {
+            if !(session?.isPaired)! {
                 print("Apple Watch is not paired")
+                isWatchPared = false
             }
             
-            if !session.isWatchAppInstalled {
+            if !(session?.isWatchAppInstalled)! {
                 print("Apple Watch app is not installed")
+                isWatchPared = false
             }
+            else{
+                isWatchPared = true
+            }
+
         } else {
             print("Apple Watch connectivity is not supported on this device")
         }
@@ -280,6 +355,8 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         DispatchQueue.main.async {
             //Update Check-list from Watch
             self.updateCheckListFromWatch()
+            self.getDataTypes()
+            self.tableView.reloadData()
         }
         
         let replyValues = ["status": "Data sent!"]
@@ -296,6 +373,32 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         //
+    }
+    
+    func sendMyTypesToWatch(ses: WCSession){
+        do {
+            //myTrackTypes
+            var myTypesForWatch = [String: Any]()
+            var myTypes  = [String]()
+                    
+            do{
+                
+                let myTypesFromPhone_request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
+                let myTypesFromPhone = try _context.fetch(myTypesFromPhone_request)
+                for myTypesFromPhoneItem in myTypesFromPhone {
+                    myTypes.append(myTypesFromPhoneItem.name!)
+                }
+            }
+            catch{
+                print("Fetching myTypesForWatch Error!")
+            }
+            
+            myTypesForWatch["types"] = myTypes
+                    
+            try ses.updateApplicationContext(myTypesForWatch)
+        } catch {
+            print("Error: \(error)")
+        }
     }
     
 }

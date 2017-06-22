@@ -507,7 +507,7 @@
 					5E805A471E0D1DB800E3F1AF = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = VWYKBS3RP3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -517,12 +517,12 @@
 					7A6D9A121ED2DA6500B4EBDF = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = VWYKBS3RP3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					7A6D9A1E1ED2DA6500B4EBDF = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = VWYKBS3RP3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -836,14 +836,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = EcoTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "553f7706-1b48-4330-bbcd-89f8a2bd8dea";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Distribution";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -855,14 +855,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = EcoTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "553f7706-1b48-4330-bbcd-89f8a2bd8dea";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Distribution";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -874,11 +874,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch Ext Distribution";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -893,11 +896,14 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch Ext Distribution";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -912,11 +918,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				IBSC_MODULE = EcoTrackerWatch_Extension;
 				INFOPLIST_FILE = EcoTrackerWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch App Distribution";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -931,11 +940,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				IBSC_MODULE = EcoTrackerWatch_Extension;
 				INFOPLIST_FILE = EcoTrackerWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch App Distribution";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1082,6 +1094,7 @@
 				7A6D9A301ED2DA6500B4EBDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7A6D9A321ED2DA6500B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatch" */ = {
 			isa = XCConfigurationList;
@@ -1090,6 +1103,7 @@
 				7A6D9A341ED2DA6500B4EBDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7A6D9A441ED2DAB100B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerKit" */ = {
 			isa = XCConfigurationList;
@@ -1098,6 +1112,7 @@
 				7A6D9A461ED2DAB100B4EBDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7A6D9A5B1ED2F01E00B4EBDF /* Build configuration list for PBXNativeTarget "EcoTrackerWatchKit" */ = {
 			isa = XCConfigurationList;
@@ -1106,6 +1121,7 @@
 				7A6D9A5D1ED2F01E00B4EBDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

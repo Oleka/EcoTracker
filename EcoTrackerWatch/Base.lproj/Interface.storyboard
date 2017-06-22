@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
@@ -19,7 +19,7 @@
                                 <tableRow identifier="watchRow" id="dzH-Nr-xCh" customClass="WatchRowController" customModule="EcoTrackerWatch_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="Di6-7g-0qW">
                                         <items>
-                                            <imageView width="30" height="30" alignment="left" verticalAlignment="center" id="0V0-VA-att"/>
+                                            <imageView width="25" height="25" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="0V0-VA-att"/>
                                             <button width="35" height="25" alignment="left" verticalAlignment="center" backgroundImage="green_off_button" id="sJZ-dy-dBh">
                                                 <variation key="device=watch38mm" backgroundImage="green_off_button_38" width="30"/>
                                                 <connections>
