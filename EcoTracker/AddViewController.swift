@@ -11,6 +11,12 @@ import CoreData
 import EcoTrackerKit
 import WatchConnectivity
 
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+}
+
 class AddViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIPopoverPresentationControllerDelegate,WCSessionDelegate {
     
     @IBAction func syncMyTypes(_ sender: Any) {
@@ -147,9 +153,49 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         }
     }
     
+    func addTrackerTypes(){
+        
+        //Types into new DB
+        
+        //If exist - check this!
+        do {
+            let _request = NSFetchRequest<Types>(entityName: "Types")
+            let res = try _context.fetch(_request)
+            if res.count>0 {
+                //OK!
+            }
+            else{
+                //Read from .Plist
+                let path = Bundle.main.path(forResource: "TrackerTypes", ofType: "plist")
+                let tr_types = NSDictionary(contentsOfFile: path!)
+                
+                for tr_type in tr_types! {
+                    
+                    //Add into Types
+                    let addTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(Types.self) as NSString, managedObjectContext: _context) as! Types
+                    addTypeObject.name       = String(describing: tr_type.key)
+                    addTypeObject.full_name  = String(describing: tr_type.value)
+                    
+                    //Add into MyTypes
+                    let addMyTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(MyTypes.self) as NSString, managedObjectContext: _context) as! MyTypes
+                    addMyTypeObject.name       = String(describing: tr_type.key)
+                    addMyTypeObject.full_name  = String(describing: tr_type.value)
+                    
+                }
+                //Save data to CoreData
+                if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
+                    print("Error saving Types, MyTypes!")
+                }
+            }
+        } catch {
+            print("There was an error fetching Types.")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         
         tableView.dataSource = self
         tableView.delegate   = self
@@ -162,21 +208,30 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         else{
            self.watchButton.isHidden = false
         }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        _context = CoreDataManager.managedObjectContext()
-        
-        if isNewUser() {
-            self.hi_View.isHidden = false
-            self.bg_View.isHidden = false
-        }
-        else {
-            self.hi_View.isHidden = true
-            self.bg_View.isHidden = true
+            _context = CoreDataManager.managedObjectContext()
             dateLabel.text = "Сегодня \(getDate(dd: NSDate()))"
             getDataTypes()
             tableView.reloadData()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //_context = CoreDataManager.managedObjectContext()
+        if isNewUser() {
+            UIApplication.shared.statusBarView?.backgroundColor = .clear
+            let introController = self.storyboard?.instantiateViewController(withIdentifier: "CheckListIntro") as! ChIntroViewController
+            self.present(introController, animated: true, completion: {
+                self.addTrackerTypes()
+            })
+            
+        }
+        else{
+            UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
         }
     }
     
@@ -214,7 +269,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         
         let log = myTrackTypes[indexPath.row]
         cell.typeImage.setImage(UIImage.init(named: "\(String(describing: log.name!)).png"), for: .normal)
-        cell.typeImage.imageEdgeInsets = UIEdgeInsetsMake(50,50,50,50)
+        cell.typeImage.imageEdgeInsets = UIEdgeInsetsMake(60,60,60,60)
         
         cell.typeName = log.name
         cell.fullName = log.full_name
@@ -255,7 +310,7 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54
+        return 62
     }
     
     //Today form Date

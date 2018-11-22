@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Эко-Трекер-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="EcoTrackerWatch" customModuleProvider="target">
+                <controller title="Эко-Трекер" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="EcoTrackerWatch" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="a7Z-Zz-GCZ">
                             <items>
@@ -20,19 +20,19 @@
                                     <group key="rootItem" width="1" alignment="left" id="Di6-7g-0qW">
                                         <items>
                                             <imageView width="25" height="25" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="0V0-VA-att"/>
-                                            <button width="35" height="25" alignment="left" verticalAlignment="center" backgroundImage="green_off_button" id="sJZ-dy-dBh">
+                                            <button width="35" height="25" alignment="right" verticalAlignment="center" backgroundImage="green_off_button" id="sJZ-dy-dBh">
                                                 <variation key="device=watch38mm" backgroundImage="green_off_button_38" width="30"/>
                                                 <connections>
                                                     <action selector="actionOnGreen" destination="dzH-Nr-xCh" id="cEi-V5-IMp"/>
                                                 </connections>
                                             </button>
-                                            <button width="35" height="25" alignment="left" verticalAlignment="center" backgroundImage="yellow_off_button" id="lhe-K3-hLc">
+                                            <button width="35" height="25" alignment="right" verticalAlignment="center" backgroundImage="yellow_off_button" id="lhe-K3-hLc">
                                                 <variation key="device=watch38mm" backgroundImage="yellow_off_button_38" width="30"/>
                                                 <connections>
                                                     <action selector="actionOnYellow" destination="dzH-Nr-xCh" id="9ZR-SN-H6R"/>
                                                 </connections>
                                             </button>
-                                            <button width="35" height="25" alignment="left" verticalAlignment="center" backgroundImage="grey_off_button" id="jhq-lg-Ztr">
+                                            <button width="35" height="25" alignment="right" verticalAlignment="center" backgroundImage="grey_off_button" id="jhq-lg-Ztr">
                                                 <variation key="device=watch38mm" backgroundImage="grey_off_button_38" width="30"/>
                                                 <connections>
                                                     <action selector="acitonOnGrey" destination="dzH-Nr-xCh" id="3Q5-p1-G6F"/>

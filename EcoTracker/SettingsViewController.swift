@@ -115,56 +115,16 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         
     }
     
-    func addTrackerTypes(){
-        
-        //Types into new DB
-        
-        //If exist - check this!
-        do {
-            let _request = NSFetchRequest<Types>(entityName: "Types")
-            let res = try _context.fetch(_request)
-            if res.count>0 {
-                //OK!
-            }
-            else{
-                //Read from .Plist
-                let path = Bundle.main.path(forResource: "TrackerTypes", ofType: "plist")
-                let tr_types = NSDictionary(contentsOfFile: path!)
-                
-                for tr_type in tr_types! {
-                    
-                    //Add into Types
-                    let addTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(Types.self) as NSString, managedObjectContext: _context) as! Types
-                    addTypeObject.name       = String(describing: tr_type.key)
-                    addTypeObject.full_name  = String(describing: tr_type.value)
-                    
-                    //Add into MyTypes
-                    let addMyTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(MyTypes.self) as NSString, managedObjectContext: _context) as! MyTypes
-                    addMyTypeObject.name       = String(describing: tr_type.key)
-                    addMyTypeObject.full_name  = String(describing: tr_type.value)
-                    
-                }
-                //Save data to CoreData
-                if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
-                    print("Error saving Types, MyTypes!")
-                }
-            }
-        } catch {
-            print("There was an error fetching Types.")
-        }
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         _context = CoreDataManager.managedObjectContext()
         
-        addTrackerTypes()
-        
         tableView.dataSource = self
         tableView.delegate   = self
         
-        //
         //Notifications
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert,.sound,.badge],
@@ -213,15 +173,17 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = UITableViewCell()
+       
         let cellId: String = "MyCell"
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellId)!
+        let cell: SettingsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsTableViewCell
         
         let log = trackTypes[indexPath.row]
         let table_label = "\(String(describing: log.full_name!))"
-        cell.textLabel?.text = table_label
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
-        cell.imageView?.image = UIImage.init(named: "\(String(describing: log.name!)).png")
+        cell.settingsLabel.text = table_label
+        cell.settingsLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightRegular)
+        cell.settingsLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        cell.settingsImage.image = UIImage.init(named: "\(String(describing: log.name!)).png")
+        
         cell.accessoryType = getAccessoryType(for_type: log.name!)//.checkmark
         
         return cell
@@ -231,9 +193,27 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         //Delete stat row
         
         if editingStyle == .delete {
-            let log = trackTypes[indexPath.row]
-            _context.delete(log)
             
+            let log = trackTypes[indexPath.row]
+            
+            //Delete type from MyTypes
+            do {
+                let request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
+                request.predicate = NSPredicate(format: "name=%@",log.name!)
+                let for_del = try _context.fetch(request)
+                for del in for_del {
+                    _context.delete(del)
+                }
+                
+                if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
+                    print("Error delete MyTypes!")
+                }
+            } catch {
+                print("There was an error fetching Plus Operations.")
+            }
+            
+            //Delete in Types
+            _context.delete(log)
             if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
                 print("Error delete Types!")
             }
@@ -247,6 +227,10 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
             }
             tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 52
     }
     
     /*

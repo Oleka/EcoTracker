@@ -48,6 +48,9 @@
 		5E805A631E0D57D200E3F1AF /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A621E0D57D200E3F1AF /* TrackerViewController.swift */; };
 		5EA994341E12BFE8003B9251 /* TrackerTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EA994331E12BFE8003B9251 /* TrackerTypes.plist */; };
 		5EA994361E13BB0F003B9251 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA994351E13BB0F003B9251 /* SettingsViewController.swift */; };
+		7A2AFCD9219EA06100387259 /* AddNewTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2AFCD8219EA06100387259 /* AddNewTypeViewController.swift */; };
+		7A36B96D2010D40900994486 /* AwardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36B96C2010D40800994486 /* AwardsTableViewCell.swift */; };
+		7A36B96F2011E5DD00994486 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36B96E2011E5DD00994486 /* SettingsTableViewCell.swift */; };
 		7A6D9A171ED2DA6500B4EBDF /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D9A151ED2DA6500B4EBDF /* Interface.storyboard */; };
 		7A6D9A191ED2DA6500B4EBDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D9A181ED2DA6500B4EBDF /* Assets.xcassets */; };
 		7A6D9A201ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A6D9A1F1ED2DA6500B4EBDF /* EcoTrackerWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -67,6 +70,9 @@
 		7A6D9A611ED2F0CE00B4EBDF /* EcoTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */; };
 		7A6D9A631ED2FA3100B4EBDF /* WatchRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6D9A621ED2FA3100B4EBDF /* WatchRowController.swift */; };
 		7A6D9A651ED3182000B4EBDF /* TrackerTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A6D9A641ED3182000B4EBDF /* TrackerTypes.plist */; };
+		7A7D329B2018515A003A6A20 /* ChIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D329A2018515A003A6A20 /* ChIntroViewController.swift */; };
+		7A7D329D20185181003A6A20 /* TrIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D329C20185181003A6A20 /* TrIntroViewController.swift */; };
+		7A7D329F201AF8FD003A6A20 /* no_car.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7A7D329E201AF8FD003A6A20 /* no_car.rtf */; };
 		7AB4BE251EAF75640077F9BA /* eco_food.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7AB4BE241EAF75640077F9BA /* eco_food.rtf */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +199,9 @@
 		5E805A621E0D57D200E3F1AF /* TrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		5EA994331E12BFE8003B9251 /* TrackerTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackerTypes.plist; sourceTree = "<group>"; };
 		5EA994351E13BB0F003B9251 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7A2AFCD8219EA06100387259 /* AddNewTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTypeViewController.swift; sourceTree = "<group>"; };
+		7A36B96C2010D40800994486 /* AwardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsTableViewCell.swift; sourceTree = "<group>"; };
+		7A36B96E2011E5DD00994486 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		7A6D9A131ED2DA6500B4EBDF /* EcoTrackerWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoTrackerWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6D9A161ED2DA6500B4EBDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		7A6D9A181ED2DA6500B4EBDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -214,6 +223,9 @@
 		7A6D9A5F1ED2F06C00B4EBDF /* WatchCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchCoreDataManager.swift; sourceTree = "<group>"; };
 		7A6D9A621ED2FA3100B4EBDF /* WatchRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchRowController.swift; sourceTree = "<group>"; };
 		7A6D9A641ED3182000B4EBDF /* TrackerTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackerTypes.plist; sourceTree = "<group>"; };
+		7A7D329A2018515A003A6A20 /* ChIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChIntroViewController.swift; sourceTree = "<group>"; };
+		7A7D329C20185181003A6A20 /* TrIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrIntroViewController.swift; sourceTree = "<group>"; };
+		7A7D329E201AF8FD003A6A20 /* no_car.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = no_car.rtf; sourceTree = "<group>"; };
 		7AB4BE241EAF75640077F9BA /* eco_food.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eco_food.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +294,7 @@
 				5E1677F21E2A5AD900665CF1 /* vegan_day.rtf */,
 				5E1677F41E2A5B2D00665CF1 /* free_cleaning.rtf */,
 				7AB4BE241EAF75640077F9BA /* eco_food.rtf */,
+				7A7D329E201AF8FD003A6A20 /* no_car.rtf */,
 			);
 			name = RTF;
 			sourceTree = "<group>";
@@ -325,12 +338,17 @@
 				5E18C24E1E23AACC00533E14 /* CheckListTableViewCell.swift */,
 				5E18C2501E25167F00533E14 /* InfoViewController.swift */,
 				5E18C2521E2625B100533E14 /* TrackerTableViewCell.swift */,
+				7A36B96C2010D40800994486 /* AwardsTableViewCell.swift */,
+				7A36B96E2011E5DD00994486 /* SettingsTableViewCell.swift */,
+				7A2AFCD8219EA06100387259 /* AddNewTypeViewController.swift */,
 				5E805A4F1E0D1DB800E3F1AF /* Main.storyboard */,
 				5E805A551E0D1DB800E3F1AF /* Assets.xcassets */,
 				5E805A571E0D1DB800E3F1AF /* LaunchScreen.storyboard */,
 				5E805A5A1E0D1DB800E3F1AF /* Info.plist */,
 				5EA994331E12BFE8003B9251 /* TrackerTypes.plist */,
 				5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */,
+				7A7D329A2018515A003A6A20 /* ChIntroViewController.swift */,
+				7A7D329C20185181003A6A20 /* TrIntroViewController.swift */,
 			);
 			path = EcoTracker;
 			sourceTree = "<group>";
@@ -578,6 +596,7 @@
 				5E18C25C1E2A0E1000533E14 /* light_off.rtf in Resources */,
 				5E1677E51E2A587E00665CF1 /* eco_paper.rtf in Resources */,
 				5E18C25A1E2A0D7700533E14 /* sort_trash.rtf in Resources */,
+				7A7D329F201AF8FD003A6A20 /* no_car.rtf in Resources */,
 				5E18C2621E2A0FA500533E14 /* e_book.rtf in Resources */,
 				5E18C2601E2A0EF000533E14 /* eco_dish.rtf in Resources */,
 				5E1677E31E2A584200665CF1 /* eco_refrigerator.rtf in Resources */,
@@ -645,12 +664,17 @@
 			files = (
 				5E6395731E1128C00041CCE5 /* TrackerBlock.swift in Sources */,
 				5E18C2531E2625B100533E14 /* TrackerTableViewCell.swift in Sources */,
+				7A36B96F2011E5DD00994486 /* SettingsTableViewCell.swift in Sources */,
 				5E805A631E0D57D200E3F1AF /* TrackerViewController.swift in Sources */,
+				7A2AFCD9219EA06100387259 /* AddNewTypeViewController.swift in Sources */,
+				7A36B96D2010D40900994486 /* AwardsTableViewCell.swift in Sources */,
+				7A7D329D20185181003A6A20 /* TrIntroViewController.swift in Sources */,
 				5EA994361E13BB0F003B9251 /* SettingsViewController.swift in Sources */,
 				5E18C24F1E23AACC00533E14 /* CheckListTableViewCell.swift in Sources */,
 				5E18C2511E25167F00533E14 /* InfoViewController.swift in Sources */,
 				5E805A4E1E0D1DB800E3F1AF /* AddViewController.swift in Sources */,
 				5E77188C1E1CF1AC000A2ADA /* TypeViewController.swift in Sources */,
+				7A7D329B2018515A003A6A20 /* ChIntroViewController.swift in Sources */,
 				5E805A4C1E0D1DB800E3F1AF /* AppDelegate.swift in Sources */,
 				5E805A611E0D511100E3F1AF /* LogViewController.swift in Sources */,
 			);
@@ -836,14 +860,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = EcoTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "553f7706-1b48-4330-bbcd-89f8a2bd8dea";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Development up 3_0";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -855,14 +881,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = EcoTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "553f7706-1b48-4330-bbcd-89f8a2bd8dea";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Development up 3_0";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -874,14 +902,16 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch Ext Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatchExt up 3_0";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -896,14 +926,16 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch Ext Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatchExt up 3_0";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -918,14 +950,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				IBSC_MODULE = EcoTrackerWatch_Extension;
 				INFOPLIST_FILE = EcoTrackerWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch App Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatch up 3_0";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -940,14 +974,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				IBSC_MODULE = EcoTrackerWatch_Extension;
 				INFOPLIST_FILE = EcoTrackerWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker For Watch App Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatch up 3_0";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;

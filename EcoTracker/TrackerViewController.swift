@@ -59,6 +59,29 @@ extension Date {
     }
 }
 
+extension Date {
+    
+    func getDaysInMonth() -> Int{
+        let calendar = Calendar.current
+        
+        let dateComponents = DateComponents(year: calendar.component(.year, from: self), month: calendar.component(.month, from: self))
+        let date = calendar.date(from: dateComponents)!
+        
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        let numDays = range.count
+        
+        return numDays
+    }
+    
+    func startOfMonth() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func endOfMonth() -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
+    }
+}
+
 class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
     @IBOutlet weak var periodTypeControl: UISegmentedControl!
@@ -69,6 +92,14 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     var _context: NSManagedObjectContext!
     var trackTypes : [MyTypes] = []
+    
+    func getHeight(days: Int) -> Int{
+        var height : Double = 0.0
+        
+        height = (60 * (100.0*Double(days)/30.0))/100
+        
+        return Int(height)
+    }
     
     func changeOrientation(){
         if(UIDevice.current.orientation != UIDeviceOrientation.landscapeRight)
@@ -158,8 +189,8 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     func loadTrackerForPeriod(tr_type: String, tracker_width: CGFloat) -> UIView{
         
-        let tracker_view: UIView = TrackerBlock(frame: CGRect(x: 0.0, y: 0.0, width: tracker_width, height: 50))
-        tracker_view.backgroundColor = .clear
+        let tracker_view: UIView = TrackerBlock(frame: CGRect(x: 0.0, y: 0.0, width: tracker_width, height: 60))
+        tracker_view.backgroundColor = UIColor(red: 214.0/255.0, green: 214.0/255.0, blue: 214.0/255.0, alpha: 1.0)//gray
         
         //Days between
         var days: Int = 0
@@ -174,81 +205,168 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
         else if (self.periodTypeControl.selectedSegmentIndex == 1) {
             //Month
-            //For mounth
+            //For month
             beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
             endDate    = Date()
+            days = beginDate!.getDaysInMonth()
             
-            //Find Mon in previous week from beginDate
-            let beginDateComponents = Calendar.current.dateComponents([.weekOfYear, .year], from: beginDate!)
-            let begin_week = beginDateComponents.weekOfYear
+            blockWidth = Int(tracker_width)/days
             
-            //Create date Mon previous
-            var firstDayComponents = DateComponents()
-            firstDayComponents.year = beginDateComponents.year
-            firstDayComponents.weekOfYear = begin_week!
-            firstDayComponents.weekday = 2
-            let firstDay = Calendar.current.date(from: firstDayComponents)
-            beginDate = firstDay!
-            
-            days = endDate!.days(from: firstDay!)+1
-            
-            blockWidth = Int(tracker_width)/37
         }
         else{
             //Year
             beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .year], from: Date())) as Date?
             endDate    = Date()
             days = endDate!.days(from: beginDate!)+1
-            blockWidth = Int(tracker_width)/365
+            blockWidth = Int(tracker_width)/12
         }
         
         //Get data from DB selected by periodTypeControl
+//        do {
+//            let request = NSFetchRequest<Tracker>(entityName: "Tracker")
+//            request.predicate = NSPredicate(format:"type=%@ and dt>=%@ AND dt<=%@",tr_type, beginDate! as CVarArg, endDate! as CVarArg)
+//            searched = try _context.fetch(request)
+//
+//            var offsetX: Int = beginX
+//            let offsetY: Int = beginY
+//
+//            var i: Int = 0
+//            var today: Date = beginDate!
+//
+//            while i < days {
+//
+//                //Filter searched by today
+//                let namePredicate = NSPredicate(format: "today like %@",getDate(dd: today));
+//                let filteredArray = searched.filter { namePredicate.evaluate(with: $0) };
+//
+//                //Define block color
+//                var blockColor: UIColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
+//
+//                if filteredArray.count==0 {
+//                    //no data today!
+//                    //Define block color
+//                    blockColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
+//                }
+//                else{
+//                    if filteredArray[0].value == 5 {
+//                        blockColor = .yellow
+//                    }
+//                    else if filteredArray[0].value == 10 {
+//                        blockColor = UIColor(red: 84.0/255.0, green: 197.0/255.0, blue: 24.0/255.0, alpha: 1.0)//green
+//                    }
+//                }
+//
+//                //Load block
+//                let block = TrackerBlock(frame: CGRect(x: offsetX, y: offsetY, width: Int(blockWidth), height: 60))
+//                block.backgroundColor = blockColor
+//
+//                tracker_view.addSubview(block)
+//
+//                offsetX += blockWidth
+//                today = today.addingTimeInterval(1*60*60*24)
+//                i += 1
+//            }
+//
+//
+//        } catch {
+//            print("There was an error fetching.")
+//        }
+//
+//        return tracker_view
+        //Get data from DB by Day in Tracker for Week, Month
+        //let _context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
-            let request = NSFetchRequest<Tracker>(entityName: "Tracker")
-            request.predicate = NSPredicate(format:"type=%@ and dt>=%@ AND dt<=%@",tr_type, beginDate! as CVarArg, endDate! as CVarArg)
-            searched = try _context.fetch(request)
-            
-            var offsetX: Int = beginX
-            let offsetY: Int = beginY
-            
-            var i: Int = 0
-            var today: Date = beginDate!
-            
-            while i < days {
+            // For Year Tracker by month
+            if (self.periodTypeControl.selectedSegmentIndex == 2) {
                 
-                //Filter searched by today
-                let namePredicate = NSPredicate(format: "today like %@",getDate(dd: today));
-                let filteredArray = searched.filter { namePredicate.evaluate(with: $0) };
+                var offsetX: Int = beginX
+                var offsetY: Int = 60
                 
-                //Define block color
-                var blockColor: UIColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
-                
-                if filteredArray.count==0 {
-                    //no data today!
-                    //Define block color
-                    blockColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
+                //For each month
+                for m in stride(from: 1, to: 12, by: 1){
+                    
+                    var firstDayComponents = DateComponents()
+                    firstDayComponents.year = Calendar.current.dateComponents([.weekOfYear, .year], from: Date()).year
+                    firstDayComponents.month = m
+                    let firstDayMonth = Calendar.current.date(from: firstDayComponents)
+                    let endMonth = firstDayMonth?.endOfMonth()
+                    
+                    //Query DB
+                    let request10 = NSFetchRequest<Tracker>(entityName: "Tracker")
+                    request10.predicate = NSPredicate(format:"type=%@ and value=10 and dt>=%@ and dt<=%@",tr_type, firstDayMonth! as CVarArg, endMonth! as CVarArg)
+                    let monthed10 = try _context.fetch(request10)
+                    let res10 = monthed10.count
+                    
+                    //Load block
+                    var block = TrackerBlock(frame: CGRect(x: offsetX, y: offsetY-getHeight(days: res10), width: Int(blockWidth), height: getHeight(days: res10)))
+                    block.backgroundColor = UIColor(red: 84.0/255.0, green: 197.0/255.0, blue: 24.0/255.0, alpha: 1.0)//green
+                    offsetY = offsetY-getHeight(days: res10)
+                    
+                    tracker_view.addSubview(block)
+                    
+                    let request5 = NSFetchRequest<Tracker>(entityName: "Tracker")
+                    request5.predicate = NSPredicate(format:"type=%@ and value=5 and dt>=%@ and dt<=%@",tr_type, firstDayMonth! as CVarArg, endMonth! as CVarArg)
+                    let monthed5 = try _context.fetch(request5)
+                    let res5 = monthed5.count
+                    
+                    //Load block
+                    block = TrackerBlock(frame: CGRect(x: offsetX, y: offsetY-getHeight(days: res5), width: Int(blockWidth), height: getHeight(days: res5)))
+                    block.backgroundColor = UIColor(red: 248.0/255.0, green: 231.0/255.0, blue: 28.0/255.0, alpha: 1.0)//yellow
+                    
+                    tracker_view.addSubview(block)
+                    
+                    offsetX += blockWidth
                 }
-                else{
-                    if filteredArray[0].value == 5 {
-                        blockColor = .yellow
-                    }
-                    else if filteredArray[0].value == 10 {
-                        blockColor = UIColor(red: 84.0/255.0, green: 197.0/255.0, blue: 24.0/255.0, alpha: 1.0)//green
-                    }
-                }
                 
-                //Load block
-                let block = TrackerBlock(frame: CGRect(x: offsetX, y: offsetY, width: Int(blockWidth), height: 50))
-                block.backgroundColor = blockColor
-                
-                tracker_view.addSubview(block)
-                
-                offsetX += blockWidth
-                today = today.addingTimeInterval(1*60*60*24)
-                i += 1
             }
-            
-            
+                // For Week and Month Tracker by days
+            else{
+                
+                
+                let request = NSFetchRequest<Tracker>(entityName: "Tracker")
+                request.predicate = NSPredicate(format:"type=%@ and dt>=%@ AND dt<=%@",tr_type, beginDate! as CVarArg, endDate! as CVarArg)
+                searched = try _context.fetch(request)
+                
+                var offsetX: Int = beginX
+                let offsetY: Int = beginY
+                
+                var i: Int = 0
+                var today: Date = beginDate!
+                
+                while i < days {
+                    
+                    //Filter searched by today
+                    let namePredicate = NSPredicate(format: "today like %@",getDate(dd: today));
+                    let filteredArray = searched.filter { namePredicate.evaluate(with: $0) };
+                    
+                    //Define block color
+                    var blockColor: UIColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
+                    
+                    if filteredArray.count==0 {
+                        //no data today!
+                        //Define block color
+                        blockColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)//gray
+                    }
+                    else{
+                        if filteredArray[0].value == 5 {
+                            blockColor = UIColor(red: 248.0/255.0, green: 231.0/255.0, blue: 28.0/255.0, alpha: 1.0)//yellow
+                        }
+                        else if filteredArray[0].value == 10 {
+                            blockColor = UIColor(red: 84.0/255.0, green: 197.0/255.0, blue: 24.0/255.0, alpha: 1.0)//green
+                        }
+                    }
+                    
+                    //Load block
+                    let block = TrackerBlock(frame: CGRect(x: offsetX, y: offsetY, width: Int(blockWidth), height: 60))
+                    block.backgroundColor = blockColor
+                    
+                    tracker_view.addSubview(block)
+                    
+                    offsetX += blockWidth
+                    today = today.addingTimeInterval(1*60*60*24)
+                    i += 1
+                }
+            }
         } catch {
             print("There was an error fetching.")
         }
@@ -312,31 +430,41 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             
         }
         else if (self.periodTypeControl.selectedSegmentIndex == 1) {
+//            //Month
+//            beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
+//            endDate    = Date()
+//
+//            blockWidth = Int(tracker_width)/37
+//
+//            //For mounth
+//            //Find Mon in previous week from beginDate
+//            let beginDateComponents = Calendar.current.dateComponents([.weekOfYear, .year], from: beginDate!)
+//            let begin_week = beginDateComponents.weekOfYear
+//
+//            //Create date Mon previous
+//            var firstDayComponents = DateComponents()
+//            firstDayComponents.year = beginDateComponents.year
+//            firstDayComponents.weekOfYear = begin_week!
+//            firstDayComponents.weekday = 2
+//            let firstDay = Calendar.current.date(from: firstDayComponents)
+//            today = firstDay!
+//            days = endDate!.days(from: firstDay!)+1
+            
             //Month
+            //For mounth
             beginDate  = Calendar(identifier: .iso8601).date(from: Calendar(identifier: .iso8601).dateComponents([.year, .month], from: Date())) as Date?
             endDate    = Date()
+            days = beginDate!.getDaysInMonth()
             
-            blockWidth = Int(tracker_width)/37
+            blockWidth = Int(tracker_width)/days
             
-            //For mounth
-            //Find Mon in previous week from beginDate
-            let beginDateComponents = Calendar.current.dateComponents([.weekOfYear, .year], from: beginDate!)
-            let begin_week = beginDateComponents.weekOfYear
-            
-            //Create date Mon previous
-            var firstDayComponents = DateComponents()
-            firstDayComponents.year = beginDateComponents.year
-            firstDayComponents.weekOfYear = begin_week!
-            firstDayComponents.weekday = 2
-            let firstDay = Calendar.current.date(from: firstDayComponents)
-            today = firstDay!
-            days = endDate!.days(from: firstDay!)+1
+            today = beginDate!
             
             while i < days {
                 
                 if i==0 {
                     let periodLabel: UILabel = UILabel(frame: CGRect(origin: CGPoint(x: offsetX, y: offsetY), size: CGSize(width: Double(blockWidth*7) , height: 20.0)))
-                    periodLabel.text = "\(getDay(dd:today))\(getMonth(dd:today))"
+                    periodLabel.text = "\(getDay(dd:beginDate!))\(getMonth(dd:beginDate!))"
                     
                     periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
                     periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
@@ -485,13 +613,6 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if isNewUser() {
-            self.hi_View.isHidden = false
-            self.bg_View.isHidden = false
-        }
-        else {
-            self.hi_View.isHidden = true
-            self.bg_View.isHidden = true
             
             getDataTypes()
             
@@ -507,6 +628,21 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
             period_View.setNeedsDisplay()
             
             tableView.reloadData()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if isNewUser() {
+            UIApplication.shared.statusBarView?.backgroundColor = .clear
+            let introController = self.storyboard?.instantiateViewController(withIdentifier: "TrackerIntro") as! TrIntroViewController
+            self.present(introController, animated: true, completion: {
+                self.tabBarController?.selectedIndex = 3
+            })
+            
+        }
+        else{
+            UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
         }
     }
     
@@ -547,7 +683,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54
+        return 62
     }
     
     

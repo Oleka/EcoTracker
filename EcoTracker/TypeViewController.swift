@@ -90,6 +90,10 @@ class TypeViewController: UIViewController,UITextViewDelegate {
             describeText.isEditable = false
             // describeText.contentOffset = CGPoint.zero
         }
+        else{
+            describeText.text = "-"
+            describeText.isEditable = false
+        }
         
         if isSelected==true {
             selectButton.isHidden = true

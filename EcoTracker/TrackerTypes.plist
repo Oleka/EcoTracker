@@ -11,7 +11,7 @@
 	<key>eco_wash</key>
 	<string>Максимально заполнять стиральную машинку</string>
 	<key>eco_dish</key>
-	<string>Мыть посуду в миске или посудомойке</string>
+	<string>Мыть посуду в посудомойке или миске</string>
 	<key>e_book</key>
 	<string>&quot;Да&quot; электронной прессе вместо бумажной</string>
 	<key>walk</key>
@@ -58,5 +58,7 @@
 	<string>Волонтерская уборка мусора</string>
 	<key>eco_food</key>
 	<string>Эко-продукты</string>
+	<key>no_car</key>
+	<string>Без автомобиля</string>
 </dict>
 </plist>

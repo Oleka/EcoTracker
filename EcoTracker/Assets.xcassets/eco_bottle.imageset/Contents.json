@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "eco_bottle.png",
+      "filename" : "eco_bottle_40.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "eco_bottle@2x.png",
+      "filename" : "eco_bottle_40@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "eco_bottle@3x.png",
+      "filename" : "eco_bottle_40@3x.png",
       "scale" : "3x"
     }
   ],

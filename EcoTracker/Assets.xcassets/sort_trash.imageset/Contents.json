@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "sort_trash.png",
+      "filename" : "sort_trash_40.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sort_trash@2x.png",
+      "filename" : "sort_trash_40@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sort_trash@3x.png",
+      "filename" : "sort_trash_40@3x.png",
       "scale" : "3x"
     }
   ],

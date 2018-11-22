@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "bicycle.png",
+      "filename" : "bicycle_40.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "bicycle@2x.png",
+      "filename" : "bicycle_40@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "bicycle@3x.png",
+      "filename" : "bicycle_40@3x.png",
       "scale" : "3x"
     }
   ],
