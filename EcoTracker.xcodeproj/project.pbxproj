@@ -911,7 +911,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatchExt up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Watch Ext Development up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -935,7 +935,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatchExt up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Watch Ext Development up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -959,7 +959,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatch up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Watch Development up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -983,7 +983,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatch up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Watch Development up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;

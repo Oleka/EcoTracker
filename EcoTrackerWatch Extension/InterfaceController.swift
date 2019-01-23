@@ -107,19 +107,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         return resImage
     }
-
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        
-        _context = WatchCoreDataManager.managedObjectContext()
-        
-        WatchCoreDataManager.addTrackerTypes()
-        
-        deleteOldTracker()
-        getDataTypes()
-        
-        // Configure interface objects here.
-        
+    
+    func reloadTable(){
         tableView.setNumberOfRows(myTrackTypes.count, withRowType: "watchRow")
         
         for (index, member) in myTrackTypes.enumerated() {
@@ -154,14 +143,31 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }
             
         }
+    }
+
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+        
         setupConnectivity()
-        processApplicationContext()
-    
+        
+        
+        _context = WatchCoreDataManager.managedObjectContext()
+        
+        WatchCoreDataManager.addTrackerTypes()
+        
+        deleteOldTracker()
+        
+        //processApplicationContext()
+        
+        getDataTypes()
+        reloadTable()
+        
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
     }
     
     override func didDeactivate() {
@@ -253,27 +259,40 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     
-    
-//    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-//        DispatchQueue.main.async(execute:  {
-//            //Update MyTypes from iPhone
-//            self.updateMyTypesFromPhone(data: applicationContext)
-//        })
-//
-//
-//    }
-    
     func processApplicationContext() {
         if let iPhoneContext = session?.receivedApplicationContext as? [String : String] {
-            if iPhoneContext["type"] != nil {
+            
+            //Add new type
+            if iPhoneContext["add_type"] != nil && (iPhoneContext["add_type"]?.count)! > 0 {
                 //Add in MyTypes
                 let addMyTypeObject = WatchCoreDataManager.insertManagedObject(className: NSStringFromClass(MyTypes.self) as NSString, managedObjectContext: _context) as! MyTypes
-                addMyTypeObject.name = iPhoneContext["type"]
+                addMyTypeObject.name = iPhoneContext["add_type"]
+                addMyTypeObject.full_name = iPhoneContext["add_type"]
                 //Save data to CoreData
                 if WatchCoreDataManager.saveManagedObjectContext(managedObjectContext: _context) == false{
                     print("Error saving MyTypes from iPhone!")
                 }
             }
+            //Delete type
+            if iPhoneContext["delete_type"] != nil && (iPhoneContext["delete_type"]?.count)! > 0{
+                do {
+                    let request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
+                    request.predicate = NSPredicate(format: "name=%@",iPhoneContext["delete_type"]!)
+                    let for_del = try _context.fetch(request)
+                    for del in for_del {
+                        _context.delete(del)
+                    }
+                    //Save data to CoreData
+                    if WatchCoreDataManager.saveManagedObjectContext(managedObjectContext: _context) == false{
+                        print("Error delete MyTypes from watch!")
+                    }
+                } catch {
+                    print("Delete old MyTypes Error!")
+                }
+            }
+            
+            getDataTypes()
+            reloadTable()
         }
     }
     
@@ -291,5 +310,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         print("Watch activated with activation state: \(activationState.rawValue) ")
     }
 
+    
 
 }

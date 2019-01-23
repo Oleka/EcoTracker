@@ -48,6 +48,20 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
             if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
                 print("Error delete MyTypes!")
             }
+            
+            //Save to Apple Watch = delete type to MyTypes
+            if (session?.isReachable)! {
+                let iPhoneAppContext = ["delete_type": detail_type[0].name!]
+
+                do {
+                    try session?.updateApplicationContext(iPhoneAppContext)
+                } catch {
+                    print("Something went wrong")
+                }
+            }
+            else{
+                print("Error - type not be deleted!")
+            }
         } catch {
             print("There was an error fetching Plus Operations.")
         }
@@ -70,13 +84,16 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
         
         //Save to Apple Watch = add type to MyTypes
         if let validSession = session {
-            let iPhoneAppContext = ["type": detail_type[0].name!]
+            let iPhoneAppContext = ["add_type": detail_type[0].name!]
             
             do {
                 try validSession.updateApplicationContext(iPhoneAppContext)
             } catch {
                 print("Something went wrong")
             }
+        }
+        else{
+           print("Error - type not be added!")
         }
         
         dismiss(animated: false, completion: nil)
@@ -133,6 +150,9 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
             session = WCSession.default()
             session?.delegate = self
             session?.activate()
+        }
+        else{
+            print("Apple Watch Support - not supported!")
         }
     }
     
