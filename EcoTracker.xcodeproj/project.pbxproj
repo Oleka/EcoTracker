@@ -341,14 +341,14 @@
 				7A36B96C2010D40800994486 /* AwardsTableViewCell.swift */,
 				7A36B96E2011E5DD00994486 /* SettingsTableViewCell.swift */,
 				7A2AFCD8219EA06100387259 /* AddNewTypeViewController.swift */,
+				7A7D329A2018515A003A6A20 /* ChIntroViewController.swift */,
+				7A7D329C20185181003A6A20 /* TrIntroViewController.swift */,
 				5E805A4F1E0D1DB800E3F1AF /* Main.storyboard */,
 				5E805A551E0D1DB800E3F1AF /* Assets.xcassets */,
 				5E805A571E0D1DB800E3F1AF /* LaunchScreen.storyboard */,
 				5E805A5A1E0D1DB800E3F1AF /* Info.plist */,
 				5EA994331E12BFE8003B9251 /* TrackerTypes.plist */,
 				5E805A521E0D1DB800E3F1AF /* EcoTracker.xcdatamodeld */,
-				7A7D329A2018515A003A6A20 /* ChIntroViewController.swift */,
-				7A7D329C20185181003A6A20 /* TrIntroViewController.swift */,
 			);
 			path = EcoTracker;
 			sourceTree = "<group>";
@@ -860,8 +860,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = EcoTracker/Info.plist;
@@ -869,7 +869,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "553f7706-1b48-4330-bbcd-89f8a2bd8dea";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Development up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Distribution up_v30";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -881,8 +881,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = EcoTracker/EcoTracker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = EcoTracker/Info.plist;
@@ -890,7 +890,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "553f7706-1b48-4330-bbcd-89f8a2bd8dea";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Development up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker Distribution up_v30";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -902,8 +902,8 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
@@ -911,7 +911,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatchExt up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker for Watch Ext up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -926,8 +926,8 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "EcoTrackerWatch Extension/EcoTrackerWatch Extension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				INFOPLIST_FILE = "EcoTrackerWatch Extension/Info.plist";
@@ -935,7 +935,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "21d68e36-b17d-4df7-b9ce-6e27a1ad0547";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatchExt up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker for Watch Ext up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -950,8 +950,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				IBSC_MODULE = EcoTrackerWatch_Extension;
@@ -959,7 +959,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatch up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker for Watch Distribution up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -974,8 +974,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution: OLGA BLINOVA (VWYKBS3RP3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = VWYKBS3RP3;
 				IBSC_MODULE = EcoTrackerWatch_Extension;
@@ -983,7 +983,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.olistudio.EcoTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "fc915ff6-43a4-45db-ae6e-0e435c9ed2e7";
-				PROVISIONING_PROFILE_SPECIFIER = "EcoTrackerWatch up 3_0";
+				PROVISIONING_PROFILE_SPECIFIER = "EcoTracker for Watch Distribution up_v30";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;

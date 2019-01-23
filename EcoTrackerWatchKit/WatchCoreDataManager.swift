@@ -17,6 +17,7 @@ public class WatchCoreDataManager: NSObject {
     
     
     class func mangedObjectModel()->NSManagedObjectModel{
+        
         let proxyBundle = Bundle(identifier: "ru.Olistudio.EcoTrackerWatchKit")
         
         let modelURL = proxyBundle?.url(forResource: "EcoTracker", withExtension: "momd")!
@@ -123,14 +124,15 @@ public class WatchCoreDataManager: NSObject {
         _context = self.managedObjectContext()
         
         //If exist - check this!
-        do {
-            let _request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
-            let res = try _context.fetch(_request)
+        
+            //let _request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
+            //let res = try _context.fetch(_request)
+            let res = self.fetchEntities(className: NSStringFromClass(MyTypes.self) as NSString, withPredicate: nil, andSortDescriptor: nil, managedObjectContext: _context)
             if res.count>0 {
                 //OK!
             }
             else{
-                //Read from .Plist
+                //Read from .Plist and add all as new
                 let path = Bundle.main.path(forResource: "TrackerTypes", ofType: "plist")
                 let tr_types = NSDictionary(contentsOfFile: path!)
                 
@@ -147,9 +149,7 @@ public class WatchCoreDataManager: NSObject {
                     print("Error saving Types, MyTypes!")
                 }
             }
-        } catch {
-            print("There was an error fetching Types.")
-        }
+        
     }
 
 }

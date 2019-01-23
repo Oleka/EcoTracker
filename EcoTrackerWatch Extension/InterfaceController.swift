@@ -48,7 +48,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     func getDataTypes(){
         
         do{
-            myTrackTypes = try _context.fetch(MyTypes.fetchRequest())
+        myTrackTypes = WatchCoreDataManager.fetchEntities(className: NSStringFromClass(MyTypes.self) as NSString, withPredicate: nil, andSortDescriptor: nil, managedObjectContext: _context) as! [MyTypes]
+            //myTrackTypes = try _context.fetch(MyTypes.fetchRequest())
             
             let startDate = Calendar.current.startOfDay(for: NSDate() as Date)
             
