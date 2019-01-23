@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 import EcoTrackerKit
+import WatchConnectivity
 
-class TypeViewController: UIViewController,UITextViewDelegate {
+class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate {
     
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
@@ -23,6 +24,17 @@ class TypeViewController: UIViewController,UITextViewDelegate {
     var detail_type : [Types] = []
     var isSelected : Bool = false
     
+    /*
+    // MARK: - WCSessionDelegate Functions
+    */
+    var session: WCSession?
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
+    func sessionDidBecomeInactive(_ session: WCSession) { }
+    func sessionDidDeactivate(_ session: WCSession) { }
+    
+    /*
+     // MARK: - UIViewController Functions
+     */
     @IBAction func noSelectAction(_ sender: Any) {
         //Delete type from MyTypes
         do {
@@ -55,6 +67,18 @@ class TypeViewController: UIViewController,UITextViewDelegate {
         if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
             print("Error saving MyTypes!")
         }
+        
+        //Save to Apple Watch = add type to MyTypes
+        if let validSession = session {
+            let iPhoneAppContext = ["type": detail_type[0].name!]
+            
+            do {
+                try validSession.updateApplicationContext(iPhoneAppContext)
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        
         dismiss(animated: false, completion: nil)
     }
     
@@ -102,6 +126,13 @@ class TypeViewController: UIViewController,UITextViewDelegate {
         else{
             selectButton.isHidden = false
             removeButton.isHidden = true
+        }
+        
+        // Apple Watch Support
+        if WCSession.isSupported() {
+            session = WCSession.default()
+            session?.delegate = self
+            session?.activate()
         }
     }
     

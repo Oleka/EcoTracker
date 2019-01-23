@@ -45,6 +45,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     var session: WCSession?
     
+    
     func getDataTypes(){
         
         do{
@@ -154,6 +155,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
         }
         setupConnectivity()
+        processApplicationContext()
+    
     }
     
     override func willActivate() {
@@ -251,13 +254,33 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     
     
+//    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+//        DispatchQueue.main.async(execute:  {
+//            //Update MyTypes from iPhone
+//            self.updateMyTypesFromPhone(data: applicationContext)
+//        })
+//
+//
+//    }
+    
+    func processApplicationContext() {
+        if let iPhoneContext = session?.receivedApplicationContext as? [String : String] {
+            if iPhoneContext["type"] != nil {
+                //Add in MyTypes
+                let addMyTypeObject = WatchCoreDataManager.insertManagedObject(className: NSStringFromClass(MyTypes.self) as NSString, managedObjectContext: _context) as! MyTypes
+                addMyTypeObject.name = iPhoneContext["type"]
+                //Save data to CoreData
+                if WatchCoreDataManager.saveManagedObjectContext(managedObjectContext: _context) == false{
+                    print("Error saving MyTypes from iPhone!")
+                }
+            }
+        }
+    }
+    
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        DispatchQueue.main.async(execute:  {
-            //Update MyTypes from iPhone
-            self.updateMyTypesFromPhone(data: applicationContext)
-        })
-        
-        
+        DispatchQueue.main.async() {
+            self.processApplicationContext()
+        }
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
