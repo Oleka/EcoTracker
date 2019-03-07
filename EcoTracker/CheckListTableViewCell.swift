@@ -124,7 +124,7 @@ class CheckListTableViewCell: UITableViewCell {
         if (state != "None") {
             //Add in Tracker
             let trackObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(Tracker.self) as NSString, managedObjectContext: _context) as! Tracker
-            trackObject.dt    = NSDate()
+            trackObject.dt    = NSDate() as Date
             trackObject.today = getToday(dt: NSDate())
             trackObject.type  = typeName
             
@@ -140,7 +140,7 @@ class CheckListTableViewCell: UITableViewCell {
             if isDoneThisType(name: typeName, for_days: 21) {
                 //Add
                 let doneTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(DoneTypes.self) as NSString, managedObjectContext: _context) as! DoneTypes
-                doneTypeObject.dt    = NSDate()
+                doneTypeObject.dt    = NSDate() as Date
                 doneTypeObject.state = "21"
                 doneTypeObject.type  = typeName
             }

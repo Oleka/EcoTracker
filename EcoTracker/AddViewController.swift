@@ -17,11 +17,9 @@ extension UIApplication {
     }
 }
 
-class AddViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIPopoverPresentationControllerDelegate,WCSessionDelegate {
-    
-    @IBAction func syncMyTypes(_ sender: Any) {
-        sendMyTypesToWatch(ses: session!)
-    }
+class AddViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIPopoverPresentationControllerDelegate,WCSessionDelegate{
+    //MARK:- vars
+    //
     @IBOutlet weak var leafButton: UIButton!
     
     @IBOutlet weak var watchButton: UIButton!
@@ -41,9 +39,11 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     var watchTracker: [String : Any] = [:]
     
-    var session: WCSession?
+    var session = WCSession.default
     var isWatchPared: Bool = false
     
+    //MARK:- Main Functions
+    //
     func getPoints(dt: NSDate) -> String {
         
         var points: String = "0"
@@ -75,32 +75,17 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         return points
     }
     
-    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        return true
+    func getDate (dd:NSDate) -> String {
+        
+        var dateString: String = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        
+        dateString = dateFormatter.string(from: dd as Date)
+        
+        return dateString
     }
-    
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        //do som stuff from the popover
-    }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //segue for the popover configuration window
-        if segue.identifier == "infoPopOver" {
-            if let controller = segue.destination as? InfoViewController {
-                controller.popoverPresentationController!.delegate = self
-                controller.preferredContentSize = CGSize(width: 140, height: 140)
-                controller.pointsValue = getPoints(dt: NSDate())
-                controller.view.cornerRadius=70
-                controller.popoverPresentationController?.backgroundColor = .clear
-                
-            }
-        }
-    }
-    
     
     func getDataTypes(){
         
@@ -134,7 +119,6 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                         
         })
     }
-    
     
     func isNewUser() -> Bool {
         
@@ -192,23 +176,55 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         }
     }
     
+    //Today form Date
+    func getToday(dt: NSDate) -> String {
+        
+        var dateString: String = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        dateString = dateFormatter.string(from: dt as Date)
+        
+        return dateString
+    }
+    
+    func get_MyTypes() -> [MyTypes]{
+        
+        var iPhoneMyTypes = [MyTypes]()
+        
+        do{
+            iPhoneMyTypes = try _context.fetch(MyTypes.fetchRequest())
+        }
+        catch{
+            print("MyTypes Fetching Error!")
+        }
+        
+        return iPhoneMyTypes
+        
+    }
+    
+    //MARK:- Popover Functions
+    //
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        //do som stuff from the popover
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    //MARK:- View Controller Functions
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         
         tableView.dataSource = self
         tableView.delegate   = self
-        
-        //For watch
-        setupConnectivity()
-        if isWatchPared == false{
-            self.watchButton.isHidden = true
-        }
-        else{
-           self.watchButton.isHidden = false
-        }
-        
         
     }
     
@@ -218,10 +234,13 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             getDataTypes()
             tableView.reloadData()
         
+            //For watch
+            session.delegate = self
+            session.activate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //_context = CoreDataManager.managedObjectContext()
+        
         if isNewUser() {
             UIApplication.shared.statusBarView?.backgroundColor = .clear
             let introController = self.storyboard?.instantiateViewController(withIdentifier: "CheckListIntro") as! ChIntroViewController
@@ -241,22 +260,22 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func getDate (dd:NSDate) -> String {
-        
-        var dateString: String = ""
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyyy"
-        
-        dateString = dateFormatter.string(from: dd as Date)
-        
-        return dateString
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //segue for the popover configuration window
+        if segue.identifier == "infoPopOver" {
+            if let controller = segue.destination as? InfoViewController {
+                controller.popoverPresentationController!.delegate = self
+                controller.preferredContentSize = CGSize(width: 140, height: 140)
+                controller.pointsValue = getPoints(dt: NSDate())
+                controller.view.cornerRadius=70
+                controller.popoverPresentationController?.backgroundColor = .clear
+                
+            }
+        }
     }
     
-    
-    
-    //Table
+    //MARK:- TableView Functions
+    //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myTrackTypes.count
     }
@@ -265,11 +284,11 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId: String = "MyCell"
-        let cell: CheckListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CheckListTableViewCell
+        let cell: CheckListTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CheckListTableViewCell
         
         let log = myTrackTypes[indexPath.row]
         cell.typeImage.setImage(UIImage.init(named: "\(String(describing: log.name!)).png"), for: .normal)
-        cell.typeImage.imageEdgeInsets = UIEdgeInsetsMake(60,60,60,60)
+        cell.typeImage.imageEdgeInsets = UIEdgeInsets.init(top: 60,left: 60,bottom: 60,right: 60)
         
         cell.typeName = log.name
         cell.fullName = log.full_name
@@ -313,27 +332,16 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         return 62
     }
     
-    //Today form Date
-    func getToday(dt: NSDate) -> String {
-        
-        var dateString: String = ""
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        
-        dateString = dateFormatter.string(from: dt as Date)
-        
-        return dateString
-    }
     
-    //Watch sinc
+    //MARK:- Watch sinc Functions
+    //
     func updateCheckListFromWatch(){
-        
+
         var typeName: String = ""
         var typeValue: Int16 = 0
-        
+
         for watch_record in watchTracker {
-            
+
             if (watch_record.key == "type"){
                 typeName = watch_record.value as! String
             }
@@ -341,18 +349,18 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 typeValue = watch_record.value as! Int16
             }
         }
-        
+
         //Update data from watch for today in iPhone base
         do {
             let startDate = Calendar.current.startOfDay(for: NSDate() as Date)
             let dateStringFormatter = DateFormatter()
             dateStringFormatter.dateFormat="yyyy-MM-dd HH:mm:ss ZZZ"
             let end_date = dateStringFormatter.date(from: String(describing: NSDate()))!
-                
+
             let request = NSFetchRequest<Tracker>(entityName: "Tracker")
             request.predicate = NSPredicate(format: "type=%@ and dt>=%@ and dt<=%@",typeName,startDate as CVarArg,end_date as CVarArg)
             let for_del = try _context.fetch(request)
-                
+
             for del in for_del {
                 _context.delete(del)
             }
@@ -360,82 +368,38 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 print("There was an error fetching Del for Type Operations.")
         }
         //Add from watch
-       
+
         let trackObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(Tracker.self) as NSString,managedObjectContext: _context) as! Tracker
-        trackObject.dt    = NSDate()
+        trackObject.dt    = NSDate() as Date
         trackObject.today = getToday(dt: NSDate())
         trackObject.type  = typeName
         trackObject.value = typeValue
-        
+
         //Save data to CoreData
         if CoreDataManager.saveManagedObjectContext(managedObjectContext: self._context) == false{
             print("Error add in Check-List!")
         }
-        
-        
 
     }
     
-    // MARK:- Apple Watch connection
-    fileprivate func setupConnectivity() {
-        if WCSession.isSupported() {
-            session = WCSession.default()
-            session?.delegate = self
-            session?.activate()
-            print("WCSession is supported")
-            
-            if !(session?.isPaired)! {
-                print("Apple Watch is not paired")
-                isWatchPared = false
+    func updateApplicationContext(applicationContext: [String : Any]) throws {
+        if WCSession.default.isPaired {
+            do {
+                try WCSession.default.updateApplicationContext(applicationContext)
+            } catch let error {
+                throw error
             }
-            
-            if !(session?.isWatchAppInstalled)! {
-                print("Apple Watch app is not installed")
-                isWatchPared = false
-            }
-            else{
-                isWatchPared = true
-            }
-
-        } else {
-            print("Apple Watch connectivity is not supported on this device")
         }
-    }
-    
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        
-        watchTracker = message
-        
-        DispatchQueue.main.async {
-            //Update Check-list from Watch
-            self.updateCheckListFromWatch()
-            self.getDataTypes()
-            self.tableView.reloadData()
-        }
-        
-        let replyValues = ["status": "Data sent!"]
-        replyHandler(replyValues)
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-        //
-    }
-    
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        //
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("Session activated")
         //
-    }
-    
-    func sendMyTypesToWatch(ses: WCSession){
         do {
             //myTrackTypes
             var myTypesForWatch = [String: Any]()
             var myTypes  = [String]()
-                    
+            
             do{
                 
                 let myTypesFromPhone_request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
@@ -449,12 +413,93 @@ class AddViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             }
             
             myTypesForWatch["types"] = myTypes
-                    
-            try ses.updateApplicationContext(myTypesForWatch)
+            
+            let message = ["types": myTypes, "date": NSDate()] as [String : Any]
+            //try session.updateApplicationContext(myTypesForWatch)
+             try self.updateApplicationContext(applicationContext: message as [String : Any])
+            print(myTypesForWatch)
         } catch {
             print("Error: \(error)")
         }
+        
     }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+
+        watchTracker = message
+
+        DispatchQueue.main.async {
+            //Send MyTypes to Watch!
+            //Update Check-list from Watch
+            self.updateCheckListFromWatch()
+            self.getDataTypes()
+            self.tableView.reloadData()
+            }
+
+        let replyValues = ["status": "Data sent!"]
+        replyHandler(replyValues)
+    }
+
+    func sessionDidDeactivate(_ session: WCSession) {
+        //
+    }
+
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        //
+    }
+
+//    @IBAction func sendMyTypesToWatch(_ sender: Any) {
+//        do {
+//            //myTrackTypes
+//            var myTypesForWatch = [String: Any]()
+//            var myTypes  = [String]()
+//
+//            do{
+//
+//                let myTypesFromPhone_request = NSFetchRequest<MyTypes>(entityName: "MyTypes")
+//                let myTypesFromPhone = try _context.fetch(myTypesFromPhone_request)
+//                for myTypesFromPhoneItem in myTypesFromPhone {
+//                    myTypes.append(myTypesFromPhoneItem.name!)
+//                }
+//            }
+//            catch{
+//                print("Fetching myTypesForWatch Error!")
+//            }
+//
+//            myTypesForWatch["types"] = myTypes
+//
+//            try session.updateApplicationContext(myTypesForWatch)
+//            print(myTypesForWatch)
+//        } catch {
+//            print("Error: \(error)")
+//        }
+//    }
+    
+    //MARK:- Apple Watch connection
+    //    fileprivate func setupConnectivity() {
+    //        if WCSession.isSupported() {
+    //            session = WCSession.default
+    //            session?.delegate = self
+    //            session?.activate()
+    //            print("WCSession is supported")
+    //
+    //            if !(session?.isPaired)! {
+    //                print("Apple Watch is not paired")
+    //                isWatchPared = false
+    //            }
+    //
+    //            if !(session?.isWatchAppInstalled)! {
+    //                print("Apple Watch app is not installed")
+    //                isWatchPared = false
+    //            }
+    //            else{
+    //                isWatchPared = true
+    //            }
+    //
+    //        } else {
+    //            print("Apple Watch connectivity is not supported on this device")
+    //        }
+    //    }
     
 }
 

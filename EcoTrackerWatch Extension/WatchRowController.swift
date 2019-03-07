@@ -109,7 +109,7 @@ class WatchRowController: NSObject {
         if (state != "None") {
             //Add in Tracker
             let trackObject = WatchCoreDataManager.insertManagedObject(className: NSStringFromClass(Tracker.self) as NSString, managedObjectContext: _context) as! Tracker
-            trackObject.dt    = NSDate()
+            trackObject.dt    = NSDate() as Date
             trackObject.today = getToday(dt: NSDate())
             trackObject.type  = typeName
             
@@ -125,7 +125,7 @@ class WatchRowController: NSObject {
             if isDoneThisType(name: typeName, for_days: 21) {
                 //Add
                 let doneTypeObject = WatchCoreDataManager.insertManagedObject(className: NSStringFromClass(DoneTypes.self) as NSString, managedObjectContext: _context) as! DoneTypes
-                doneTypeObject.dt    = NSDate()
+                doneTypeObject.dt    = NSDate() as Date
                 doneTypeObject.state = "21"
                 doneTypeObject.type  = typeName
             }
@@ -180,7 +180,7 @@ class WatchRowController: NSObject {
     }
     
     func sendDataToMainDev(type: String, val: Any) {
-        let session = WCSession.default()
+        let session = WCSession.default
         if session.isReachable {
             
             let dataValues = ["type": type,"value": val]

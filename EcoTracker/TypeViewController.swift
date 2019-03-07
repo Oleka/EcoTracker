@@ -25,12 +25,56 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
     var isSelected : Bool = false
     
     /*
+     // MARK: - Module Functions
+     */
+    func get_MyTypes() -> [MyTypes]{
+        
+        var iPhoneMyTypes = [MyTypes]()
+        
+        do{
+            iPhoneMyTypes = try _context.fetch(MyTypes.fetchRequest())
+        }
+        catch{
+            print("MyTypes Fetching Error!")
+        }
+        
+        return iPhoneMyTypes
+        
+    }
+    /*
     // MARK: - WCSessionDelegate Functions
     */
     var session: WCSession?
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
     func sessionDidBecomeInactive(_ session: WCSession) { }
     func sessionDidDeactivate(_ session: WCSession) { }
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {}
+        
+    
+    func syncWithWatch(){
+        
+        if (session?.activationState == .activated){
+            let iPhoneAppContext = ["iPhoneMyTypes": get_MyTypes()]
+            session?.transferUserInfo(iPhoneAppContext)
+        }
+        else{
+            print("Error - watch out of reachable!")
+        }
+        
+        //Save to Apple Watch = add type to MyTypes
+//        if (session?.isReachable)! {
+//            let iPhoneAppContext = ["iPhoneMyTypes": get_MyTypes()]
+//
+//            do {
+//                try session?.updateApplicationContext(iPhoneAppContext)
+//            } catch {
+//                print("Something went wrong with sync MyTypes with Watch")
+//            }
+//        }
+//        else{
+//            print("Error - watch out of reachable!")
+//        }
+    }
     
     /*
      // MARK: - UIViewController Functions
@@ -49,19 +93,9 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
                 print("Error delete MyTypes!")
             }
             
-            //Save to Apple Watch = delete type to MyTypes
-            if (session?.isReachable)! {
-                let iPhoneAppContext = ["delete_type": detail_type[0].name!]
-
-                do {
-                    try session?.updateApplicationContext(iPhoneAppContext)
-                } catch {
-                    print("Something went wrong")
-                }
-            }
-            else{
-                print("Error - type not be deleted!")
-            }
+            //Sync with watch
+            syncWithWatch()
+            
         } catch {
             print("There was an error fetching Plus Operations.")
         }
@@ -74,7 +108,7 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
         let addMyTypeObject = CoreDataManager.insertManagedObject(className: NSStringFromClass(MyTypes.self) as NSString, managedObjectContext: _context) as! MyTypes
         addMyTypeObject.name       = String(describing: detail_type[0].name!)
         addMyTypeObject.full_name  = String(describing: detail_type[0].full_name!)
-        addMyTypeObject.dateBegin  = NSDate()
+        addMyTypeObject.dateBegin  = NSDate() as Date
         addMyTypeObject.is_notification = false
         
         //Save data to CoreData
@@ -82,19 +116,8 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
             print("Error saving MyTypes!")
         }
         
-        //Save to Apple Watch = add type to MyTypes
-        if let validSession = session {
-            let iPhoneAppContext = ["add_type": detail_type[0].name!]
-            
-            do {
-                try validSession.updateApplicationContext(iPhoneAppContext)
-            } catch {
-                print("Something went wrong")
-            }
-        }
-        else{
-           print("Error - type not be added!")
-        }
+        //Sync with watch
+        syncWithWatch()
         
         dismiss(animated: false, completion: nil)
     }
@@ -123,7 +146,7 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
             
             do{
                 let attributedString =
-                    try NSAttributedString(url: rtf, options: [NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType], documentAttributes: nil)
+                    try NSAttributedString(url: rtf, options: convertToNSAttributedStringDocumentReadingOptionKeyDictionary([convertFromNSAttributedStringDocumentAttributeKey(NSAttributedString.DocumentAttributeKey.documentType):convertFromNSAttributedStringDocumentType(NSAttributedString.DocumentType.rtf)]), documentAttributes: nil)
                 describeText.attributedText = attributedString
                 
             }catch{}
@@ -147,7 +170,7 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
         
         // Apple Watch Support
         if WCSession.isSupported() {
-            session = WCSession.default()
+            session = WCSession.default
             session?.delegate = self
             session?.activate()
         }
@@ -172,4 +195,19 @@ class TypeViewController: UIViewController,UITextViewDelegate,WCSessionDelegate 
      }
      */
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringDocumentReadingOptionKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.DocumentReadingOptionKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.DocumentReadingOptionKey(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringDocumentAttributeKey(_ input: NSAttributedString.DocumentAttributeKey) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringDocumentType(_ input: NSAttributedString.DocumentType) -> String {
+	return input.rawValue
 }

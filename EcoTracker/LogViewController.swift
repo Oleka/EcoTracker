@@ -224,7 +224,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                     periodLabel.text = getDay(dd:today)
                 }
                 periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFontWeightThin)
+                periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.thin)
                 periodLabel.textAlignment = .center
                 
                 tracker_view.addSubview(periodLabel)
@@ -274,7 +274,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                     periodLabel.text = "\(getDay(dd:today))\(getMonth(dd:today))"
                     
                     periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                    periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFontWeightThin)
+                    periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.thin)
                     periodLabel.textAlignment = .left
                     
                     tracker_view.addSubview(periodLabel)
@@ -299,7 +299,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                     }
                     
                     periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                    periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFontWeightThin)
+                    periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.thin)
                     periodLabel.textAlignment = .left
                     
                     tracker_view.addSubview(periodLabel)
@@ -338,7 +338,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 periodLabel.text = "\(getMonth(dd:today))"
                 
                 periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFontWeightThin)
+                periodLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.thin)
                 periodLabel.textAlignment = .left
                 
                 tracker_view.addSubview(periodLabel)
@@ -531,9 +531,9 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
             
             //Stack View
             var stackViewForFive   = UIStackView()
-            stackViewForFive.axis  = UILayoutConstraintAxis.horizontal
-            stackViewForFive.distribution  = UIStackViewDistribution.equalSpacing
-            stackViewForFive.alignment = UIStackViewAlignment.fill
+            stackViewForFive.axis  = NSLayoutConstraint.Axis.horizontal
+            stackViewForFive.distribution  = UIStackView.Distribution.equalSpacing
+            stackViewForFive.alignment = UIStackView.Alignment.fill
             stackViewForFive.spacing   = 4.0
             
             if logs.count == 0 {
@@ -542,7 +542,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 var noDataView: UILabel = UILabel()
                 noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 70, height: 20.0))
                 noDataView.textAlignment = .left
-                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.thin)
                 noDataView.textColor = .gray
                 noDataView.numberOfLines = 4
                 noDataView.text = "Здесь будет список ваших привычек, закрепленных по принципу выполнения двадцать один (21) день подряд"
@@ -552,7 +552,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 noDataView = UILabel()
                 noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 70, height: 20.0))
                 noDataView.textAlignment = .left
-                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.thin)
                 noDataView.textColor = .gray
                 noDataView.text = " "
                 
@@ -561,7 +561,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 noDataView = UILabel()
                 noDataView.frame =  CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 70, height: 20.0))
                 noDataView.textAlignment = .left
-                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+                noDataView.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.thin)
                 noDataView.textColor = .gray
                 noDataView.text = " "
                 
@@ -584,9 +584,9 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                         i = 0
                         offsetX = 0
                         stackViewForFive   = UIStackView()
-                        stackViewForFive.axis  = UILayoutConstraintAxis.horizontal
-                        stackViewForFive.distribution  = UIStackViewDistribution.equalSpacing
-                        stackViewForFive.alignment = UIStackViewAlignment.fill
+                        stackViewForFive.axis  = NSLayoutConstraint.Axis.horizontal
+                        stackViewForFive.distribution  = UIStackView.Distribution.equalSpacing
+                        stackViewForFive.alignment = UIStackView.Alignment.fill
                         stackViewForFive.spacing   = 4.0
                         
                     }
@@ -642,7 +642,7 @@ class LogViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellId: String = "MyCell"
-        let cell: AwardsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AwardsTableViewCell
+        let cell: AwardsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId ,for: indexPath) as? AwardsTableViewCell
         
         let log = myTrackTypes[indexPath.row]
         cell.awardImage.image = UIImage.init(named: "\(log.name!).png")

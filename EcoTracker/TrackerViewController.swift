@@ -46,7 +46,7 @@ extension String{
     func date(format:String) -> Date?
     {
         let formatter = DateFormatter()
-        formatter.timeZone = NSTimeZone(abbreviation: "GMT+0:00") as TimeZone!
+        formatter.timeZone = NSTimeZone(abbreviation: "GMT+0:00") as TimeZone?
         formatter.dateFormat = format
         //formatter.timeZone = NSTimeZone.local
         return formatter .date(from: self)
@@ -417,7 +417,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                     periodLabel.text = getDay(dd:today)
                 }
                 periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.thin)
                 periodLabel.textAlignment = .center
                 
                 tracker_view.addSubview(periodLabel)
@@ -467,7 +467,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                     periodLabel.text = "\(getDay(dd:beginDate!))\(getMonth(dd:beginDate!))"
                     
                     periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.thin)
                     periodLabel.textAlignment = .left
                     
                     tracker_view.addSubview(periodLabel)
@@ -491,7 +491,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                         
                     }
                     periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                    periodLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.thin)
                     periodLabel.textAlignment = .left
                     
                     tracker_view.addSubview(periodLabel)
@@ -527,7 +527,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
                 periodLabel.text = "\(getMonth(dd:today))"
                 
                 periodLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-                periodLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFontWeightThin)
+                periodLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.thin)
                 periodLabel.textAlignment = .left
                 
                 tracker_view.addSubview(periodLabel)
@@ -661,7 +661,7 @@ class TrackerViewController: UIViewController,UITableViewDataSource,UITableViewD
         let log = trackTypes[indexPath.row]
         
         let cellId: String = "MyCell"
-        let cell: TrackerTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TrackerTableViewCell
+        let cell: TrackerTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? TrackerTableViewCell
         
         cell.typeImage.image = UIImage.init(named: "\(String(describing: log.name!)).png")
         

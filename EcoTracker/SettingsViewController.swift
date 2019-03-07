@@ -39,7 +39,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
             let content = UNMutableNotificationContent()
             content.title = "Ежедневное напоминание"
             content.body = "Пожалуйста, заполните Check-list!"
-            content.sound = UNNotificationSound.default()
+            content.sound = UNNotificationSound.default
             
             //Set the trigger of the notification - daily
             let triggerDaily = Calendar.current.dateComponents([.hour,.minute,.second,], from: Date())
@@ -56,7 +56,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
             UNUserNotificationCenter.current().add(
                 request, withCompletionHandler:nil)
             
-            let okAlert = UIAlertController(title: "Эко-Трекер", message: "Успешно включены ежедневные напоминания!", preferredStyle: UIAlertControllerStyle.alert)
+            let okAlert = UIAlertController(title: "Эко-Трекер", message: "Успешно включены ежедневные напоминания!", preferredStyle: UIAlertController.Style.alert)
             
             okAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                 print("Handle Ok logic here")
@@ -65,7 +65,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
             
         }
         else{
-            let errAlert = UIAlertController(title: "Напоминания выключены!", message: "Для включения, пожалуйста, перейдите в Настройки - Уведомления - Эко-Трекер: Допуск уведомлений - Включить", preferredStyle: UIAlertControllerStyle.alert)
+            let errAlert = UIAlertController(title: "Напоминания выключены!", message: "Для включения, пожалуйста, перейдите в Настройки - Уведомления - Эко-Трекер: Допуск уведомлений - Включить", preferredStyle: UIAlertController.Style.alert)
             
             errAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                 print("Handle Ok logic here")
@@ -76,7 +76,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     
-    func getAccessoryType(for_type: String) -> UITableViewCellAccessoryType{
+    func getAccessoryType(for_type: String) -> UITableViewCell.AccessoryType{
         
         for my in myTrackTypes {
             if my.name == for_type {
@@ -175,12 +175,12 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cellId: String = "MyCell"
-        let cell: SettingsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsTableViewCell
+        let cell: SettingsTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? SettingsTableViewCell
         
         let log = trackTypes[indexPath.row]
         let table_label = "\(String(describing: log.full_name!))"
         cell.settingsLabel.text = table_label
-        cell.settingsLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightRegular)
+        cell.settingsLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
         cell.settingsLabel.textColor = UIColor(red: 0.0/255.0, green: 128.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         cell.settingsImage.image = UIImage.init(named: "\(String(describing: log.name!)).png")
         
@@ -189,7 +189,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         //Delete stat row
         
         if editingStyle == .delete {
